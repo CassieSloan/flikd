@@ -1,5 +1,5 @@
-import { default as NextLink } from "next/link";
-import { FC, PropsWithChildren } from "react";
+import { default as NextLink } from 'next/link';
+import { FC, PropsWithChildren } from 'react';
 
 type LinkProps = {
   to: string;

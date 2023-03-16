@@ -1,4 +1,4 @@
-import { css, FlattenSimpleInterpolation } from "styled-components";
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 
 /**
  * &:hover helper that accepts styles.

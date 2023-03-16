@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { Navigation } from "@/components/common/Navigation";
-import { PageLayout } from "@/components/common/PageLayout";
-import { Section } from "@/components/common/Section";
+import styled from 'styled-components';
+import { Navigation } from '@/components/common/Navigation';
+import { PageLayout } from '@/components/common/PageLayout';
+import { Section } from '@/components/common/Section';
 
 const seo = {
-  title: "Filkd",
+  title: 'Filkd',
   description: " What're you looking atob, punk?",
 };
 

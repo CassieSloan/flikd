@@ -1,13 +1,13 @@
-import { FC } from "react";
-import styled from "styled-components";
-import Link from "./Link";
-import { Section } from "./Section";
+import { FC } from 'react';
+import styled from 'styled-components';
+import Link from './Link';
+import { Section } from './Section';
 
 const headerNavLinks = [
-  { text: "Home", link: "/" },
-  { text: "My Movies", link: "/my-movies" },
-  { text: "Friends", link: "/friends" },
-  { text: "Discover", link: "/expore" },
+  { text: 'Home', link: '/' },
+  { text: 'My Movies', link: '/my-movies' },
+  { text: 'Friends', link: '/friends' },
+  { text: 'Discover', link: '/expore' },
 ];
 
 const NavLink = styled(Link)`

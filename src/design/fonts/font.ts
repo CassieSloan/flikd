@@ -1,5 +1,5 @@
-import "@fontsource/inter";
-import { css } from "styled-components";
+import '@fontsource/inter';
+import { css } from 'styled-components';
 
 export const FontFamily = css`
   * {
