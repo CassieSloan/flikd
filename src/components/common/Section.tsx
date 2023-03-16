@@ -4,10 +4,11 @@ import { PropsWithChildren } from "@/types/helpers";
 
 type SectionProps = {
   noWrapper?: boolean;
+  padding?: number;
 } & PropsWithChildren;
 
-const Container = styled.section`
-  padding: 64px 0;
+const Container = styled.section<{ padding?: number }>`
+  ${({ padding }) => (padding ? `padding: ${padding}px 0` : "padding: 64px 0")}
 `;
 
 const Wrapper = styled.div`
@@ -19,6 +20,11 @@ const Wrapper = styled.div`
 /**
  * Render Section Section.
  */
-export const Section: FC<SectionProps> = ({ noWrapper, children }) => {
-  return <Container>{!noWrapper && <Wrapper>{children}</Wrapper>}</Container>;
+export const Section: FC<SectionProps> = ({ noWrapper, children, padding }) => {
+  console.log("padding", padding);
+  return (
+    <Container padding={padding}>
+      {!noWrapper && <Wrapper>{children}</Wrapper>}
+    </Container>
+  );
 };
