@@ -1,26 +1,42 @@
-import { useForm } from 'react-hook-form';
+import { Resolver, useForm } from 'react-hook-form';
+import { StyledForm } from './FormComponents';
+
+type FormValues = {
+  firstName: string;
+  lastName: string;
+};
+
+const resolver: Resolver<FormValues> = async (values) => {
+  return {
+    values: values.firstName ? values : {},
+    errors: !values.firstName
+      ? {
+        firstName: {
+          type: 'required',
+          message: 'This is required.',
+        },
+      }
+      : {},
+  };
+};
+
+
 
 /**
- * React Hooks Form component.
+ * React Hook Form.
  */
-const Form = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = (data: any) => console.log(data);
-
-  console.log(watch('example')); // watch input value by passing the name of it
+export const Form = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver });
+  const onSubmit = handleSubmit((data) => console.log(data));
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* register your input into the hook by invoking the "register" function */}
-      <input defaultValue="test" {...register('example')} />
-      {/* include validation with required or other standard HTML validation rules */}
-      <input {...register('exampleRequired', { required: true })} />
-      {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>This field is required</span>}
+    <StyledForm onSubmit={onSubmit}>
+      <input {...register('firstName')} placeholder="Bill" />
+      {errors?.firstName && <p>{errors.firstName.message}</p>}
       
+      <input {...register('lastName')} placeholder="Luo" />
+
       <input type="submit" />
-    </form>
+    </StyledForm>
   );
 }
-export default Form

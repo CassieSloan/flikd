@@ -1,19 +1,14 @@
-import styled from 'styled-components';
 import { Navigation } from '@/components/common/Navigation';
 import { PageLayout } from '@/components/common/PageLayout';
 import { Section } from '@/components/common/Section';
-import Form from '@/components/forms/Form';
+import { Form } from '@/components/forms/Form';
+import { Flex } from '@/design/fonts/components/Flex';
 
 const seo = {
   title: 'Filkd',
   description: " What're you looking atob, punk?",
 };
 
-const CenteredContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 /**
  * Homepage component.
  */
@@ -22,11 +17,12 @@ const Home = () => {
     <PageLayout seo={seo}>
       <Section>
         <Navigation />
-        <CenteredContainer>
+        <Flex direction='column' gap={40} justify="center" align='center'>
           <h1>Welp. This was an excellent use of $2.34</h1>
           <h3>😎</h3>
+          <h5>Sign in, bitches (this does nothing rn)</h5>
           <Form/>
-        </CenteredContainer>
+        </Flex>
       </Section>
     </PageLayout>
   );

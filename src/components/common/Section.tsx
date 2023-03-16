@@ -21,7 +21,6 @@ const Wrapper = styled.div`
  * Render Section Section.
  */
 export const Section: FC<SectionProps> = ({ noWrapper, children, padding }) => {
-  console.log('padding', padding);
   return (
     <Container padding={padding}>
       {!noWrapper && <Wrapper>{children}</Wrapper>}
