@@ -40,7 +40,6 @@ module.exports = {
     'jsdoc/require-returns': 'off', // typescript handles this
     'jsdoc/require-description': 'error',
     'jsdoc/require-description-complete-sentence': 'error',
-
     // typescript
     '@typescript-eslint/no-empty-function': 'off', // sometimes we want to default a param to a no-op empty function
     '@typescript-eslint/explicit-function-return-type': 'off', // typescript will infer this
@@ -72,10 +71,9 @@ module.exports = {
         format: null,
       },
     ],
-
     // general code style
-    'prettier/prettier': 'warn',
-    'quotes': ['warn', 'double', { avoidEscape: true }],
+    // 'prettier/prettier': 'warn',
+    'quotes': ['error', 'single', { avoidEscape: true }],
     'no-else-return': ['error', { allowElseIf: false }],
     'no-case-declarations': 'error',
     'no-fallthrough': 'error',
@@ -84,8 +82,9 @@ module.exports = {
     'eqeqeq': 'error',
     'indent': ['error', 2],
     'no-multi-spaces': ['error'],
-
-    // import
+    'eol-last': ["error", "always"],
+    // imports
+    "import/newline-after-import": ["error", { "count": 1, "considerComments": true }],
     'import/namespace': ['error', { allowComputed: true }],
     'import/named': 'error',
     'import/default': 'error',
