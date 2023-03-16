@@ -23,7 +23,6 @@
     "@types/node": "18.15.3",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
-    "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "next": "13.2.4",
     "react": "18.2.0",
@@ -32,18 +31,19 @@
     "typescript": "4.9.5"
   },
   "devDependencies": {
+    "@fontsource/inter": "4.5.15",
     "@next/eslint-plugin-next": "13.2.4",
-    "@typescript-eslint/eslint-plugin": "5.30.0",
-    "@typescript-eslint/parser": "5.30.0",
-    "eslint": "8.18.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-config-react": "1.1.7",
+    "@typescript-eslint/eslint-plugin": "5.55.0",
+    "@typescript-eslint/parser": "5.55.0",
+    "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
-    "eslint-import-resolver-typescript": "3.5.0",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jsdoc": "39.3.3",
-    "eslint-plugin-prettier": "4.1.0",
-    "eslint-plugin-react": "7.30.1",
-    "prettier": "2.7.1"
+    "eslint-config-prettier": "8.7.0",
+    "eslint-config-react": "1.1.7",
+    "eslint-import-resolver-typescript": "3.5.3",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jsdoc": "40.0.3",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-react": "7.32.2",
+    "prettier": "2.8.4"
   }
 }
