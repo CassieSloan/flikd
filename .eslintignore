@@ -1,0 +1,7 @@
+.eslintrc.js
+*.woff
+*.json
+*.d.ts
+/public
+node_modules
+.next
