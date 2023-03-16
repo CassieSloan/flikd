@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import SEO, { SEOProps } from './SEO';
-import { FontFamily } from '@/design/fonts/font';
+import { FontFamily } from '@/design/fonts/typography';
 import { PropsWithChildren } from '@/types/helpers';
 
 type PageLayoutProps = {
