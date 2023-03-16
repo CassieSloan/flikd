@@ -20,6 +20,7 @@
     "add:dev": "yarn pin --dev"
   },
   "dependencies": {
+    "@fontsource/inter": "4.5.15",
     "@types/node": "18.15.3",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
@@ -31,8 +32,8 @@
     "typescript": "4.9.5"
   },
   "devDependencies": {
-    "@fontsource/inter": "4.5.15",
     "@next/eslint-plugin-next": "13.2.4",
+    "@types/styled-components": "5.1.26",
     "@typescript-eslint/eslint-plugin": "5.55.0",
     "@typescript-eslint/parser": "5.55.0",
     "eslint": "8.36.0",
