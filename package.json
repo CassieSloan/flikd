@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "---- NEXT ----": "",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "---- LINT ----": "",
+    "lint": "next lint",
+    "---- DEPS ----": "",
+    "clear": "rm -rf node_modules",
+    "reset": "clear && yarn && yarn dev",
+    "pin": "yarn add --exact",
+    "add:dev": "yarn pin --dev"
   },
   "dependencies": {
     "@types/node": "18.15.3",
