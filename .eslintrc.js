@@ -17,7 +17,7 @@ module.exports = {
     es2020: true,
   },
   rules: {
-    // jsdoc
+    // ★ 🎀 jsdoc 🎀 ★
     'jsdoc/require-jsdoc': [
       'error',
       {
@@ -35,15 +35,15 @@ module.exports = {
         },
       },
     ],
-    'jsdoc/require-param': 'off', // typescript handles this
-    'jsdoc/require-param-type': 'off', // typescript handles this
-    'jsdoc/require-returns': 'off', // typescript handles this
+    'jsdoc/require-param': 'off', //ts handles
+    'jsdoc/require-param-type': 'off', //ts handles
+    'jsdoc/require-returns': 'off', //ts handles
     'jsdoc/require-description': 'error',
     'jsdoc/require-description-complete-sentence': 'error',
-    // typescript
-    '@typescript-eslint/no-empty-function': 'off', // sometimes we want to default a param to a no-op empty function
-    '@typescript-eslint/explicit-function-return-type': 'off', // typescript will infer this
-    '@typescript-eslint/explicit-module-boundary-types': 'off', // typescript will infer this
+    // ★ 🎀 typescript 🎀 ★
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off', //ts handles
+    '@typescript-eslint/explicit-module-boundary-types': 'off', //ts handles
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/array-type': 'error',
     '@typescript-eslint/ban-ts-comment': [
@@ -71,8 +71,8 @@ module.exports = {
         format: null,
       },
     ],
-    // general code style
-    // 'prettier/prettier': 'warn',
+    // ★ 🎀 code style 🎀 ★
+    'no-multiple-empty-lines': ["error", { "max": 1, "maxEOF": 0 }],
     'quotes': ['error', 'single', { avoidEscape: true }],
     'no-else-return': ['error', { allowElseIf: false }],
     'no-case-declarations': 'error',
@@ -83,7 +83,9 @@ module.exports = {
     'indent': ['error', 2],
     'no-multi-spaces': ['error'],
     'eol-last': ["error", "always"],
-    // imports
+    'no-trailing-spaces': "error",
+    'no-irregular-whitespace': "error",
+    // ★ 🎀 imports 🎀 ★
     "import/newline-after-import": ["error", { "count": 1, "considerComments": true }],
     'import/namespace': ['error', { allowComputed: true }],
     'import/named': 'error',
@@ -109,7 +111,7 @@ module.exports = {
     },
     'import/resolver': {
       typescript: {
-        alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+        alwaysTryTypes: true,
         project: ['./tsconfig.json'],
       },
     },

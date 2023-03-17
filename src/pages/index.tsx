@@ -6,7 +6,7 @@ import { Flex } from '@/design/fonts/components/Flex';
 
 const seo = {
   title: 'Filkd',
-  description: " What're you looking atob, punk?",
+  description: " What're you looking at, punk?",
 };
 
 /**
@@ -22,6 +22,7 @@ const Home = () => {
           <h3>😎</h3>
           <h5>Sign in, bitches (this does nothing rn)</h5>
           <Form/>
+
         </Flex>
       </Section>
     </PageLayout>
