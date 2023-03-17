@@ -1,7 +1,7 @@
+import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
+import { FontFamily } from '../../design/fonts/typography';
 import SEO, { SEOProps } from './SEO';
-import { FontFamily } from '@/design/fonts/typography';
-import { PropsWithChildren } from '@/types/helpers';
 
 type PageLayoutProps = {
   seo: SEOProps;
@@ -13,7 +13,7 @@ const Main = styled.main`
 /**
  * Homepage component.
  */
-export const PageLayout = ({ seo, children }: PageLayoutProps) => {
+export const PageLayout = ({ children, seo }: PageLayoutProps) => {
   return (
     <>
       <SEO {...seo} />

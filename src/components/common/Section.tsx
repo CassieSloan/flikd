@@ -1,6 +1,5 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
-import { PropsWithChildren } from '@/types/helpers';
 
 type SectionProps = {
   noWrapper?: boolean;
@@ -20,7 +19,7 @@ const Wrapper = styled.div`
 /**
  * Render Section Section.
  */
-export const Section: FC<SectionProps> = ({ noWrapper, children, padding }) => {
+export const Section: FC<SectionProps> = ({ children, noWrapper, padding }) => {
   return (
     <Container padding={padding}>
       {!noWrapper && <Wrapper>{children}</Wrapper>}

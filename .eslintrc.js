@@ -8,9 +8,10 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:import/typescript',
     'plugin:jsdoc/recommended',
+    'plugin:sort/recommended',
     'next/core-web-vitals'
   ],
-  plugins: ['react', '@typescript-eslint', 'prettier', 'jsdoc'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'jsdoc', 'sort'],
   env: {
     browser: true,
     node: true,
@@ -100,6 +101,11 @@ module.exports = {
         },
       },
     ],
+    // ★ 🎀 sort 🎀 ★
+    'sort/imports': 'warn',
+    'sort/import-members': 'warn',
+    'sort/export-members': 'warn',
+    'sort/object-properties': 'warn',
   },
   settings: {
     react: {

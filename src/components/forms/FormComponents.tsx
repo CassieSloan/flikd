@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { flex } from '@/design/fonts/utils';
+import { flex } from '../../design/fonts/utils';
+import { FormInputType } from './FormTypes';
 
 export const StyledForm = styled.form`
   ${flex({direction: 'column', gap: 24})};
@@ -25,24 +26,23 @@ export const Label = styled.label`
   font-size: 12px;
 `
 
-type FormInputType = 'button'| 'checkbox'| 'color'| 'date'| 'datetime-local'| 'email'| 'file'| 'hidden'| 'image'| 'month'| 'number'| 'password'| 'radio'| 'range'| 'reset'| 'search'| 'submit'| 'tel'| 'text'| 'time'| 'url'| 'week';
 type FormFieldProps = {type: FormInputType, name: string, label: string, placeholder: string};
 /**
  * Form Field component.
  */
-export const FormField: FC<FormFieldProps> = ({type, name, label, placeholder}) => {
+export const FormField: FC<FormFieldProps> = ({label, name, placeholder, type}) => {
   if (type === 'text') {
     return (
       <>
         {label && <Label>{label}</Label>}
-        <TextInput {...{type, name, placeholder}}/>
+        <TextInput {...{name, placeholder, type}}/>
       </>
     )
   }
   return (
     <>
       {label && <Label>{label}</Label>}
-      <TextInput {...{type, name, placeholder}}/>
+      <TextInput {...{name, placeholder, type}}/>
     </>
   )
 }

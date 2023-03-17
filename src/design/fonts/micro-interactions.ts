@@ -3,7 +3,7 @@ import { css } from 'styled-components';
 /**
  * Changes color of browser text background when highlighted.
  */
-export const textSelect = ({ color = '#ffffff', background = '#000000' }) => css`
+export const textSelect = ({ background = '#000000', color = '#ffffff' }) => css`
   * {
     ::selection {
       background: ${background};
@@ -14,7 +14,7 @@ export const textSelect = ({ color = '#ffffff', background = '#000000' }) => css
 /**
  * Element does gentle jump on hover.
  */
-export const jump = ({ position = 'relative', height = '8px' }) => css`
+export const jump = ({ height = '8px', position = 'relative' }) => css`
   position: ${position};
   top: 0;
   transition: 0.3s ease top;

@@ -9,7 +9,7 @@ type LinkProps = {
 /**
  * Render link component.
  */
-const Link: FC<LinkProps> = ({ to, children, className }) => {
+const Link: FC<LinkProps> = ({ children, className, to }) => {
   return (
     <NextLink className={className} href={to}>
       {children}

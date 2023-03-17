@@ -1,12 +1,12 @@
-import { Navigation } from '@/components/common/Navigation';
-import { PageLayout } from '@/components/common/PageLayout';
-import { Section } from '@/components/common/Section';
-import { Form } from '@/components/forms/Form';
-import { Flex } from '@/design/fonts/components/Flex';
+import { Navigation } from '../components/common/Navigation';
+import { PageLayout } from '../components/common/PageLayout';
+import { Section } from '../components/common/Section';
+import { Form } from '../components/forms/Form';
+import { Flex } from '../design/fonts/components/Flex';
 
 const seo = {
-  title: 'Filkd',
   description: " What're you looking at, punk?",
+  title: 'Filkd',
 };
 
 /**

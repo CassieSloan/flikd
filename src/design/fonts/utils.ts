@@ -29,7 +29,7 @@ type FlexProps = {
 /**
  * Flex constructor.
  */
-export const flex = ({ direction, align, justify, gap, wrap }: FlexProps) =>
+export const flex = ({ align, direction, gap, justify, wrap }: FlexProps) =>
   css`
     display: flex;
     ${direction && `flex-direction: ${direction};`}
@@ -48,7 +48,7 @@ type GridProps = {
 /**
  * Grid constructor.
  */
-export const grid = ({ columns = 2, gap, align }: GridProps) => css`
+export const grid = ({ align, columns = 2, gap }: GridProps) => css`
   display: grid;
   grid-template-columns: repeat(${columns}, 1fr);
   ${gap && `gap: ${gap}px`};

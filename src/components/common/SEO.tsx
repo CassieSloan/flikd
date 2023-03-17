@@ -10,7 +10,7 @@ export type SEOProps = {
 /**
  * Page Head (SEO/Analytics/TPS).
  */
-const SEO: FC<SEOProps> = ({ title, description }: SEOProps) => {
+const SEO: FC<SEOProps> = ({ description, title }: SEOProps) => {
   return (
     <Head>
       <title>{title}</title>

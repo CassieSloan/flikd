@@ -4,10 +4,10 @@ import Link from './Link';
 import { Section } from './Section';
 
 const headerNavLinks = [
-  { text: 'Home', link: '/' },
-  { text: 'My Movies', link: '/my-movies' },
-  { text: 'Friends', link: '/friends' },
-  { text: 'Discover', link: '/expore' },
+  { link: '/', text: 'Home' },
+  { link: '/my-movies', text: 'My Movies' },
+  { link: '/friends', text: 'Friends' },
+  { link: '/expore', text: 'Discover' },
 ];
 
 const NavLink = styled(Link)`
@@ -21,7 +21,7 @@ export const Navigation: FC = () => {
   return (
     <Section padding={24}>
       {headerNavLinks.map((navItem) => {
-        const { text, link } = navItem;
+        const { link, text } = navItem;
         return (
           <NavLink key={text} to={link}>
             {text}
