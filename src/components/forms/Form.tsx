@@ -1,17 +1,17 @@
 import { Resolver, useForm } from 'react-hook-form';
-import { StyledForm } from './FormComponents';
+import { FormField, StyledForm, SubmitButton } from './FormComponents';
 
 type FormValues = {
-  firstName: string;
-  lastName: string;
+  email: string;
+  password: string;
 };
 
 const resolver: Resolver<FormValues> = async (values) => {
   return {
-    values: values.firstName ? values : {},
-    errors: !values.firstName
+    values: values.email ? values : {},
+    errors: !values.email
       ? {
-        firstName: {
+        email: {
           type: 'required',
           message: 'This is required.',
         },
@@ -19,8 +19,6 @@ const resolver: Resolver<FormValues> = async (values) => {
       : {},
   };
 };
-
-
 
 /**
  * React Hook Form.
@@ -31,12 +29,11 @@ export const Form = () => {
 
   return (
     <StyledForm onSubmit={onSubmit}>
-      <input {...register('firstName')} placeholder="Bill" />
-      {errors?.firstName && <p>{errors.firstName.message}</p>}
-      
-      <input {...register('lastName')} placeholder="Luo" />
-
-      <input type="submit" />
+      <FormField type='email' {...register('email')} placeholder="you@email.com" label='Email'/>
+      {errors?.email && <p>{errors.email.message}</p>}
+      <FormField type='password' {...register('password')} placeholder="Password" label='Password'/>
+      {errors?.password && <p>{errors.password.message}</p>}
+      <SubmitButton type="submit" />
     </StyledForm>
   );
 }
