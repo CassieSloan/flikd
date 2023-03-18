@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { flex } from '../../design/fonts/utils';
-import { FormInputType } from './FormTypes';
+import { flex } from 'design/fonts/utils';
+import { FormField } from './FormTypes';
 
 export const StyledForm = styled.form`
   ${flex({direction: 'column', gap: 24})};
   max-width: 700px;
-  width: 100%;
+  width: 100%;   
 `
 export const TextInput = styled.input`
   padding: 12px;
@@ -25,12 +25,10 @@ export const Label = styled.label`
   color: white;
   font-size: 12px;
 `
-
-type FormFieldProps = {type: FormInputType, name: string, label: string, placeholder: string};
 /**
  * Form Field component.
  */
-export const FormField: FC<FormFieldProps> = ({label, name, placeholder, type}) => {
+export const Field: FC<FormField> = ({label, name, placeholder, type}) => {
   if (type === 'text') {
     return (
       <>

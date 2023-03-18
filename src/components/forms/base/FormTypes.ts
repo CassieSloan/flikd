@@ -12,12 +12,9 @@ export type FormValidation = {
 
 export type FormInputType = 'button'| 'checkbox'| 'color'| 'date'| 'datetime-local'| 'email'| 'file'| 'hidden'| 'image'| 'month'| 'number'| 'password'| 'radio'| 'range'| 'reset'| 'search'| 'submit'| 'tel'| 'text'| 'time'| 'url'| 'week';
 
-export type FormFields = {
-  name: string;
-  type: FormInputType;
-  validation: FormValidation;
-}
+export type FormField = {type: FormInputType, name: string, label: string, placeholder: string};
 
 export type FormProps = {
-  fields: any
+  fields: FormField[],
+  onSubmit: () => void;
 }
