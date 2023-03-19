@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormField, StyledForm, SubmitButton } from '../FormComponents';
+import { StyledForm, SubmitButton } from '../FormComponents';
+import { FormFieldNew } from './FormComponents';
 
 /**
  * Form Compoonent.
+ */
+
+/**
+ *
  */
 const Form = ({ className, fields, onSubmit}) => {
   const { formState, handleSubmit, register } = useForm({ mode: 'onSubmit', reValidateMode: 'onChange' });
@@ -58,28 +63,12 @@ const Form = ({ className, fields, onSubmit}) => {
   ];
 
   const defaultOnSubmit = async (values) => {
-    console.log('values', values)
-    // try {
-    //   const url = `https://submit-form.com/${formSparkId || ''}`; // pass formSparkId to send to formSpark
-    //   const config = {
-    //     body: JSON.stringify(values),
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json',
-    //     },
-    //     method: 'POST',
-    //   };
-    //   const response = await fetch(url, config);
-    //   // const json = await response.json()
-    //   if (response.ok) {
-    //     // return json
-    //     sendToDataLayer('contact_form_submission');
-    //     return navigate('/thank-you');
-    //   }
-    // } catch (error) {
-    //   console.error('Error submitting form', error);
-    //   setSubmissionError('Oops something went wrong, please try again');
-    // }
+    try {
+      console.log('values', values)
+    } catch (error) {
+      console.error('Error submitting form', error);
+      setSubmissionError(true);
+    }
   };
 
   return (
@@ -89,11 +78,10 @@ const Form = ({ className, fields, onSubmit}) => {
         <button type="submit" disabled aria-hidden="true" style={{ display: 'none' }} />
         {(fields || defaultFields).map((field) => {
           const hasError = errors[field.name];
-
           return (
             <div key={field.label}>
               <span >{field.label}</span>
-              <FormField {...field} register={register} />
+              <FormFieldNew {...field} register={register} />
               <input
                 {...register('_gotcha')}
                 type="checkbox"
@@ -102,9 +90,9 @@ const Form = ({ className, fields, onSubmit}) => {
                 tabIndex={-1}
                 autoComplete="off"
               />
-              {/* <div>
+              <div>
                 {hasError && <span>{field.validationMessage || 'This field is required'}</span>}
-              </div> */}
+              </div>
             </div>
           );
         })}

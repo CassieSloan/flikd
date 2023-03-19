@@ -1,5 +1,7 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 import { flex } from '../../../design/fonts/utils';
+import { FormFieldProps } from './FormTypes';
 
 export const StyledForm = styled.form`
   ${flex({direction: 'column', gap: 24})};
@@ -27,7 +29,7 @@ export const Label = styled.label`
 /**
  * FormField component.
  */
-export const FormField = ({ defaultValue, handleChange, name, options, placeholder, register, type, validation }) => {
+export const FormFieldNew: FC<FormFieldProps> = ({ defaultValue = '', handleChange, name, options, placeholder, register, type, validation }) => {
   if (type === 'textarea') {
     return (
       <textarea
@@ -41,7 +43,7 @@ export const FormField = ({ defaultValue, handleChange, name, options, placehold
   }
   if (type === 'select') {
     return (
-      <select name={name} {...register(name, validation)}>
+      <select {...register(name, validation)}>
         {options.map((option) => (
           <option value={option} defaultValue={defaultValue} key={option}>
             {option}
@@ -77,7 +79,7 @@ export const FormField = ({ defaultValue, handleChange, name, options, placehold
     );
   }
   return (
-    <input
+    <TextInput
       {...register(name, validation)}
       type={type}
       name={name}
