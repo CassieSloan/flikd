@@ -1,7 +1,5 @@
-import { FC } from 'react';
 import styled from 'styled-components';
-import { flex } from 'design/fonts/utils';
-import { FormField } from './FormTypes';
+import { flex } from '../../../design/fonts/utils';
 
 export const StyledForm = styled.form`
   ${flex({direction: 'column', gap: 24})};
@@ -14,7 +12,7 @@ export const TextInput = styled.input`
   border-radius: 12px;
   border: 1px solid purple;
 `
-export const SubmitButton = styled.input`
+export const SubmitButton = styled.button`
   padding: 12px;
   border-radius: 12px;
   background: purple;
@@ -25,22 +23,67 @@ export const Label = styled.label`
   color: white;
   font-size: 12px;
 `
+
 /**
- * Form Field component.
+ * FormField component.
  */
-export const Field: FC<FormField> = ({label, name, placeholder, type}) => {
-  if (type === 'text') {
+export const FormField = ({ defaultValue, handleChange, name, options, placeholder, register, type, validation }) => {
+  if (type === 'textarea') {
     return (
-      <>
-        {label && <Label>{label}</Label>}
-        <TextInput {...{name, placeholder, type}}/>
-      </>
-    )
+      <textarea
+        {...register(name, validation)}
+        name={name}
+        id={name}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+      />
+    );
+  }
+  if (type === 'select') {
+    return (
+      <select name={name} {...register(name, validation)}>
+        {options.map((option) => (
+          <option value={option} defaultValue={defaultValue} key={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    );
+  }
+
+  if (type === 'radio' || type === 'checkbox') {
+    return (
+      <div className={`${type}-buttons`}>
+        {options.map((option) => (
+          <div key={option} className={`${type}-button`}>
+            <input
+              {...register(name, validation)}
+              type={type}
+              id={option}
+              name={name}
+              value={option}
+              defaultValue={defaultValue}
+              onChange={handleChange}
+            />
+            {type === 'checkbox' && (
+              <svg viewBox="0 0 21 21">
+                <polyline points="5 10.75 8.5 14.25 16 6" />
+              </svg>
+            )}
+            <label htmlFor={option}>{option}</label>
+          </div>
+        ))}
+      </div>
+    );
   }
   return (
-    <>
-      {label && <Label>{label}</Label>}
-      <TextInput {...{name, placeholder, type}}/>
-    </>
-  )
-}
+    <input
+      {...register(name, validation)}
+      type={type}
+      name={name}
+      id={name}
+      placeholder={placeholder}
+      defaultValue={defaultValue}
+    />
+  );
+};

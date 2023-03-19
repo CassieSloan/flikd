@@ -36,7 +36,6 @@ const Login = () => {
           <Heading3>😎</Heading3>
           <Heading4>Sign in, bitches (this does nothing rn)</Heading4>
           <LoginForm />
-
         </Flex>
       </Section>
     </PageLayout>
