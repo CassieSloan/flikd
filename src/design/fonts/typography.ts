@@ -1,8 +1,21 @@
 import '@fontsource/inter';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const FontFamily = css`
   * {
     font-family: "Inter";
   }
 `;
+
+export const Heading1 = styled.h1`
+  font-size: 32px;
+  margin: 0;
+`
+export const Heading3 = styled.h3`
+  font-size: 24px;
+  margin: 0;
+`
+export const Heading4 = styled.h4`
+  font-size: 20px;
+  margin: 0;
+`

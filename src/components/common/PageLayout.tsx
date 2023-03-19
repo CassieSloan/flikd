@@ -4,7 +4,7 @@ import { FontFamily } from '../../design/fonts/typography';
 import SEO, { SEOProps } from './SEO';
 
 type PageLayoutProps = {
-  seo: SEOProps;
+  seo?: SEOProps;
 } & PropsWithChildren;
 
 const Main = styled.main`
