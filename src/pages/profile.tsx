@@ -11,16 +11,18 @@ type ProfileProps = {
   profileId: string;
 };
 type ProfileInfo = {
-  id: string,
-  userSince: string,
-  username: string
+  data: {
+    id: string,
+    userSince: string,
+    username: string
+  }
 }
 /**
  * Render Profile component.
  */
 const Profile: FC<ProfileProps> = () => {
   const [profileAuth, setProfileAuth] = useState<string | (string | null)[]>('')
-  const [profileInfo, setProfileInfo] = useState<ProfileInfo | null | Promise<unknown>>(null)
+  const [profileInfo, setProfileInfo] = useState<ProfileInfo | null>(null)
 
   console.log('profileInfo', profileInfo?.data)
   const [loading, setLoading] = useState(false);
