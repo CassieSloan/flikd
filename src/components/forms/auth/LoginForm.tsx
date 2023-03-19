@@ -1,7 +1,8 @@
 // eslint-disable-next-line import/no-named-as-default
-import Router from 'next/router';
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { login } from '../../../apiHelpers/login';
 import { Heading4 } from '../../../design/fonts/typography';
+import { LoadingSpinner } from '../../common/LoadingSpinner';
 import Form from '../base/Form';
 import { FieldValues } from '../base/FormTypes';
 
@@ -14,37 +15,21 @@ const loginFields = [
  * Login Form component.
  */
 export const LoginForm: FC = () => {
-  // const [userExists, setUserExists] = useState(false)
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (values: FieldValues) => {
-    const loginUrl = `${process.env.NEXT_PUBLIC_LOGIN_URL}`;
+    setLoading(true)
+    const handleFail = (json: unknown) => console.log('failed:', json)
+    login({handleFail, values});
+    setLoading(false)
 
-    const config = {
-      body: JSON.stringify(values),
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': `${process.env.NEXT_PUBLIC_RENDER_API_KEY}`,
-        'X-Requested-With': 'XMLHttpRequest'
-      },
-      method: 'POST',
-    };
-
-    const response = await fetch(loginUrl, config);
-    console.log('response', response)
-    const json = await response.json()
-    console.log('json', json)
-    if (response.ok) {
-      console.log('json', json)
-      console.log('finished')
-      if (json.accessToken) {
-        Router.push('/profile')
-      }
-    }
   }
   return (
     <>
       <Heading4>Login</Heading4>
-      {/* {userExists && <span>This user already exists. Please <Link to="/">login</Link> to continue</span>} */}
       <Form onSubmit={onSubmit} className={undefined} fields={loginFields} />
+      {loading && <LoadingSpinner />}
+
     </>
   )
 }

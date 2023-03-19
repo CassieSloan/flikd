@@ -46,3 +46,13 @@ export const toggleFadeUp = (fadeUp?: boolean) => css`
         opacity: 0;
       `}
 `;
+
+/**
+ * Rotate 360 degrees.
+ */
+export const rotate360 = () => css`
+  @keyframes rotateMe {
+    0% {transform: rotate(0)}
+    100% {transform: rotate(360deg)}
+  }
+`

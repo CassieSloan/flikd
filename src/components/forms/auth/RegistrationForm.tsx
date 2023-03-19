@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-named-as-default
-import Router from 'next/router';
 import { FC, useState } from 'react';
+import { registerUser } from '../../../apiHelpers/registration';
 import { Heading4 } from '../../../design/fonts/typography';
-import Link from '../../common/Link';
+import { LoadingSpinner } from '../../common/LoadingSpinner';
 import Form from '../base/Form';
 import { FieldValues } from '../base/FormTypes';
 
@@ -17,39 +17,21 @@ const registrationFields = [
  */
 export const RegistrationForm: FC = () => {
   const [userExists, setUserExists] = useState(false)
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (values: FieldValues) => {
-    const registerUrl = `${process.env.NEXT_PUBLIC_REGISTER_URL}`;
-
-    const config = {
-      body: JSON.stringify(values),
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': `${process.env.NEXT_PUBLIC_RENDER_API_KEY}`,
-        'X-Requested-With': 'XMLHttpRequest'
-      },
-      method: 'POST',
-    };
-
-    const response = await fetch(registerUrl, config);
-    console.log('response', response)
-    const json = await response.json()
-    console.log('json', json)
-    if (response.ok) {
-      console.log('json', json)
-      console.log('finished')
-      if (json.message === 'User Exists - Please Login') {
-        setUserExists(true)
-      }
-      if (json.status === 'success') {
-        Router.push('/profile')
-      }
-    }
+    setLoading(true)
+    const handleFail = () => setUserExists(true);
+    registerUser({handleFail, values});
+    setLoading(false)
   }
+
   return (
     <>
       <Heading4>Register</Heading4>
-      {userExists && <span>This user already exists. Please <Link to="/">login</Link> to continue</span>}
+      {userExists && <span>This user already exists. Please login to continue</span>}
       <Form onSubmit={onSubmit} fields={registrationFields} />
+      {loading && <LoadingSpinner />}
     </>
   )
 }
