@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
-import { FontFamily } from '../../design/fonts/typography';
+import { FontFamily } from '../../design/typography/typography';
 import SEO, { SEOProps } from './SEO';
 
 type PageLayoutProps = {
@@ -15,10 +15,10 @@ const StyledMain = styled.main`
  * Homepage component.
  */
 export const PageLayout = ({ children, seo }: PageLayoutProps) => {
-  return (
-    <>
-      <SEO {...seo} />
-      <StyledMain>{children}</StyledMain>
-    </>
-  );
+	return (
+		<>
+			<SEO {...seo} />
+			<StyledMain>{children}</StyledMain>
+		</>
+	);
 };

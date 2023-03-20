@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { flex } from '../../../design/fonts/utils';
+import { flex } from '../../../design/utils';
 import { ReactHookFormField } from './FormTypes';
 
 export const StyledForm = styled.form`
@@ -30,75 +30,75 @@ export const Label = styled.label`
  * FormField component.
  */
 export const FormFieldNew: FC<ReactHookFormField> = ({
-  defaultValue = '',
-  handleChange,
-  label,
-  name,
-  options,
-  placeholder,
-  register,
-  type,
-  validation,
+	defaultValue = '',
+	handleChange,
+	label,
+	name,
+	options,
+	placeholder,
+	register,
+	type,
+	validation,
 }) => {
-  if (type === 'textarea') {
-    return (
-      <textarea
-        {...register(name, validation)}
-        name={name}
-        id={name}
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-      />
-    );
-  }
-  if (type === 'select') {
-    return (
-      <select {...register(name, validation)}>
-        {options?.map((option) => (
-          <option value={option} defaultValue={defaultValue} key={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-    );
-  }
+	if (type === 'textarea') {
+		return (
+			<textarea
+				{...register(name, validation)}
+				name={name}
+				id={name}
+				placeholder={placeholder}
+				defaultValue={defaultValue}
+			/>
+		);
+	}
+	if (type === 'select') {
+		return (
+			<select {...register(name, validation)}>
+				{options?.map((option) => (
+					<option value={option} defaultValue={defaultValue} key={option}>
+						{option}
+					</option>
+				))}
+			</select>
+		);
+	}
 
-  if (type === 'radio' || type === 'checkbox') {
-    return (
-      <div className={`${type}-buttons`}>
-        {options?.map((option) => (
-          <div key={option} className={`${type}-button`}>
-            <input
-              {...register(name, validation)}
-              type={type}
-              id={option}
-              name={name}
-              value={option}
-              defaultValue={defaultValue}
-              onChange={handleChange}
-            />
-            {type === 'checkbox' && (
-              <svg viewBox="0 0 21 21">
-                <polyline points="5 10.75 8.5 14.25 16 6" />
-              </svg>
-            )}
-            <label htmlFor={option}>{option}</label>
-          </div>
-        ))}
-      </div>
-    );
-  }
-  return (
-    <>
-      <Label>{label}</Label>
-      <TextInput
-        {...register(name, validation)}
-        type={type}
-        name={name}
-        id={name}
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-      />
-    </>
-  );
+	if (type === 'radio' || type === 'checkbox') {
+		return (
+			<div className={`${type}-buttons`}>
+				{options?.map((option) => (
+					<div key={option} className={`${type}-button`}>
+						<input
+							{...register(name, validation)}
+							type={type}
+							id={option}
+							name={name}
+							value={option}
+							defaultValue={defaultValue}
+							onChange={handleChange}
+						/>
+						{type === 'checkbox' && (
+							<svg viewBox="0 0 21 21">
+								<polyline points="5 10.75 8.5 14.25 16 6" />
+							</svg>
+						)}
+						<label htmlFor={option}>{option}</label>
+					</div>
+				))}
+			</div>
+		);
+	}
+	return (
+		<>
+			<Label>{label}</Label>
+			<TextInput
+				{...register(name, validation)}
+				type={type}
+				name={name}
+				id={name}
+				placeholder={placeholder}
+				defaultValue={defaultValue}
+			/>
+		</>
+	);
 };

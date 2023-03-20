@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { rotate360 } from '../../design/fonts/micro-interactions';
+import { rotate360 } from '../../design/micro-interactions';
 
 const LoadingSpin = styled.div`
 	width: 4rem;
