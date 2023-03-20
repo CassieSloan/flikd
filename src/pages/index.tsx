@@ -3,14 +3,14 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { Section } from '../components/common/Section';
 import { LoginForm } from '../components/forms/auth/LoginForm';
 import { RegistrationForm } from '../components/forms/auth/RegistrationForm';
-import { dynamicBlockBackground } from '../design/fonts/animations';
-import { Flex } from '../design/fonts/components/Flex';
-import { StrippedButton } from '../design/fonts/components/StrippedButton';
-import { FontFamily, Heading4 } from '../design/fonts/typography';
+import { dynamicBlockBackground } from '../design/animations';
+import { Flex } from '../design/components/Flex';
+import { StrippedButton } from '../design/components/StrippedButton';
+import { FontFamily, Heading4 } from '../design/typography/typography';
 
 const seo = {
-  description: " What're you looking at, punk?",
-  title: 'Filkd',
+	description: " What're you looking at, punk?",
+	title: 'Filkd',
 };
 
 const GlobalStyle = createGlobalStyle`
@@ -28,26 +28,26 @@ const RegisterButton = styled(StrippedButton)`
  * Login Screen.
  */
 const Login = () => {
-  const [registerTrue, setRegisterTrue] = useState(false);
+	const [registerTrue, setRegisterTrue] = useState(false);
 
-  return (
-  // <PageLayout seo={seo}>
-    <>
-      <GlobalStyle />
-      <Section>
-        <Flex direction="column" gap={16} justify="center" align="center">
-          {registerTrue ? <RegistrationForm /> : <LoginForm />}
-          <Heading4>
+	return (
+		// <PageLayout seo={seo}>
+		<>
+			<GlobalStyle />
+			<Section>
+				<Flex direction="column" gap={16} justify="center" align="center">
+					{registerTrue ? <RegistrationForm /> : <LoginForm />}
+					<Heading4>
 						Dont have an account?
-            <RegisterButton onClick={() => setRegisterTrue(true)}>
+						<RegisterButton onClick={() => setRegisterTrue(true)}>
 							Create one
-            </RegisterButton>
-          </Heading4>
-        </Flex>
-      </Section>
-    </>
-  // </PageLayout>
-  );
+						</RegisterButton>
+					</Heading4>
+				</Flex>
+			</Section>
+		</>
+		// </PageLayout>
+	);
 };
 
 export default Login;

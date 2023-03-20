@@ -81,7 +81,7 @@ module.exports = {
     'prefer-rest-params': 'error',
     'no-useless-escape': 'error',
     'eqeqeq': 'error',
-    'indent': ['error', 2],
+    // 'indent': ['error', 2],
     'no-multi-spaces': ['error'],
     'eol-last': ["error", "always"],
     'no-trailing-spaces': "error",
