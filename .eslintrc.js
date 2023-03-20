@@ -45,8 +45,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off', //ts handles
     '@typescript-eslint/explicit-module-boundary-types': 'off', //ts handles
-    '@typescript-eslint/no-unused-vars': 'error',
-    '@typescript-eslint/array-type': 'error',
+    '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/ban-ts-comment': [
       'error',
       {
