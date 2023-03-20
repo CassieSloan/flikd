@@ -3,8 +3,8 @@ import { FC, useState } from 'react';
 import { registerUser } from '../../../apiHelpers/registration';
 import { Heading4 } from '../../../design/fonts/typography';
 import { LoadingSpinner } from '../../common/LoadingSpinner';
-import Form from '../base/Form';
 import { FieldValues } from '../base/FormTypes';
+import { StyledAuthForm } from './StyledAuthForm';
 
 const registrationFields = [
   {label: 'username', name: 'user', placeholder: 'a cool username', type: 'text', validation: { required: true }, validationMessage: 'Please enter a username', },
@@ -30,7 +30,7 @@ export const RegistrationForm: FC = () => {
     <>
       <Heading4>Register</Heading4>
       {userExists && <span>This user already exists. Please login to continue</span>}
-      <Form onSubmit={onSubmit} fields={registrationFields} />
+      <StyledAuthForm onSubmit={onSubmit} fields={registrationFields} />
       {loading && <LoadingSpinner />}
     </>
   )

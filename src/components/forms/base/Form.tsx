@@ -1,7 +1,6 @@
-import { FC, useState } from 'react';
+import { FC, Fragment, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { StyledForm, SubmitButton } from '../FormComponents';
-import { FormFieldNew } from './FormComponents';
+import { FormFieldNew, StyledForm, SubmitButton } from './FormComponents';
 import { FormProps } from './FormTypes';
 
 /**
@@ -53,27 +52,22 @@ const Form:FC<FormProps> = ({ className, fields, onSubmit}) => {
   };
 
   return (
-    <section>
-      {submissionError && <p>{submissionError}</p>}
-      <StyledForm onSubmit={handleSubmit(onSubmit || defaultOnSubmit)} className={className}>
-        <button type="submit" disabled aria-hidden="true" style={{ display: 'none' }} />
-        {(fields || defaultFields).map((field) => {
-          const hasError = errors[field.name];
-          return (
-            <div key={field.label}>
-              <span >{field.label}</span>
-              <FormFieldNew {...field} register={register} />
-              <div>
-                {hasError && <span>{field.validationMessage || 'This field is required'}</span>}
-              </div>
-            </div>
-          );
-        })}
-        <SubmitButton type="submit" disabled={isSubmitting}>
+    <StyledForm onSubmit={handleSubmit(onSubmit || defaultOnSubmit)} className={className}>
+      <button type="submit" disabled aria-hidden="true" style={{ display: 'none' }} />
+      {(fields || defaultFields).map((field) => {
+        const hasError = errors[field.name];
+        return (
+          <Fragment key={field.label}>
+            <FormFieldNew {...field} register={register} />
+            {hasError && <span>{field.validationMessage || 'This field is required'}</span>}
+          </Fragment>
+        );
+      })}
+      <SubmitButton type="submit" disabled={isSubmitting}>
           Submit
-        </SubmitButton>
-      </StyledForm>
-    </section>
+      </SubmitButton>
+      {submissionError && <p>{submissionError}</p>}
+    </StyledForm>
   );
 };
 

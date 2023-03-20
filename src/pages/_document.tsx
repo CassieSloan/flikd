@@ -1,10 +1,10 @@
 import { Head, Html, Main, NextScript } from 'next/document';
-import React from 'react';
 
 /**
  * Root document export.
  */
 export default function Document() {
+  console.log('doc being used')
   return (
     <Html lang="en">
       <Head />

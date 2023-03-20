@@ -4,7 +4,7 @@ import { flex } from '../../../design/fonts/utils';
 import { ReactHookFormField } from './FormTypes';
 
 export const StyledForm = styled.form`
-  ${flex({direction: 'column', gap: 24})};
+  ${flex({direction: 'column', gap: 16})};
   max-width: 700px;
   width: 100%;   
 `
@@ -17,19 +17,19 @@ export const TextInput = styled.input`
 export const SubmitButton = styled.button`
   padding: 12px;
   border-radius: 12px;
-  background: purple;
+  background: #FA5374;
   color: white;
   border: none;
 `
 export const Label = styled.label`
-  color: white;
+  color: black;
   font-size: 12px;
 `
 
 /**
  * FormField component.
  */
-export const FormFieldNew: FC<ReactHookFormField> = ({ defaultValue = '', handleChange, name, options, placeholder, register, type, validation }) => {
+export const FormFieldNew: FC<ReactHookFormField> = ({ defaultValue = '', handleChange, label, name, options, placeholder, register, type, validation }) => {
   if (type === 'textarea') {
     return (
       <textarea
@@ -79,13 +79,16 @@ export const FormFieldNew: FC<ReactHookFormField> = ({ defaultValue = '', handle
     );
   }
   return (
-    <TextInput
-      {...register(name, validation)}
-      type={type}
-      name={name}
-      id={name}
-      placeholder={placeholder}
-      defaultValue={defaultValue}
-    />
+    <>
+      <Label>{label}</Label>
+      <TextInput
+        {...register(name, validation)}
+        type={type}
+        name={name}
+        id={name}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+      />
+    </>
   );
 };

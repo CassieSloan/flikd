@@ -7,9 +7,10 @@ type PageLayoutProps = {
   seo?: SEOProps;
 } & PropsWithChildren;
 
-const Main = styled.main`
+const StyledMain = styled.main`
   ${FontFamily}
 `;
+
 /**
  * Homepage component.
  */
@@ -17,7 +18,7 @@ export const PageLayout = ({ children, seo }: PageLayoutProps) => {
   return (
     <>
       <SEO {...seo} />
-      <Main>{children}</Main>
+      <StyledMain>{children}</StyledMain>
     </>
   );
 };

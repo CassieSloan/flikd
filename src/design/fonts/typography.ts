@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 export const FontFamily = css`
   * {
     font-family: "Inter";
+    font-weight: 300;
   }
 `;
 
