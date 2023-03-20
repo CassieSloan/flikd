@@ -2,9 +2,9 @@ import Head from 'next/head';
 import { FC } from 'react';
 
 export type SEOProps = {
-  title?: string;
-  description?: string;
-  image?: string;
+	title?: string;
+	description?: string;
+	image?: string;
 };
 
 /**

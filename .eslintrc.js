@@ -72,6 +72,7 @@ module.exports = {
       },
     ],
     // ★ 🎀 code style 🎀 ★
+    "prettier/prettier": ["error"],
     'no-multiple-empty-lines': ["error", { "max": 1, "maxEOF": 0 }],
     'quotes': ['error', 'single', { avoidEscape: true }],
     'no-else-return': ['error', { allowElseIf: false }],

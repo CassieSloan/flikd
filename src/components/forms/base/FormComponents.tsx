@@ -4,32 +4,42 @@ import { flex } from '../../../design/fonts/utils';
 import { ReactHookFormField } from './FormTypes';
 
 export const StyledForm = styled.form`
-  ${flex({direction: 'column', gap: 16})};
-  max-width: 700px;
-  width: 100%;   
-`
+	${flex({ direction: 'column', gap: 16 })};
+	max-width: 700px;
+	width: 100%;
+`;
 export const TextInput = styled.input`
-  padding: 12px;
-  background: transparent;
-  border-radius: 12px;
-  border: 1px solid purple;
-`
+	padding: 12px;
+	background: transparent;
+	border-radius: 12px;
+	border: 1px solid purple;
+`;
 export const SubmitButton = styled.button`
-  padding: 12px;
-  border-radius: 12px;
-  background: #FA5374;
-  color: white;
-  border: none;
-`
+	padding: 12px;
+	border-radius: 12px;
+	background: #fa5374;
+	color: white;
+	border: none;
+`;
 export const Label = styled.label`
-  color: black;
-  font-size: 12px;
-`
+	color: black;
+	font-size: 12px;
+`;
 
 /**
  * FormField component.
  */
-export const FormFieldNew: FC<ReactHookFormField> = ({ defaultValue = '', handleChange, label, name, options, placeholder, register, type, validation }) => {
+export const FormFieldNew: FC<ReactHookFormField> = ({
+  defaultValue = '',
+  handleChange,
+  label,
+  name,
+  options,
+  placeholder,
+  register,
+  type,
+  validation,
+}) => {
   if (type === 'textarea') {
     return (
       <textarea

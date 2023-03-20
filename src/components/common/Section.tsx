@@ -2,18 +2,18 @@ import { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
 type SectionProps = {
-  noWrapper?: boolean;
-  padding?: number;
+	noWrapper?: boolean;
+	padding?: number;
 } & PropsWithChildren;
 
 const Container = styled.section<{ padding?: number }>`
-  ${({ padding }) => (padding ? `padding: ${padding}px 0` : 'padding: 64px 0')}
+	${({ padding }) => (padding ? `padding: ${padding}px 0` : 'padding: 64px 0')}
 `;
 
 const Wrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 24px;
 `;
 
 /**

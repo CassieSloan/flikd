@@ -11,7 +11,7 @@ const headerNavLinks = [
 ];
 
 const NavLink = styled(Link)`
-  padding: 16px;
+	padding: 16px;
 `;
 
 /**

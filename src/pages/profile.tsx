@@ -8,46 +8,51 @@ import { PageLayout } from '../components/common/PageLayout';
 import { Section } from '../components/common/Section';
 
 type ProfileProps = {
-  profileId: string;
+	profileId: string;
 };
 type ProfileInfo = {
-  data: {
-    id: string,
-    userSince: string,
-    username: string
-  }
-}
+	data: {
+		id: string;
+		userSince: string;
+		username: string;
+	};
+};
 /**
  * Render Profile component.
  */
 const Profile: FC<ProfileProps> = () => {
-  const [profileAuth, setProfileAuth] = useState<string | (string | null)[]>('')
-  const [profileInfo, setProfileInfo] = useState<ProfileInfo | null>(null)
+  const [profileAuth, setProfileAuth] = useState<string | (string | null)[]>(
+    ''
+  );
+  const [profileInfo, setProfileInfo] = useState<ProfileInfo | null>(null);
 
-  console.log('profileInfo', profileInfo?.data)
+  console.log('profileInfo', profileInfo?.data);
   const [loading, setLoading] = useState(false);
-  console.log('loading', loading)
+  console.log('loading', loading);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const parsed = queryString.parse(location.search);
-    console.log('parsed', parsed)
-    const {auth} = parsed
-    console.log('auth', auth)
+    console.log('parsed', parsed);
+    const { auth } = parsed;
+    console.log('auth', auth);
     if (auth) {
       setProfileAuth(auth);
     }
-    router.replace('/profile', undefined, { shallow: true })
+    router.replace('/profile', undefined, { shallow: true });
   }, []);
 
-  const retrieveProfile = useCallback(async (profileAuth: string | (string | null)[]) => {
-    const info = await getProfile(profileAuth);
-    setProfileInfo(info)
-  }, [])
+  const retrieveProfile = useCallback(
+    async (profileAuth: string | (string | null)[]) => {
+      const info = await getProfile(profileAuth);
+      setProfileInfo(info);
+    },
+    []
+  );
 
   useEffect(() => {
     if (profileAuth) {
-      retrieveProfile(profileAuth)
+      retrieveProfile(profileAuth);
       setLoading(false);
     }
   }, [profileAuth, retrieveProfile]);
