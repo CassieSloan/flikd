@@ -1,5 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
+import { primary70, tertiary100 } from '../../../design/colors/colors';
+import { black, white } from '../../../design/colors/shades';
 import { flex } from '../../../design/utils';
 import { ReactHookFormField } from './FormTypes';
 
@@ -11,19 +13,26 @@ export const StyledForm = styled.form`
 export const TextInput = styled.input`
 	padding: 12px;
 	background: transparent;
-	border-radius: 12px;
-	border: 1px solid purple;
+	border-radius: 8px;
+	border: 1px solid ${tertiary100};
 `;
 export const SubmitButton = styled.button`
 	padding: 12px;
 	border-radius: 12px;
-	background: #fa5374;
+	background: ${primary70};
 	color: white;
 	border: none;
 `;
 export const Label = styled.label`
-	color: black;
+	position: relative;
+	display: inline;
+	width: min-content;
+	padding: 4px;
+	color: ${black};
+	background: ${white};
 	font-size: 12px;
+	top: 26px;
+	left: 8px;
 `;
 
 /**
