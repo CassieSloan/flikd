@@ -5,5 +5,5 @@ import React from 'react';
  * App root.
  */
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+	return <Component {...pageProps} />;
 }

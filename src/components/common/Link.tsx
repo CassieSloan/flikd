@@ -10,10 +10,10 @@ type LinkProps = {
  * Render link component.
  */
 const Link: FC<LinkProps> = ({ children, className, to }) => {
-  return (
-    <NextLink className={className} href={to}>
-      {children}
-    </NextLink>
-  );
+	return (
+		<NextLink className={className} href={to}>
+			{children}
+		</NextLink>
+	);
 };
 export default Link;

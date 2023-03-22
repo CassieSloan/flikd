@@ -12,7 +12,7 @@
     "eslint": "eslint",
     "eslint-all": "yarn eslint '**/*.{ts,tsx}'",
     "eslint-fix": "yarn eslint --fix",
-    "eslint-fix-all": "yarn eslint-fix '**/*.{ts,tsx}'",
+    "lint-all": "yarn eslint-fix '**/*.{ts,tsx}'",
     "---- DEPS ----": "",
     "clear": "rm -rf node_modules",
     "reset": "clear && yarn && yarn dev",
