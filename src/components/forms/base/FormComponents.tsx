@@ -1,38 +1,55 @@
 import { FC } from 'react';
-import styled from 'styled-components';
-import { primary70, tertiary100 } from '../../../design/colors/colors';
-import { black, white } from '../../../design/colors/shades';
-import { flex } from '../../../design/utils';
+import styled, { css } from 'styled-components';
+import {
+	tertiary60,
+	tertiary70,
+	tertiary80,
+} from '../../../design/colors/colors';
+import { black } from '../../../design/colors/shades';
+import { jump } from '../../../design/micro-interactions';
+import { flex, onHover } from '../../../design/utils';
 import { ReactHookFormField } from './FormTypes';
 
 export const StyledForm = styled.form`
-	${flex({ direction: 'column', gap: 16 })};
+	${flex({ direction: 'column', gap: 24 })};
 	max-width: 700px;
 	width: 100%;
 `;
 export const TextInput = styled.input`
+	display: block;
 	padding: 12px;
 	background: transparent;
 	border-radius: 8px;
-	border: 1px solid ${tertiary100};
+	border: 1px solid ${tertiary60};
+	flex-shrink: 0;
 `;
 export const SubmitButton = styled.button`
 	padding: 12px;
 	border-radius: 12px;
-	background: ${primary70};
+	background: ${tertiary70};
+	${jump()};
+	transition: background 0.2s ease, top 0.3s ease;
+	${onHover(
+		css`
+			background: ${tertiary80};
+		`
+	)}
 	color: white;
 	border: none;
+	cursor: pointer;
 `;
 export const Label = styled.label`
-	position: relative;
-	display: inline;
 	width: min-content;
 	padding: 4px;
+	border-radius: 4px;
 	color: ${black};
-	background: ${white};
 	font-size: 12px;
-	top: 26px;
-	left: 8px;
+`;
+
+export const FieldContainer = styled.div`
+	position: relative;
+	width: 100%;
+	flex-shrink: 0;
 `;
 
 /**
@@ -98,7 +115,7 @@ export const FormFieldNew: FC<ReactHookFormField> = ({
 		);
 	}
 	return (
-		<>
+		<FieldContainer>
 			<Label>{label}</Label>
 			<TextInput
 				{...register(name, validation)}
@@ -108,6 +125,6 @@ export const FormFieldNew: FC<ReactHookFormField> = ({
 				placeholder={placeholder}
 				defaultValue={defaultValue}
 			/>
-		</>
+		</FieldContainer>
 	);
 };

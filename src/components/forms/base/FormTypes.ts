@@ -28,6 +28,8 @@ export type FormProps = {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	onSubmit: any;
 	className?: string;
+	title?: string;
+	submitButton?: string;
 };
 
 export type FieldValues = Record<string, unknown>;

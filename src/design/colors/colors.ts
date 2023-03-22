@@ -24,3 +24,12 @@ export const tertiary60 = '#ba88ce';
 export const tertiary50 = '#cba6da';
 export const tertiary40 = '#dcc4e6';
 export const tertiary30 = '#eee1f3';
+
+export const highlight100 = '#ffd97e';
+export const highlight90 = '#ffde8e';
+export const highlight80 = '#ffe39e';
+export const highlight70 = '#ffe7ae';
+export const highlight60 = '#ffecbf';
+export const highlight50 = '#fff1cf';
+export const highlight40 = '#fff6df';
+export const highlight30 = '#fffaef';

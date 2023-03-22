@@ -36,7 +36,7 @@ type FlexProps = {
  * Flex constructor.
  */
 export const flex = ({ align, direction, gap, justify, wrap }: FlexProps) =>
-  css`
+	css`
 		display: flex;
 		${direction && `flex-direction: ${direction};`}
 		${justify && `justify-content: ${justify};`}

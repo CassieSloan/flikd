@@ -3,10 +3,12 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { Section } from '../components/common/Section';
 import { LoginForm } from '../components/forms/auth/LoginForm';
 import { RegistrationForm } from '../components/forms/auth/RegistrationForm';
-import { dynamicBlockBackground } from '../design/animations';
+import { animatedBlockBackground } from '../design/backgrounds/backgrounds';
+import { white } from '../design/colors/shades';
 import { Flex } from '../design/components/Flex';
 import { StrippedButton } from '../design/components/StrippedButton';
 import { FontFamily, Heading4 } from '../design/typography/typography';
+import FilmHeart from '../images/icons/filmHeart.svg';
 
 const seo = {
 	description: " What're you looking at, punk?",
@@ -16,7 +18,7 @@ const seo = {
 const GlobalStyle = createGlobalStyle`
   ${FontFamily}
   body {
-    ${dynamicBlockBackground()}
+    ${animatedBlockBackground()}
   }
 `;
 
@@ -36,6 +38,7 @@ const Login = () => {
 			<GlobalStyle />
 			<Section>
 				<Flex direction="column" gap={16} justify="center" align="center">
+					<FilmHeart height={48} fill={white} />
 					{registerTrue ? <RegistrationForm /> : <LoginForm />}
 					<Heading4>
 						Dont have an account?

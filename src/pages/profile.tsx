@@ -21,57 +21,57 @@ type ProfileInfo = {
  * Render Profile component.
  */
 const Profile: FC<ProfileProps> = () => {
-  const [profileAuth, setProfileAuth] = useState<string | (string | null)[]>(
-    ''
-  );
-  const [profileInfo, setProfileInfo] = useState<ProfileInfo | null>(null);
+	const [profileAuth, setProfileAuth] = useState<string | (string | null)[]>(
+		''
+	);
+	const [profileInfo, setProfileInfo] = useState<ProfileInfo | null>(null);
 
-  console.log('profileInfo', profileInfo?.data);
-  const [loading, setLoading] = useState(false);
-  console.log('loading', loading);
+	console.log('profileInfo', profileInfo?.data);
+	const [loading, setLoading] = useState(false);
+	console.log('loading', loading);
 
-  useEffect(() => {
-    setLoading(true);
-    const parsed = queryString.parse(location.search);
-    console.log('parsed', parsed);
-    const { auth } = parsed;
-    console.log('auth', auth);
-    if (auth) {
-      setProfileAuth(auth);
-    }
-    router.replace('/profile', undefined, { shallow: true });
-  }, []);
+	useEffect(() => {
+		setLoading(true);
+		const parsed = queryString.parse(location.search);
+		console.log('parsed', parsed);
+		const { auth } = parsed;
+		console.log('auth', auth);
+		if (auth) {
+			setProfileAuth(auth);
+		}
+		router.replace('/profile', undefined, { shallow: true });
+	}, []);
 
-  const retrieveProfile = useCallback(
-    async (profileAuth: string | (string | null)[]) => {
-      const info = await getProfile(profileAuth);
-      setProfileInfo(info);
-    },
-    []
-  );
+	const retrieveProfile = useCallback(
+		async (profileAuth: string | (string | null)[]) => {
+			const info = await getProfile(profileAuth);
+			setProfileInfo(info);
+		},
+		[]
+	);
 
-  useEffect(() => {
-    if (profileAuth) {
-      retrieveProfile(profileAuth);
-      setLoading(false);
-    }
-  }, [profileAuth, retrieveProfile]);
+	useEffect(() => {
+		if (profileAuth) {
+			retrieveProfile(profileAuth);
+			setLoading(false);
+		}
+	}, [profileAuth, retrieveProfile]);
 
-  return (
-    <PageLayout>
-      <Section>
-        <Navigation />
-        <h1>This is a profile page</h1>
-        {loading && <LoadingSpinner />}
-        {profileInfo && (
-          <>
-            <p>user since: {profileInfo?.data?.userSince}</p>
-            <p>username: {profileInfo?.data?.username}</p>
-            <p>id: {profileInfo?.data?.id}</p>
-          </>
-        )}
-      </Section>
-    </PageLayout>
-  );
+	return (
+		<PageLayout>
+			<Section>
+				<Navigation />
+				<h1>This is a profile page</h1>
+				{loading && <LoadingSpinner />}
+				{profileInfo && (
+					<>
+						<p>user since: {profileInfo?.data?.userSince}</p>
+						<p>username: {profileInfo?.data?.username}</p>
+						<p>id: {profileInfo?.data?.id}</p>
+					</>
+				)}
+			</Section>
+		</PageLayout>
+	);
 };
 export default Profile;

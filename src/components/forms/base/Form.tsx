@@ -1,12 +1,19 @@
 import { FC, Fragment, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Heading4 } from '../../../design/typography/typography';
 import { FormFieldNew, StyledForm, SubmitButton } from './FormComponents';
 import { FormProps } from './FormTypes';
 
 /**
  * Form Component.
  */
-const Form: FC<FormProps> = ({ className, fields, onSubmit }) => {
+const Form: FC<FormProps> = ({
+	className,
+	fields,
+	onSubmit,
+	submitButton,
+	title,
+}) => {
 	const { formState, handleSubmit, register } = useForm({
 		mode: 'onSubmit',
 		reValidateMode: 'onChange',
@@ -68,6 +75,7 @@ const Form: FC<FormProps> = ({ className, fields, onSubmit }) => {
 				aria-hidden="true"
 				style={{ display: 'none' }}
 			/>
+			{title && <Heading4>{title}</Heading4>}
 			{(fields || defaultFields).map((field) => {
 				const hasError = errors[field.name];
 				return (
@@ -80,7 +88,7 @@ const Form: FC<FormProps> = ({ className, fields, onSubmit }) => {
 				);
 			})}
 			<SubmitButton type="submit" disabled={isSubmitting}>
-				Submit
+				{submitButton || 'Submit'}
 			</SubmitButton>
 			{submissionError && <p>{submissionError}</p>}
 		</StyledForm>

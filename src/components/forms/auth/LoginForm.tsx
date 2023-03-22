@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/no-named-as-default
 import { FC, useState } from 'react';
 import { login } from '../../../apiHelpers/login';
-import { Heading4 } from '../../../design/typography/typography';
 import { LoadingSpinner } from '../../common/LoadingSpinner';
 import { FieldValues } from '../base/FormTypes';
 import { StyledAuthForm } from './StyledAuthForm';
@@ -43,8 +42,12 @@ export const LoginForm: FC = () => {
 	};
 	return (
 		<>
-			<Heading4>Login</Heading4>
-			<StyledAuthForm onSubmit={onSubmit} fields={loginFields} />
+			<StyledAuthForm
+				onSubmit={onSubmit}
+				fields={loginFields}
+				title="Welcome back"
+				submitButton="Login"
+			/>
 			{loading && <LoadingSpinner />}
 		</>
 	);

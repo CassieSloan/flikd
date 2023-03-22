@@ -4,8 +4,8 @@ import { css } from 'styled-components';
  * Changes color of browser text background when highlighted.
  */
 export const textSelect = ({
-  background = '#000000',
-  color = '#ffffff',
+	background = '#000000',
+	color = '#ffffff',
 }) => css`
 	* {
 		::selection {
@@ -17,7 +17,7 @@ export const textSelect = ({
 /**
  * Element does gentle jump on hover.
  */
-export const jump = ({ height = '8px', position = 'relative' }) => css`
+export const jump = ({ height = '2px', position = 'relative' } = {}) => css`
 	position: ${position};
 	top: 0;
 	transition: 0.3s ease top;
@@ -40,11 +40,11 @@ export const grow = ({ amount = 1.045 }) => css`
 export const toggleFadeUp = (fadeUp?: boolean) => css`
 	transition: opacity 0.5s ease, transform 0.3s ease;
 	${fadeUp
-    ? css`
+		? css`
 				transform: translateY(0);
 				opacity: 1;
 		  `
-    : css`
+		: css`
 				transform: translateY(4px);
 				opacity: 0;
 		  `}

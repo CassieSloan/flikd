@@ -1,5 +1,13 @@
 import '@fontsource/inter';
 import styled, { css } from 'styled-components';
+import {
+	primary70,
+	primary80,
+	secondary70,
+	secondary80,
+	tertiary70,
+} from '../colors/colors';
+import { black, white } from '../colors/shades';
 
 export const FontFamily = css`
 	* {
@@ -20,3 +28,54 @@ export const Heading4 = styled.h4`
 	font-size: 20px;
 	margin: 0;
 `;
+
+type ColorBackgroundStyles = {
+	color?: string;
+	background?: string;
+	padding?: number;
+};
+type TagBackgroundStyle =
+	| 'alert'
+	| 'success'
+	| 'glass'
+	| 'primary'
+	| 'secondary'
+	| 'tertiary';
+type TagStyleProps = TagBackgroundStyle | ColorBackgroundStyles;
+
+/**
+ * Text tag styles.
+ */
+export const tagStyles = (props: TagStyleProps) => {
+	console.log('props', props);
+	const alert = css`
+		background: ${primary70};
+		color: ${white};
+	`;
+
+	const success = css`
+		background: ${secondary70};
+		color: ${black};
+	`;
+
+	const primary = css`
+		background: ${primary80};
+		color: ${white};
+	`;
+
+	const secondary = css`
+		background: ${secondary80};
+		color: ${white};
+	`;
+
+	const tertiary = css`
+		background: ${tertiary70};
+		color: ${white};
+	`;
+	if (props === 'alert') return alert;
+	if (props === 'success') return success;
+	if (props === 'primary') return primary;
+	if (props === 'secondary') return secondary;
+	if (props === 'tertiary') return tertiary;
+	return;
+};
