@@ -13,7 +13,7 @@ const Container = styled.section<{ padding?: number }>`
 const Wrapper = styled.div`
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: 24px;
+	padding: 0 24px;
 `;
 
 /**

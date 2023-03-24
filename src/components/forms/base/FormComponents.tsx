@@ -14,6 +14,7 @@ export const StyledForm = styled.form`
 	${flex({ direction: 'column', gap: 24 })};
 	max-width: 700px;
 	width: 100%;
+	box-sizing: border-box;
 `;
 export const TextInput = styled.input`
 	display: block;
@@ -49,7 +50,6 @@ export const Label = styled.label`
 export const FieldContainer = styled.div`
 	position: relative;
 	width: 100%;
-	flex-shrink: 0;
 `;
 
 /**
