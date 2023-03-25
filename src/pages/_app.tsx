@@ -8,7 +8,6 @@ const GlobalStyle = createGlobalStyle`
 		margin: 0;
 	}
 `;
-
 /**
  * App root.
  */

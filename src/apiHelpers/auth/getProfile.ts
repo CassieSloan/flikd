@@ -1,3 +1,4 @@
+export const UserContext = createContext();
 /**
  * GetProfile Function.
  */
@@ -20,6 +21,7 @@ export const getProfile = async (token: string | (string | null)[]) => {
 		const response = await fetch(getProfileUrl, config);
 		const json = await response.json();
 		if (response.ok) {
+			console.log('json', json);
 			return json;
 		}
 	} catch {

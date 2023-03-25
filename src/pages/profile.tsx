@@ -1,14 +1,24 @@
 import router from 'next/router';
 import queryString from 'query-string';
 import { FC, useCallback, useEffect, useState } from 'react';
-import { getProfile } from '../apiHelpers/getProfile';
+import { getProfile } from '../apiHelpers/auth/getProfile';
+import { addMate, AddMateProps } from '../apiHelpers/mates/addMate';
+import { GetMateProps, getMates } from '../apiHelpers/mates/getMates';
+import { Button } from '../components/common/Button';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { Navigation } from '../components/common/Navigation';
 import { PageLayout } from '../components/common/PageLayout';
 import { Section } from '../components/common/Section';
+import { Body, Heading4, Span } from '../design/typography/typography';
 
 type ProfileProps = {
 	profileId: string;
+};
+type Mate = {
+	createDate: string;
+	id: string;
+	mateListId: string;
+	username: string;
 };
 type ProfileInfo = {
 	data: {
@@ -25,7 +35,9 @@ const Profile: FC<ProfileProps> = () => {
 		''
 	);
 	const [profileInfo, setProfileInfo] = useState<ProfileInfo | null>(null);
+	const [mates, setMates] = useState<Mate[] | undefined>();
 
+	console.log('mates', mates);
 	console.log('profileInfo', profileInfo?.data);
 	const [loading, setLoading] = useState(false);
 	console.log('loading', loading);
@@ -50,12 +62,29 @@ const Profile: FC<ProfileProps> = () => {
 		[]
 	);
 
+	const requestMate = useCallback(async ({ token, username }: AddMateProps) => {
+		const mateData = await addMate({ token, username });
+		const mates = mateData.data.Mates;
+		setMates(mates);
+	}, []);
+
+	const retrieveMates = useCallback(async ({ token }: GetMateProps) => {
+		const mateData = await getMates({ token });
+		const mates = mateData.data.Mates;
+		setMates(mates);
+	}, []);
+
 	useEffect(() => {
 		if (profileAuth) {
 			retrieveProfile(profileAuth);
 			setLoading(false);
 		}
 	}, [profileAuth, retrieveProfile]);
+
+	const addMateOnClick = (username: string) => {
+		const token = profileAuth as string;
+		requestMate({ token, username });
+	};
 
 	return (
 		<PageLayout>
@@ -65,9 +94,22 @@ const Profile: FC<ProfileProps> = () => {
 				{loading && <LoadingSpinner />}
 				{profileInfo && (
 					<>
-						<p>user since: {profileInfo?.data?.userSince}</p>
-						<p>username: {profileInfo?.data?.username}</p>
-						<p>id: {profileInfo?.data?.id}</p>
+						<Heading4>Info</Heading4>
+
+						<Body>user since: {profileInfo?.data?.userSince}</Body>
+						<Body>username: {profileInfo?.data?.username}</Body>
+						<Body>id: {profileInfo?.data?.id}</Body>
+						<Body>mates: {mates?.map((mate) => mate.username)}</Body>
+
+						<div>
+							<Heading4>Add mate</Heading4>
+							<Button onClick={() => addMateOnClick('bilbo5')}></Button>
+							<Span>add logic here</Span>
+						</div>
+						<div>
+							<Heading4>Add movies</Heading4>
+							<Span>add logic here</Span>
+						</div>
 					</>
 				)}
 			</Section>

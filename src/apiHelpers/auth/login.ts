@@ -1,12 +1,17 @@
 // eslint-disable-next-line import/no-named-as-default
 import Router from 'next/router';
-import { FieldValues } from '../components/forms/base/FormTypes';
+import { FieldValues } from '../../components/forms/base/FormTypes';
 
-type LoginProps = { values: FieldValues; handleFail: (json: unknown) => void };
+type LoginProps = {
+	values: FieldValues;
+	handleFail: (json: unknown) => void;
+	setLoading: () => void;
+};
 /**
  * Login Function.
  */
-export const login = async ({ handleFail, values }: LoginProps) => {
+export const login = async ({ handleFail, setLoading, values }: LoginProps) => {
+	setLoading();
 	const loginUrl = `${process.env.NEXT_PUBLIC_LOGIN_URL}`;
 
 	const config = {
@@ -31,5 +36,7 @@ export const login = async ({ handleFail, values }: LoginProps) => {
 		} else {
 			handleFail(json);
 		}
+	} else {
+		handleFail(json);
 	}
 };

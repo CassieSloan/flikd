@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-named-as-default
 import Router from 'next/router';
-import { FieldValues } from '../components/forms/base/FormTypes';
+import { FieldValues } from '../../components/forms/base/FormTypes';
 
 type RegisterProps = {
 	values: FieldValues;

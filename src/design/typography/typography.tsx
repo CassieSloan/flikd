@@ -1,4 +1,5 @@
 import '@fontsource/inter';
+import { FC } from 'react';
 import styled, { css } from 'styled-components';
 import {
 	primary70,
@@ -29,11 +30,41 @@ export const Heading4 = styled.h4`
 	margin: 0;
 `;
 
+export const Body = styled.p`
+	font-size: 16px;
+`;
+
+export const Span = styled.span`
+	font-size: 16px;
+`;
+
+const StyledRichText = styled.div`
+	p {
+		font-size: 16px;
+	}
+	em {
+		font-style: italic;
+	}
+	strong {
+		font-weight: 700;
+	}
+`;
+
+type RichTextProps = { richText: string };
+
+/**
+ * Rich Text component.
+ */
+export const RichText: FC<RichTextProps> = ({ richText }) => {
+	return <StyledRichText dangerouslySetInnerHTML={{ __html: richText }} />;
+};
+
 type ColorBackgroundStyles = {
 	color?: string;
 	background?: string;
 	padding?: number;
 };
+
 type TagBackgroundStyle =
 	| 'alert'
 	| 'success'
