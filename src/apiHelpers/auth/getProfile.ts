@@ -1,15 +1,16 @@
+import { GetProfileResponse } from '../../types/auth/users';
+
 /**
  * GetProfile Function.
  */
-export const getProfile = async (token: string | (string | null)[]) => {
-	if (!token) return { status: 'fail' };
+export const getProfile = async (token: string) => {
+	if (!token) return {};
 
 	const getProfileUrl = `${process.env.NEXT_PUBLIC_PROFILE_URL}`;
 
 	const config = {
 		headers: {
 			Authorization: `Bearer ${token}`,
-			'OriginX-Requested-With': 'XMLHttpRequest',
 			'x-api-key': `${process.env.NEXT_PUBLIC_RENDER_API_KEY}`,
 			'X-Requested-With': 'XMLHttpRequest',
 		},
@@ -20,10 +21,11 @@ export const getProfile = async (token: string | (string | null)[]) => {
 		const response = await fetch(getProfileUrl, config);
 		const json = await response.json();
 		if (response.ok) {
-			console.log('json', json);
-			return json;
+			const formattedResponse = json as GetProfileResponse;
+			return formattedResponse;
 		}
+		return {};
 	} catch {
-		return { status: 'fail' };
+		return {};
 	}
 };

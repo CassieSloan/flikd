@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/no-named-as-default
 
+import { MatesResponse } from '../../types/mates/mates';
+
 export type AddMateProps = {
 	username: string;
 	token: string;
@@ -27,7 +29,8 @@ export const addMate = async ({ token, username }: AddMateProps) => {
 	const json = await response.json();
 	console.log('json', json);
 	if (response.ok) {
-		console.log('json', json);
-		return json;
+		const matesResponse: MatesResponse = json;
+		console.log('matesResponse', matesResponse);
+		return matesResponse;
 	}
 };
