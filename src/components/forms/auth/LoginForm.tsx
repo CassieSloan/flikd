@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-named-as-default
 import { FC, useState } from 'react';
-import { login } from '../../../apiHelpers/login';
+import { login } from '../../../apiHelpers/auth/login';
 import { LoadingSpinner } from '../../common/LoadingSpinner';
 import { FieldValues } from '../base/FormTypes';
 import { StyledAuthForm } from './StyledAuthForm';

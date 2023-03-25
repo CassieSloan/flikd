@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-named-as-default
 import { FC, useState } from 'react';
-import { registerUser } from '../../../apiHelpers/registration';
+import { registerUser } from '../../../apiHelpers/auth/registration';
 import { Heading4 } from '../../../design/typography/typography';
 import { LoadingSpinner } from '../../common/LoadingSpinner';
 import { FieldValues } from '../base/FormTypes';
