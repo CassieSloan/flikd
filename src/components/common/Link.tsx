@@ -1,7 +1,7 @@
 import { default as NextLink } from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
-type LinkProps = {
+export type LinkProps = {
 	to: string;
 	className?: string;
 } & PropsWithChildren;

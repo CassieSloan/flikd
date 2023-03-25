@@ -7,7 +7,6 @@ import { Section } from './Section';
 const headerNavLinks = [
 	{ link: '/', text: 'Home' },
 	{ link: '/my-movies', text: 'My Movies' },
-	{ link: '/friends', text: 'Friends' },
 	{ link: '/expore', text: 'Discover' },
 ];
 
