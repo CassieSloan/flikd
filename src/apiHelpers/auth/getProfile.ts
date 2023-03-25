@@ -1,4 +1,3 @@
-export const UserContext = createContext();
 /**
  * GetProfile Function.
  */

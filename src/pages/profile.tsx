@@ -10,22 +10,11 @@ import { Navigation } from '../components/common/Navigation';
 import { PageLayout } from '../components/common/PageLayout';
 import { Section } from '../components/common/Section';
 import { Body, Heading4, Span } from '../design/typography/typography';
+import { GetProfileResponse } from '../types/auth/users';
+import { MatesResponse } from '../types/mates/mates';
 
 type ProfileProps = {
 	profileId: string;
-};
-type Mate = {
-	createDate: string;
-	id: string;
-	mateListId: string;
-	username: string;
-};
-type ProfileInfo = {
-	data: {
-		id: string;
-		userSince: string;
-		username: string;
-	};
 };
 /**
  * Render Profile component.
@@ -34,8 +23,10 @@ const Profile: FC<ProfileProps> = () => {
 	const [profileAuth, setProfileAuth] = useState<string | (string | null)[]>(
 		''
 	);
-	const [profileInfo, setProfileInfo] = useState<ProfileInfo | null>(null);
-	const [mates, setMates] = useState<Mate[] | undefined>();
+	const [profileInfo, setProfileInfo] = useState<GetProfileResponse | null>(
+		null
+	);
+	const [mates, setMates] = useState<MatesResponse | undefined>();
 
 	console.log('mates', mates);
 	console.log('profileInfo', profileInfo?.data);
@@ -43,7 +34,6 @@ const Profile: FC<ProfileProps> = () => {
 	console.log('loading', loading);
 
 	useEffect(() => {
-		setLoading(true);
 		const parsed = queryString.parse(location.search);
 		console.log('parsed', parsed);
 		const { auth } = parsed;
@@ -75,6 +65,7 @@ const Profile: FC<ProfileProps> = () => {
 	}, []);
 
 	useEffect(() => {
+		setLoading(true);
 		if (profileAuth) {
 			retrieveProfile(profileAuth);
 			setLoading(false);
@@ -99,11 +90,20 @@ const Profile: FC<ProfileProps> = () => {
 						<Body>user since: {profileInfo?.data?.userSince}</Body>
 						<Body>username: {profileInfo?.data?.username}</Body>
 						<Body>id: {profileInfo?.data?.id}</Body>
-						<Body>mates: {mates?.map((mate) => mate.username)}</Body>
+						<Body>
+							mates:{' '}
+							{profileInfo.data.mates.Mates?.map((mate) => mate.username)}
+						</Body>
+						<Body>
+							favourites:{' '}
+							{profileInfo.data.favourites.favourites?.map(
+								(mate) => mate.username
+							)}
+						</Body>
 
 						<div>
 							<Heading4>Add mate</Heading4>
-							<Button onClick={() => addMateOnClick('bilbo5')}></Button>
+							<Button onClick={() => addMateOnClick('bilbo2')}></Button>
 							<Span>add logic here</Span>
 						</div>
 						<div>

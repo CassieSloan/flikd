@@ -8,5 +8,6 @@
     "jsxBracketSameLine":false,
     "arrowParens":"always",
     "requirePragma":false,
-    "insertPragma":false
+    "insertPragma":false,
+    "printWidth": 100
 }
