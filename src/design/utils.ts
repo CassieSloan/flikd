@@ -8,6 +8,14 @@ export const onHover = (styles: FlattenSimpleInterpolation) => css`
 		${styles}
 	}
 `;
+/**
+ * &[aria-selected='true'] helper that accepts styles.
+ */
+export const onSelected = (styles: FlattenSimpleInterpolation) => css`
+	&[aria-selected='true'] {
+		${styles}
+	}
+`;
 
 export const alignCenterHorizontal = css`
 	left: 50%;
