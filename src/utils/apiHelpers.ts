@@ -1,12 +1,5 @@
-import { getProfile } from '../apiHelpers/auth/getProfile';
 import { addMate, AddMateProps } from '../apiHelpers/mates/addMate';
 import { GetMateProps, getMates } from '../apiHelpers/mates/getMates';
-
-/**
- * Retrieve profile data.
- */
-export const retrieveProfile = async (profileAuth: string) =>
-	await getProfile(profileAuth);
 
 /**
  * Request and return formatted mates.

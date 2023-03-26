@@ -1,5 +1,6 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, SetStateAction, useContext, useEffect, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import { getProfile } from '../../apiHelpers/auth/getProfile';
 import { Button } from '../../components/common/Buttons';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 import { Navigation } from '../../components/common/Navigation';
@@ -15,7 +16,7 @@ import {
 import { Body, Heading4, Span } from '../../design/typography/typography';
 import { GetProfileResponse } from '../../types/auth/users';
 import { EmptyObj } from '../../types/global';
-import { requestMate, retrieveProfile } from '../../utils/apiHelpers';
+import { requestMate } from '../../utils/apiHelpers';
 
 type ProfileProps = {
 	profileId: string;
@@ -42,22 +43,26 @@ const Profile: FC<ProfileProps> = () => {
 	const { authToken } = useContext(ProfileContext);
 	console.log('authToken in profile', authToken);
 	console.log('authToken in profile json', JSON.stringify(authToken));
+	console.log('profileInfo', profileInfo);
+	const onSuccess = (
+		profileInfo: SetStateAction<GetProfileResponse | EmptyObj>
+	) => setProfileInfo(profileInfo);
+	const handleFail = (something: any) => console.log(something);
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		console.log('hit on mount for profile');
-		setLoading(true);
 		if (authToken) {
+			setLoading(true);
 			console.log('here it is:', authToken);
-			retrieveProfile(authToken).then(
-				(profileInfo) => profileInfo && setProfileInfo(profileInfo)
-			);
+
+			getProfile({ handleFail, onSuccess, token: authToken });
+
 			console.log('found the data!');
 			setLoading(false);
 		}
 		console.log('couldnt find it');
-
-		setLoading(false);
-	}, []);
+	});
 
 	const onClick = (username: string, token: string) => {
 		requestMate({ token, username }).then((mates) => setMates(mates));

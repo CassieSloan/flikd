@@ -1,13 +1,16 @@
 import axios from 'axios';
 import { GetProfileResponse } from '../../types/auth/users';
-import { generateConfig, urls } from '../sharedConfig';
+import { FormSubmitApiProps, generateConfig, urls } from '../sharedConfig';
 
+type GetProfileProps = Omit<FormSubmitApiProps, 'values'> & { token: string };
 /**
  * GetProfile Function.
  */
-export const getProfile = async (token: string) => {
-	if (!token) return {};
-
+export const getProfile = async ({
+	handleFail,
+	onSuccess,
+	token,
+}: GetProfileProps) => {
 	const config = generateConfig({ authToken: token, method: 'GET' });
 	await axios(urls.getProfile, config)
 		.then((response) => {
@@ -15,7 +18,7 @@ export const getProfile = async (token: string) => {
 			const { data, status } = response;
 			if (status === 200) {
 				const formattedResponse = data as GetProfileResponse;
-				return formattedResponse;
+				formattedResponse ? onSuccess(formattedResponse) : handleFail(response);
 			}
 		})
 		.catch((err) => {
