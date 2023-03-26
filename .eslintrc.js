@@ -91,16 +91,7 @@ module.exports = {
     'import/namespace': ['error', { allowComputed: true }],
     'import/named': 'error',
     'import/default': 'error',
-    'import/no-named-as-default': 'error',
-    'import/order': [
-      'error',
-      {
-        'newlines-between': 'never',
-        alphabetize: {
-          order: 'asc',
-        },
-      },
-    ],
+    'import/no-named-as-default': 'off',
     // ★ 🎀 sort 🎀 ★
     'sort/imports': 'warn',
     'sort/import-members': 'warn',

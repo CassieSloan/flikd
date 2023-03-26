@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Button, ButtonLink } from '../../components/common/Buttons';
@@ -40,14 +41,21 @@ const Profile: FC<ProfileProps> = () => {
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		const auth = formatAuthParams(parseQueryParams());
-		const isAuthed = sessionStorage.getItem('user');
-		if (auth) {
-			setProfileAuth(auth);
-			sessionStorage.setItem('user', auth);
+		const authParams = formatAuthParams(parseQueryParams());
+		const isLoggedIn = sessionStorage.getItem('user');
+
+		if (authParams && !isLoggedIn) {
+			console.log('auth on params');
+			setProfileAuth(authParams);
+			sessionStorage.setItem('user', authParams);
 		}
-		if (!isAuthed) sessionStorage.setItem('user', auth);
-		if (isAuthed) setProfileAuth(isAuthed);
+
+		if (!authParams && !isLoggedIn) {
+			console.log('not authed');
+			redirect('/');
+		}
+		console.log('using session auth');
+		if (isLoggedIn) setProfileAuth(isLoggedIn);
 
 		refreshAndStripParams();
 	}, []);

@@ -1,38 +1,30 @@
-// eslint-disable-next-line import/no-named-as-default
+import axios from 'axios';
 import Router from 'next/router';
-import { FieldValues } from '../../components/forms/base/FormTypes';
+import { FormSubmitApiProps, generateConfig, urls } from '../sharedConfig';
 
-type RegisterProps = {
-	values: FieldValues;
-	handleFail: (json: unknown) => void;
-};
 /**
  * Register user function.
  */
-export const registerUser = async ({ handleFail, values }: RegisterProps) => {
-	const loginUrl = `${process.env.NEXT_PUBLIC_REGISTER_URL}`;
+export const registerUser = async ({
+	handleFail,
+	values,
+}: FormSubmitApiProps) => {
+	const config = generateConfig({ method: 'POST', values });
 
-	const config = {
-		body: JSON.stringify(values),
-		headers: {
-			'Content-Type': 'application/json',
-			'x-api-key': `${process.env.NEXT_PUBLIC_RENDER_API_KEY}`,
-			'X-Requested-With': 'XMLHttpRequest',
-		},
-		method: 'POST',
-	};
-
-	const response = await fetch(loginUrl, config);
-	console.log('response', response);
-	const json = await response.json();
-	console.log('json', json);
-	if (response.ok) {
-		console.log('json', json);
-		console.log('finished');
-		if (json.accessToken) {
-			Router.push(`/profile?auth=${json.accessToken}`);
-		} else {
-			handleFail(json);
-		}
-	}
+	await axios(urls.register, config)
+		.then((response) => {
+			console.log('response', response);
+			const {
+				data: { accessToken },
+				status,
+			} = response;
+			if (status === 200) {
+				accessToken
+					? Router.push(`/profile?auth=${accessToken}`)
+					: handleFail(response);
+			}
+		})
+		.catch((err) => {
+			handleFail(err);
+		});
 };

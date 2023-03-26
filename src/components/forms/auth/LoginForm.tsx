@@ -33,10 +33,10 @@ const loginFields = [
  */
 export const LoginForm: FC = () => {
 	const [loading, setLoading] = useState(false);
-	console.log('loading', loading);
 	const onSubmit = async (values: FieldValues) => {
+		setLoading(true);
 		const handleFail = (json: unknown) => console.log('failed:', json);
-		login({ handleFail, setLoading: () => setLoading(true), values });
+		login({ handleFail, values });
 		setLoading(false);
 	};
 
