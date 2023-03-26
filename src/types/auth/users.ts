@@ -14,5 +14,7 @@ export type GetProfileResponse = {
 		favourites: FavouritesResponse;
 		seenIts: SeenItsCollection;
 		toWatch: WatchesResponse;
+		profilePhoto: string;
+		pronouns: string;
 	};
 };

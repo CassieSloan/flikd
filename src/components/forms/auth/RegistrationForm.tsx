@@ -3,6 +3,7 @@ import Router from 'next/router';
 import { FC, useContext, useState } from 'react';
 import { registerUser } from '../../../apiHelpers/auth/registration';
 import { Profile } from '../../../context/context';
+import { setSessionItem } from '../../../utils/base';
 import { LoadingSpinner } from '../../common/LoadingSpinner';
 import { FieldValues } from '../base/FormTypes';
 import { StyledAuthForm } from './StyledAuthForm';
@@ -62,6 +63,7 @@ export const RegistrationForm: FC = () => {
 
 	const onSuccess = (token: string) => {
 		setAuthToken(token);
+		setSessionItem('userAuth', token);
 		console.log('redirecting');
 		Router.push('/profile');
 	};
