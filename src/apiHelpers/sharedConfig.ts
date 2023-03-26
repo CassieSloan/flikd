@@ -34,11 +34,7 @@ const generateHeaders = (authToken?: string) => ({
 /**
  * Generate config for API reqs.
  */
-export const generateConfig = ({
-	authToken,
-	method = 'GET',
-	values,
-}: GenerateConfigOptions) => ({
+export const generateConfig = ({ authToken, method = 'GET', values }: GenerateConfigOptions) => ({
 	...(values && { data: JSON.stringify(values) }),
 	headers: generateHeaders(authToken),
 	method,

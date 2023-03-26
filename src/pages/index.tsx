@@ -43,9 +43,7 @@ const Login = () => {
 						<FilmHeart height={48} fill={white} width={48} />
 						{requestedRegister ? <RegistrationForm /> : <LoginForm />}
 						<Heading4>
-							{requestedRegister
-								? 'Already have an account?'
-								: 'Dont have an account?'}
+							{requestedRegister ? 'Already have an account?' : 'Dont have an account?'}
 							<RegisterButton onClick={() => setRequestRegister(true)}>
 								{requestedRegister ? 'Login' : 'Create one'}
 							</RegisterButton>

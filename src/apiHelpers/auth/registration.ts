@@ -4,11 +4,7 @@ import { FormSubmitApiProps, generateConfig, urls } from '../sharedConfig';
 /**
  * Register user function.
  */
-export const registerUser = async ({
-	handleFail,
-	onSuccess,
-	values,
-}: FormSubmitApiProps) => {
+export const registerUser = async ({ handleFail, onSuccess, values }: FormSubmitApiProps) => {
 	const config = generateConfig({ method: 'POST', values });
 	await axios(urls.register, config)
 		.then((response) => {

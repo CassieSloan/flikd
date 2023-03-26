@@ -74,9 +74,7 @@ export const OnVisible: FC<OnVisibleProps> = ({
 			onClick={onClick}
 			onChange={onChangeHandler}
 			threshold={threshold || 0.5}
-			style={
-				visible ? { ...timingStyle, ...style } : { ...defaultStyles, ...style }
-			}
+			style={visible ? { ...timingStyle, ...style } : { ...defaultStyles, ...style }}
 		>
 			{children}
 		</InView>

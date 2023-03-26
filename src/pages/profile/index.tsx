@@ -7,10 +7,7 @@ import { Panel } from '../../components/common/Panel';
 import { Section } from '../../components/common/Section';
 import { TabsWithIcons } from '../../components/library/TabsNav';
 import { Profile as ProfileContext } from '../../context/context';
-import {
-	animatedGradientBackground,
-	glassBackground,
-} from '../../design/backgrounds/backgrounds';
+import { animatedGradientBackground, glassBackground } from '../../design/backgrounds/backgrounds';
 import { GetProfileResponse } from '../../types/auth/users';
 import { requestMate } from '../../utils/apiHelpers';
 import { setSessionItem } from '../../utils/base';

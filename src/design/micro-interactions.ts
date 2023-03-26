@@ -3,10 +3,7 @@ import { css } from 'styled-components';
 /**
  * Changes color of browser text background when highlighted.
  */
-export const textSelect = ({
-	background = '#000000',
-	color = '#ffffff',
-}) => css`
+export const textSelect = ({ background = '#000000', color = '#ffffff' }) => css`
 	* {
 		::selection {
 			background: ${background};

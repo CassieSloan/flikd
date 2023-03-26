@@ -6,11 +6,7 @@ type GetProfileProps = Omit<FormSubmitApiProps, 'values'> & { token: string };
 /**
  * GetProfile Function.
  */
-export const getProfile = async ({
-	handleFail,
-	onSuccess,
-	token,
-}: GetProfileProps) => {
+export const getProfile = async ({ handleFail, onSuccess, token }: GetProfileProps) => {
 	const config = generateConfig({ authToken: token, method: 'GET' });
 	await axios(urls.getProfile, config)
 		.then((response) => {

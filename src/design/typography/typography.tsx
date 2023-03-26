@@ -1,13 +1,7 @@
 import '@fontsource/inter';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
-import {
-	primary70,
-	primary80,
-	secondary70,
-	secondary80,
-	tertiary70,
-} from '../colors/colors';
+import { primary70, primary80, secondary70, secondary80, tertiary70 } from '../colors/colors';
 import { black, white } from '../colors/shades';
 
 export const FontFamily = css`
@@ -65,13 +59,7 @@ type ColorBackgroundStyles = {
 	padding?: number;
 };
 
-type TagBackgroundStyle =
-	| 'alert'
-	| 'success'
-	| 'glass'
-	| 'primary'
-	| 'secondary'
-	| 'tertiary';
+type TagBackgroundStyle = 'alert' | 'success' | 'glass' | 'primary' | 'secondary' | 'tertiary';
 type TagStyleProps = TagBackgroundStyle | ColorBackgroundStyles;
 
 /**

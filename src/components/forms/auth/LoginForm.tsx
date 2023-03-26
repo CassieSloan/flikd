@@ -53,9 +53,7 @@ export const LoginForm: FC = () => {
 
 	return (
 		<>
-			{noUserExists && (
-				<span>This user does not exist. Please register to continue</span>
-			)}
+			{noUserExists && <span>This user does not exist. Please register to continue</span>}
 			<StyledAuthForm
 				onSubmit={onSubmit}
 				fields={loginFields}

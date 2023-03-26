@@ -5,8 +5,7 @@ import { getPaddingStyles, PaddingProps } from '../../design/spacing';
 
 export type Background = keyof typeof backgrounds;
 
-const getBackground = (backgroundName: Background) =>
-	backgrounds[backgroundName];
+const getBackground = (backgroundName: Background) => backgrounds[backgroundName];
 
 type BorderRadius = '32px' | '24px' | '16px' | '12px' | '8px' | '0px';
 const getBorderRadiusStyles = (borderRadius: BorderRadius) => css`

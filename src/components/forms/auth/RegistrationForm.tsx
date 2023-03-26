@@ -77,9 +77,7 @@ export const RegistrationForm: FC = () => {
 
 	return (
 		<>
-			{userExists && (
-				<span>This user already exists. Please login to continue</span>
-			)}
+			{userExists && <span>This user already exists. Please login to continue</span>}
 			<StyledAuthForm
 				onSubmit={onSubmit}
 				fields={registrationFields}

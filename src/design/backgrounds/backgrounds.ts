@@ -15,8 +15,7 @@ import {
  */
 export const glassBackground = () => css`
 	background: rgba(255, 255, 255, 0.15);
-	box-shadow: inset -2px -2px 6px -6px #ffffff,
-		1px 1px 9px -4px rgba(0, 0, 0, 0.3);
+	box-shadow: inset -2px -2px 6px -6px #ffffff, 1px 1px 9px -4px rgba(0, 0, 0, 0.3);
 	backdrop-filter: blur(3px);
 `;
 
@@ -85,13 +84,7 @@ export const animatedBlockBackground = () => css`
  * Dynamic gradient Background.
  */
 export const animatedGradientBackground = () => css`
-	background: linear-gradient(
-		45deg,
-		${highlight70},
-		${secondary70},
-		${tertiary60},
-		${primary30}
-	);
+	background: linear-gradient(45deg, ${highlight70}, ${secondary70}, ${tertiary60}, ${primary30});
 	background-size: 600% 100%;
 	animation: gradient 60s linear infinite;
 	animation-direction: alternate;

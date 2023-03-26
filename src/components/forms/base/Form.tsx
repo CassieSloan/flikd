@@ -7,13 +7,7 @@ import { FormProps } from './FormTypes';
 /**
  * Form Component.
  */
-const Form: FC<FormProps> = ({
-	className,
-	fields,
-	onSubmit,
-	submitButton,
-	title,
-}) => {
+const Form: FC<FormProps> = ({ className, fields, onSubmit, submitButton, title }) => {
 	const { formState, handleSubmit, register } = useForm({
 		mode: 'onSubmit',
 		reValidateMode: 'onChange',
@@ -65,25 +59,15 @@ const Form: FC<FormProps> = ({
 	};
 
 	return (
-		<StyledForm
-			onSubmit={handleSubmit(onSubmit || defaultOnSubmit)}
-			className={className}
-		>
-			<button
-				type="submit"
-				disabled
-				aria-hidden="true"
-				style={{ display: 'none' }}
-			/>
+		<StyledForm onSubmit={handleSubmit(onSubmit || defaultOnSubmit)} className={className}>
+			<button type="submit" disabled aria-hidden="true" style={{ display: 'none' }} />
 			{title && <Heading4>{title}</Heading4>}
 			{(fields || defaultFields).map((field) => {
 				const hasError = errors[field.name];
 				return (
 					<Fragment key={field.label}>
 						<FormFieldNew {...field} register={register} />
-						{hasError && (
-							<span>{field.validationMessage || 'This field is required'}</span>
-						)}
+						{hasError && <span>{field.validationMessage || 'This field is required'}</span>}
 					</Fragment>
 				);
 			})}

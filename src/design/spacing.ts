@@ -1,14 +1,6 @@
 import { css } from 'styled-components';
 
-type PaddingType =
-	| '64px'
-	| '56px'
-	| '48px'
-	| '32px'
-	| '24px'
-	| '16px'
-	| '8px'
-	| 'none';
+type PaddingType = '64px' | '56px' | '48px' | '32px' | '24px' | '16px' | '8px' | 'none';
 
 type DirectionalPadding = {
 	top?: PaddingType;
@@ -19,14 +11,10 @@ type DirectionalPadding = {
 type Padding = PaddingType | DirectionalPadding;
 type PaddingDirection = 'top' | 'right' | 'bottom' | 'left';
 
-const getDirectionalPaddingStyles = (
-	padding: PaddingType,
-	direction: PaddingDirection
-) => `padding-${direction}: ${padding !== 'none' ? padding : '0'};`;
+const getDirectionalPaddingStyles = (padding: PaddingType, direction: PaddingDirection) =>
+	`padding-${direction}: ${padding !== 'none' ? padding : '0'};`;
 
-const isDirectionalPadding = (
-	paddingValue: Padding
-): paddingValue is DirectionalPadding =>
+const isDirectionalPadding = (paddingValue: Padding): paddingValue is DirectionalPadding =>
 	typeof paddingValue !== 'string' &&
 	('top' in paddingValue ||
 		'right' in paddingValue ||

@@ -1,10 +1,6 @@
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
-import {
-	tertiary60,
-	tertiary70,
-	tertiary80,
-} from '../../../design/colors/colors';
+import { tertiary60, tertiary70, tertiary80 } from '../../../design/colors/colors';
 import { black } from '../../../design/colors/shades';
 import { jump } from '../../../design/micro-interactions';
 import { flex, onHover } from '../../../design/utils';
