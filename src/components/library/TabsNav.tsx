@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import { tertiary80 } from '../../design/colors/colors';
 import { white } from '../../design/colors/shades';
 import { onSelected } from '../../design/utils';
-import { FormattedProfileData } from '../../pages/profile/helpers';
+import { FormattedProfileData } from '../../utils/profileHelpers';
 
 const StyledTab = styled(Tab)`
 	padding: 24px;

@@ -16,7 +16,7 @@ export const urls = {
 export type FormSubmitApiProps = {
 	values: FieldValues;
 	handleFail: (json: unknown) => void;
-	onSuccess: (any) => void;
+	onSuccess: (arg: any) => void;
 };
 
 type Method = 'GET' | 'POST' | 'DELETE';

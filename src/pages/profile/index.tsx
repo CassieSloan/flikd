@@ -1,5 +1,5 @@
 import { FC, useContext, useEffect, useState } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { getProfile } from '../../apiHelpers/auth/getProfile';
 import { Navigation } from '../../components/common/Navigation';
 import { PageLayout } from '../../components/common/PageLayout';
@@ -7,11 +7,14 @@ import { Panel } from '../../components/common/Panel';
 import { Section } from '../../components/common/Section';
 import { TabsWithIcons } from '../../components/library/TabsNav';
 import { Profile as ProfileContext } from '../../context/context';
-import { animatedGradientBackground, glassBackground } from '../../design/backgrounds/backgrounds';
+import { animatedGradientBackground } from '../../design/backgrounds/backgrounds';
 import { GetProfileResponse } from '../../types/auth/users';
 import { requestMate } from '../../utils/apiHelpers';
 import { setSessionItem } from '../../utils/base';
-import { formatProfileData, FormattedProfileData } from './helpers';
+import {
+	formatProfileData,
+	FormattedProfileData,
+} from '../../utils/profileHelpers';
 
 type ProfileProps = {
 	profileId: string;
@@ -21,10 +24,6 @@ const BackgroundStyle = createGlobalStyle`
 	body {
 		${animatedGradientBackground()};
 	}
-`;
-
-const Container = styled(Panel)`
-	background: ${glassBackground()};
 `;
 /**
  * Render Profile component.
