@@ -1,6 +1,8 @@
 // eslint-disable-next-line import/no-named-as-default
-import { FC, useState } from 'react';
+import Router from 'next/router';
+import { FC, useContext, useState } from 'react';
 import { login } from '../../../apiHelpers/auth/login';
+import { Profile } from '../../../context/context';
 import { LoadingSpinner } from '../../common/LoadingSpinner';
 import { FieldValues } from '../base/FormTypes';
 import { StyledAuthForm } from './StyledAuthForm';
@@ -32,16 +34,28 @@ const loginFields = [
  * Login Form component.
  */
 export const LoginForm: FC = () => {
+	const [noUserExists, setNoUserExists] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const { setAuthToken } = useContext(Profile);
+
+	const onSuccess = (token: string) => {
+		setAuthToken(token);
+		console.log('redirecting');
+		Router.push('/profile');
+	};
+
 	const onSubmit = async (values: FieldValues) => {
 		setLoading(true);
-		const handleFail = (json: unknown) => console.log('failed:', json);
-		login({ handleFail, values });
+		const handleFail = () => setNoUserExists(true);
+		login({ handleFail, onSuccess, values });
 		setLoading(false);
 	};
 
 	return (
 		<>
+			{noUserExists && (
+				<span>This user does not exist. Please register to continue</span>
+			)}
 			<StyledAuthForm
 				onSubmit={onSubmit}
 				fields={loginFields}

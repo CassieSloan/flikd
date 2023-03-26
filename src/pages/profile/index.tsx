@@ -36,10 +36,22 @@ const Profile: FC<ProfileProps> = () => {
 	const [loading, setLoading] = useState(false);
 	const { authToken } = useContext(ProfileContext);
 	console.log('authToken in profile', authToken);
+	console.log('authToken in profile json', JSON.stringify(authToken));
 
 	useEffect(() => {
 		console.log('hit on mount for profile');
 		setLoading(true);
+		if (authToken) {
+			console.log('here it is:', authToken);
+			retrieveProfile(authToken).then(
+				(profileInfo) => profileInfo && setProfileInfo(profileInfo)
+			);
+			console.log('found the data!');
+			setLoading(false);
+		}
+		console.log('couldnt find it');
+
+		setLoading(false);
 	}, []);
 	// useEffect(() => {
 
@@ -60,18 +72,6 @@ const Profile: FC<ProfileProps> = () => {
 
 	// 	refreshAndStripParams();
 	// }, []);
-
-	useEffect(() => {
-		console.log('found auth token');
-		if (authToken) {
-			console.log('here it is:', authToken);
-			retrieveProfile(authToken).then(
-				(profileInfo) => profileInfo && setProfileInfo(profileInfo)
-			);
-			console.log('found the data!');
-			setLoading(false);
-		}
-	}, [authToken]);
 
 	const onClick = (username: string, token: string) => {
 		requestMate({ token, username }).then((mates) => setMates(mates));

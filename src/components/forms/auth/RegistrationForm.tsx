@@ -3,7 +3,6 @@ import Router from 'next/router';
 import { FC, useContext, useState } from 'react';
 import { registerUser } from '../../../apiHelpers/auth/registration';
 import { Profile } from '../../../context/context';
-import { Heading4 } from '../../../design/typography/typography';
 import { LoadingSpinner } from '../../common/LoadingSpinner';
 import { FieldValues } from '../base/FormTypes';
 import { StyledAuthForm } from './StyledAuthForm';
@@ -59,13 +58,13 @@ const registrationFields = [
 export const RegistrationForm: FC = () => {
 	const [userExists, setUserExists] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const { authToken, setAuthToken } = useContext(Profile);
+	const { setAuthToken } = useContext(Profile);
+
 	const onSuccess = (token: string) => {
 		setAuthToken(token);
 		console.log('redirecting');
 		Router.push('/profile');
 	};
-	console.log('authToken', authToken);
 
 	const onSubmit = async (values: FieldValues) => {
 		setLoading(true);
@@ -76,11 +75,15 @@ export const RegistrationForm: FC = () => {
 
 	return (
 		<>
-			<Heading4>Register</Heading4>
 			{userExists && (
 				<span>This user already exists. Please login to continue</span>
 			)}
-			<StyledAuthForm onSubmit={onSubmit} fields={registrationFields} />
+			<StyledAuthForm
+				onSubmit={onSubmit}
+				fields={registrationFields}
+				title="Create an account"
+				submitButton="Register"
+			/>
 			{loading && <LoadingSpinner />}
 		</>
 	);

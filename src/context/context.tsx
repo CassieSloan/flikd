@@ -21,7 +21,7 @@ export const Profile = createContext<ProfileContext>({
  */
 const Context = ({ children }) => {
 	const [authToken, setAuthToken] = useState<string>('');
-
+	console.log('authToken in context', authToken);
 	return (
 		<Profile.Provider value={{ authToken, setAuthToken }}>
 			{children}

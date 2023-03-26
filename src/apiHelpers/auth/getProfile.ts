@@ -8,7 +8,7 @@ import { generateConfig, urls } from '../sharedConfig';
 export const getProfile = async (token: string) => {
 	if (!token) return {};
 
-	const config = generateConfig({ method: 'GET' });
+	const config = generateConfig({ authToken: token, method: 'GET' });
 	await axios(urls.getProfile, config)
 		.then((response) => {
 			console.log('response', response);

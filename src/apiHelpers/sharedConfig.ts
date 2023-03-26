@@ -13,22 +13,33 @@ export const urls = {
 	register: `${process.env.NEXT_PUBLIC_REGISTER_URL}`,
 };
 
-type Method = 'GET' | 'POST' | 'DELETE';
-type GenerateConfigOptions = { values?: FieldValues; method?: Method };
-/**
- * Generate config for API reqs.
- */
-export const generateConfig = ({
-	method = 'GET',
-	values,
-}: GenerateConfigOptions) => ({
-	...(values && { data: JSON.stringify(values) }),
-	headers,
-	method,
-});
-
 export type FormSubmitApiProps = {
 	values: FieldValues;
 	handleFail: (json: unknown) => void;
 	onSuccess: (any) => void;
 };
+
+type Method = 'GET' | 'POST' | 'DELETE';
+type GenerateConfigOptions = {
+	values?: FieldValues;
+	method?: Method;
+	authToken?: string;
+};
+
+const generateHeaders = (authToken?: string) => ({
+	...headers,
+	...(authToken && { Authorization: `Bearer ${authToken}` }),
+});
+
+/**
+ * Generate config for API reqs.
+ */
+export const generateConfig = ({
+	authToken,
+	method = 'GET',
+	values,
+}: GenerateConfigOptions) => ({
+	...(values && { data: JSON.stringify(values) }),
+	headers: generateHeaders(authToken),
+	method,
+});
