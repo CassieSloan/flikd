@@ -22,7 +22,7 @@ export const generateConfig = ({
 	method = 'GET',
 	values,
 }: GenerateConfigOptions) => ({
-	data: JSON.stringify(values),
+	...(values && { data: JSON.stringify(values) }),
 	headers,
 	method,
 });
@@ -30,4 +30,5 @@ export const generateConfig = ({
 export type FormSubmitApiProps = {
 	values: FieldValues;
 	handleFail: (json: unknown) => void;
+	onSuccess: (any) => void;
 };

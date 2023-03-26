@@ -1,5 +1,4 @@
-import { redirect } from 'next/navigation';
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Button, ButtonLink } from '../../components/common/Buttons';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
@@ -7,16 +6,12 @@ import { Navigation } from '../../components/common/Navigation';
 import { PageLayout } from '../../components/common/PageLayout';
 import { Panel } from '../../components/common/Panel';
 import { Section } from '../../components/common/Section';
+import { Profile as ProfileContext } from '../../context/context';
 import { Body, Heading4, Span } from '../../design/typography/typography';
 import { flex } from '../../design/utils';
 import { GetProfileResponse } from '../../types/auth/users';
 import { EmptyObj } from '../../types/global';
 import { requestMate, retrieveProfile } from '../../utils/apiHelpers';
-import {
-	formatAuthParams,
-	parseQueryParams,
-	refreshAndStripParams,
-} from './helpers';
 
 type ProfileProps = {
 	profileId: string;
@@ -33,45 +28,52 @@ const NavButton = styled(ButtonLink)`
  * Render Profile component.
  */
 const Profile: FC<ProfileProps> = () => {
-	const [profileAuth, setProfileAuth] = useState<string>('');
+	// const [profileAuth, setProfileAuth] = useState<string>('');
 	const [profileInfo, setProfileInfo] = useState<GetProfileResponse | EmptyObj>(
 		{}
 	);
 	const [mates, setMates] = useState<string[]>();
 	const [loading, setLoading] = useState(false);
+	const { authToken } = useContext(ProfileContext);
+	console.log('authToken in profile', authToken);
 
 	useEffect(() => {
-		const authParams = formatAuthParams(parseQueryParams());
-		const isLoggedIn = sessionStorage.getItem('user');
-
-		if (authParams && !isLoggedIn) {
-			console.log('auth on params');
-			setProfileAuth(authParams);
-			sessionStorage.setItem('user', authParams);
-		}
-
-		if (!authParams && !isLoggedIn) {
-			console.log('not authed');
-			redirect('/');
-		}
-		console.log('using session auth');
-		if (isLoggedIn) setProfileAuth(isLoggedIn);
-
-		refreshAndStripParams();
-	}, []);
-
-	useEffect(() => {
+		console.log('hit on mount for profile');
 		setLoading(true);
-		if (profileAuth) {
-			retrieveProfile(profileAuth).then(
+	}, []);
+	// useEffect(() => {
+
+	// 	// const authParams = formatAuthParams(parseQueryParams());
+	// 	// const isLoggedIn = sessionStorage.getItem('user');
+	// 	// if (authParams && !isLoggedIn) {
+	// 	// 	console.log('auth on params');
+	// 	// 	setProfileAuth(authParams);
+	// 	// 	sessionStorage.setItem('user', authParams);
+	// 	// }
+
+	// 	// if (!authParams && !isLoggedIn) {
+	// 	// 	console.log('not authed');
+	// 	// 	redirect('/');
+	// 	// }
+	// 	// console.log('using session auth');
+	// 	// if (isLoggedIn) setProfileAuth(isLoggedIn);
+
+	// 	refreshAndStripParams();
+	// }, []);
+
+	useEffect(() => {
+		console.log('found auth token');
+		if (authToken) {
+			console.log('here it is:', authToken);
+			retrieveProfile(authToken).then(
 				(profileInfo) => profileInfo && setProfileInfo(profileInfo)
 			);
+			console.log('found the data!');
 			setLoading(false);
 		}
-	}, [profileAuth]);
+	}, [authToken]);
 
-	const onClick = (username: string) => {
-		const token = profileAuth as string;
+	const onClick = (username: string, token: string) => {
 		requestMate({ token, username }).then((mates) => setMates(mates));
 	};
 
@@ -111,7 +113,9 @@ const Profile: FC<ProfileProps> = () => {
 
 						<div>
 							<Heading4>Add mate</Heading4>
-							<Button onClick={() => onClick('bilbo2')}>Add Mate</Button>
+							<Button onClick={() => onClick('bilbo2', authToken)}>
+								Add Mate
+							</Button>
 						</div>
 
 						<div>

@@ -1,11 +1,14 @@
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axios from 'axios';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { GetProfileResponse } from '../../types/auth/users';
 import { generateConfig, urls } from '../sharedConfig';
 
 /**
  * GetProfile Function.
  */
-export const getProfile = async (token: string) => {
+export const getProfile = async () => {
+	// const token =
 	if (!token) return {};
 
 	const config = generateConfig({ method: 'GET' });
@@ -22,3 +25,12 @@ export const getProfile = async (token: string) => {
 			console.log('couldnt find profile information', err);
 		});
 };
+/**
+ * Default api export.
+ */
+export default function handler(
+	req: NextApiRequest,
+	res: NextApiResponse<Data>
+) {
+	res.status(200).json({ name: 'John Doe' });
+}

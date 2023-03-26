@@ -30,7 +30,7 @@ const BackgroundStyle = createGlobalStyle`
  * Login Screen.
  */
 const Login = () => {
-	const [registerTrue, setRegisterTrue] = useState(false);
+	const [requestedRegister, setRequestRegister] = useState(false);
 
 	// add cusotm page doc
 
@@ -41,11 +41,13 @@ const Login = () => {
 				<Section>
 					<Flex direction="column" gap={16} justify="center" align="center">
 						<FilmHeart height={48} fill={white} width={48} />
-						{registerTrue ? <RegistrationForm /> : <LoginForm />}
+						{requestedRegister ? <RegistrationForm /> : <LoginForm />}
 						<Heading4>
-							Dont have an account?
-							<RegisterButton onClick={() => setRegisterTrue(true)}>
-								Create one
+							{requestedRegister
+								? 'Already have an account?'
+								: 'Dont have an account?'}
+							<RegisterButton onClick={() => setRequestRegister(true)}>
+								{requestedRegister ? 'Login' : 'Create one'}
 							</RegisterButton>
 						</Heading4>
 					</Flex>

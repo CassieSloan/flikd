@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Router from 'next/router';
 import { FormSubmitApiProps, generateConfig, urls } from '../sharedConfig';
 
 /**
@@ -7,10 +6,10 @@ import { FormSubmitApiProps, generateConfig, urls } from '../sharedConfig';
  */
 export const registerUser = async ({
 	handleFail,
+	onSuccess,
 	values,
 }: FormSubmitApiProps) => {
 	const config = generateConfig({ method: 'POST', values });
-
 	await axios(urls.register, config)
 		.then((response) => {
 			console.log('response', response);
@@ -19,9 +18,7 @@ export const registerUser = async ({
 				status,
 			} = response;
 			if (status === 200) {
-				accessToken
-					? Router.push(`/profile?auth=${accessToken}`)
-					: handleFail(response);
+				accessToken ? onSuccess(accessToken) : handleFail(response);
 			}
 		})
 		.catch((err) => {
