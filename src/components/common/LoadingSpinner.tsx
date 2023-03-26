@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { SelfBuildingSquareSpinner } from 'react-epic-spinners';
 import styled from 'styled-components';
 import { rotate360 } from '../../design/micro-interactions';
 
@@ -35,4 +36,4 @@ const LoadingSpin = styled.div`
 /**
  * Render LoadingSpinner component.
  */
-export const LoadingSpinner: FC = () => <LoadingSpin />;
+export const LoadingSpinner: FC = () => <SelfBuildingSquareSpinner />;

@@ -11,10 +11,7 @@ import { animatedGradientBackground } from '../../design/backgrounds/backgrounds
 import { GetProfileResponse } from '../../types/auth/users';
 import { requestMate } from '../../utils/apiHelpers';
 import { setSessionItem } from '../../utils/base';
-import {
-	formatProfileData,
-	FormattedProfileData,
-} from '../../utils/profileHelpers';
+import { formatProfileData, FormattedProfileData } from '../../utils/profileHelpers';
 
 type ProfileProps = {
 	profileId: string;
