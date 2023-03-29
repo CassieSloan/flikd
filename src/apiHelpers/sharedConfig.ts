@@ -6,11 +6,14 @@ export const headers = {
 	'X-Requested-With': 'XMLHttpRequest',
 };
 
+const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}`;
+
 export const urls = {
-	addMate: `${process.env.NEXT_PUBLIC_ADD_MATE_URL}`,
-	getProfile: `${process.env.NEXT_PUBLIC_PROFILE_URL}`,
-	login: `${process.env.NEXT_PUBLIC_LOGIN_URL}`,
-	register: `${process.env.NEXT_PUBLIC_REGISTER_URL}`,
+	addMate: `${baseUrl}/profile/add-mate`,
+	getMates: `${baseUrl}/profile/get-mates`,
+	getProfile: `${baseUrl}/profile/get-profile`,
+	login: `${baseUrl}/auth/login`,
+	register: `${baseUrl}/auth/register`,
 };
 
 export type FormSubmitApiProps = {

@@ -25,12 +25,9 @@ export const addMate = async ({ token, username }: AddMateProps) => {
 	};
 
 	const response = await fetch(addMateUrl, config);
-	console.log('response', response);
 	const json = await response.json();
-	console.log('json', json);
 	if (response.ok) {
 		const matesResponse: MatesResponse = json;
-		console.log('matesResponse', matesResponse);
 		return matesResponse;
 	}
 };

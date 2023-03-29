@@ -1,8 +1,9 @@
 export type Mate = {
 	createDate: string;
 	id: string;
-	mateListId: string;
 	username: string;
+	profilePhoto: string | null;
+	pronouns: string | null;
 };
 
 export type Mates = Mate[];

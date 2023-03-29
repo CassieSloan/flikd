@@ -44,6 +44,7 @@ const Context = ({ children }: PropsWithChildren) => {
 
 	console.log('authToken in context', authToken);
 	console.log('profileInfo', profileInfo);
+
 	return (
 		<Profile.Provider value={{ authToken, profileInfo, setAuthToken, setProfileInfo }}>
 			{children}

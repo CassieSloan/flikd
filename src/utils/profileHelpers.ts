@@ -3,6 +3,35 @@ import queryString from 'query-string';
 import { GetProfileResponse } from '../types/auth/users';
 import { Fliks } from '../types/fliks/fliks';
 import { Mates } from '../types/mates/mates';
+import { getSessionItem, setSessionItem } from './base';
+
+type UpdatableProfileData = Partial<
+	Omit<GetProfileResponse['data'], 'id' | 'userSince' | 'username'>
+>;
+
+type UpdateSessionMates = UpdatableProfileData['mates'];
+
+type UpdateSessionData = {
+	mates: UpdateSessionMates;
+};
+
+const parseSessionProfileData = () => {
+	const json = getSessionItem('profileInfo');
+	return json ? (JSON.parse(json) as GetProfileResponse) : undefined;
+};
+/**
+ * Update session storage data.
+ */
+export const updateSessionData = (infoToUpdate: UpdateSessionData) => {
+	if (infoToUpdate.mates) {
+		const existingProfileData = parseSessionProfileData();
+		if (existingProfileData) {
+			const update = (existingProfileData.data.mates = infoToUpdate.mates);
+			setSessionItem('profileInfo', `${update}`);
+			console.log('updated session data');
+		}
+	}
+};
 
 /**
  * Format profile token from query params on /profile.

@@ -42,7 +42,7 @@ const Login = () => {
 						<Heading4>
 							{isLoggingIn ? 'Dont have an account?' : 'Already have an account?'}
 							<RegisterButton onClick={() => setIsLogginIn(!isLoggingIn)}>
-								{isLoggingIn ? 'Login' : 'Create one'}
+								{isLoggingIn ? 'Create one' : 'Login'}
 							</RegisterButton>
 						</Heading4>
 					</Flex>

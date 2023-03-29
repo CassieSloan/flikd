@@ -27,6 +27,7 @@ export const AuthForm: FC<AuthFormProps> = ({ isLoggingIn }: AuthFormProps) => {
 		console.log('redirecting');
 		Router.push('/profile');
 	};
+
 	const onSubmit = async (values: FieldValues) => {
 		setLoading(true);
 		login({ handleFail, onSuccess, values });

@@ -9,7 +9,6 @@ import { TabsWithIcons } from '../../components/library/TabsNav';
 import { Profile as ProfileContext } from '../../context/context';
 import { animatedGradientBackground } from '../../design/backgrounds/backgrounds';
 import { GetProfileResponse } from '../../types/auth/users';
-import { requestMate } from '../../utils/apiHelpers';
 import { setSessionItem } from '../../utils/base';
 import { formatProfileData, FormattedProfileData } from '../../utils/profileHelpers';
 
@@ -26,7 +25,6 @@ const BackgroundStyle = createGlobalStyle`
  * Render Profile component.
  */
 const Profile: FC<ProfileProps> = () => {
-	const [mates, setMates] = useState<string[]>([]);
 	const [userInfo, setUserInfo] = useState<FormattedProfileData>();
 	const { authToken, profileInfo, setProfileInfo } = useContext(ProfileContext);
 	console.log('profileInfo in profile', profileInfo);
@@ -49,10 +47,6 @@ const Profile: FC<ProfileProps> = () => {
 	useEffect(() => {
 		if (profileInfo) setUserInfo(formatProfileData(profileInfo));
 	}, [profileInfo]);
-
-	const onClick = (username: string, token: string) => {
-		requestMate({ token, username }).then((mates) => setMates(mates));
-	};
 
 	return (
 		<PageLayout>
