@@ -5,16 +5,5 @@ import { addMate, AddMateProps } from '../apiHelpers/mates/addMate';
  */
 export const requestMate = async ({ token, username }: AddMateProps) => {
 	const mateData = await addMate({ token, username });
-	console.log('mateData', mateData);
-	const mates = mateData?.Mates;
-	console.log('mates', mates);
-	return mates;
+	return mateData?.Mates;
 };
-
-// /**
-//  * Request and return formatted mates.
-//  */
-// export const retrieveMates = async ({ token }: GetMateProps) => {
-// 	const mateData = await getMates({ token });
-// 	return mateData.data.Mates;
-// };

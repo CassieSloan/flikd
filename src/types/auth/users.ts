@@ -18,3 +18,11 @@ export type GetProfileResponse = {
 		pronouns: string;
 	};
 };
+
+export type UserInfo = {
+	userSince: string;
+	username: string;
+	id: string;
+	pronouns: string | null;
+	profilePhoto: string | null;
+};

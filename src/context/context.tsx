@@ -8,6 +8,7 @@ import {
 } from 'react';
 import { GetProfileResponse } from '../types/auth/users';
 import { getSessionItem } from '../utils/base';
+import { parseSessionProfileData } from '../utils/profileHelpers';
 
 type ProfileContext = {
 	authToken?: string;
@@ -28,22 +29,26 @@ const Context = ({ children }: PropsWithChildren) => {
 	const [authToken, setAuthToken] = useState<string | undefined>();
 	const [profileInfo, setProfileInfo] = useState<GetProfileResponse>();
 
+	console.log('profileInfo in  context', profileInfo);
+
 	useEffect(() => {
 		const sessionToken = getSessionItem('userAuth');
 		const sessionProfileInfo = getSessionItem('profileInfo');
-
 		if (!profileInfo && sessionProfileInfo) {
 			console.log('no state, using session: profileinfo');
 			setProfileInfo(JSON.parse(sessionProfileInfo));
 		}
+
 		if (!authToken && sessionToken) {
 			console.log('no state, using session: authtoken');
 			setAuthToken(sessionToken);
 		}
-	}, []);
 
-	console.log('authToken in context', authToken);
-	console.log('profileInfo', profileInfo);
+		if (sessionToken && sessionProfileInfo) {
+			setAuthToken(sessionToken);
+			setProfileInfo(parseSessionProfileData());
+		}
+	}, []);
 
 	return (
 		<Profile.Provider value={{ authToken, profileInfo, setAuthToken, setProfileInfo }}>

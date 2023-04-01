@@ -31,15 +31,15 @@ const Profile: FC<ProfileProps> = () => {
 	const handleFail = (something: any) => console.log(something);
 	console.log('userInfo', userInfo);
 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const onSuccess = (profileInfo: GetProfileResponse) => {
+		if (profileInfo) {
+			setProfileInfo(profileInfo);
+			setSessionItem('profileInfo', JSON.stringify(profileInfo));
+		}
+	};
+
 	useEffect(() => {
 		if (!profileInfo?.data && authToken) {
-			const onSuccess = (profileInfo: GetProfileResponse) => {
-				if (profileInfo) {
-					console.log('profileInfo on mount', profileInfo);
-					setProfileInfo(profileInfo);
-					setSessionItem('profileInfo', JSON.stringify(profileInfo));
-				}
-			};
 			getProfile({ handleFail, onSuccess, token: authToken });
 		}
 	});

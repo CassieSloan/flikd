@@ -9,11 +9,15 @@ export const headers = {
 const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}`;
 
 export const urls = {
-	addMate: `${baseUrl}/profile/add-mate`,
-	getMates: `${baseUrl}/profile/get-mates`,
-	getProfile: `${baseUrl}/profile/get-profile`,
 	login: `${baseUrl}/auth/login`,
+	matesDelete: `${baseUrl}/remove-mate`,
+	matesGet: `${baseUrl}/profile/get-mates`,
+	matesGetProfile: `${baseUrl}/profile/get-mates-profile`,
+	matesPost: `${baseUrl}/profile/add-mate`,
+	profileGet: `${baseUrl}/profile/get-profile`,
+	profilePost: `${baseUrl}/profile/update-profile`,
 	register: `${baseUrl}/auth/register`,
+	timelineGet: `${baseUrl}/profile/get-timeline`,
 };
 
 export type FormSubmitApiProps = {

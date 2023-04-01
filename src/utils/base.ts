@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
  * Get Session Storage item.
  */
@@ -8,14 +10,10 @@ export const getSessionItem = (item: string) => sessionStorage.getItem(item);
 export const setSessionItem = (key: string, value: string) => sessionStorage.setItem(key, value);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type SetObjPropertyProps = { obj: Record<string, any>; path: string; value: any };
 /**
  * Set object property.
  */
-export const setProperty = (obj: Record<string, any>, path: string, value: any) => {
-	const [head, ...rest] = path.split('.');
-
-	return {
-		...obj,
-		[head]: rest.length ? setProperty(obj[head], rest.join('.'), value) : value,
-	};
+export const setNestedObj = ({ obj, path, value }: SetObjPropertyProps) => {
+	_.set(obj, path, value);
 };

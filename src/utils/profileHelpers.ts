@@ -3,33 +3,33 @@ import queryString from 'query-string';
 import { GetProfileResponse } from '../types/auth/users';
 import { Fliks } from '../types/fliks/fliks';
 import { Mates } from '../types/mates/mates';
-import { getSessionItem, setSessionItem } from './base';
+import { getSessionItem, setNestedObj, SetObjPropertyProps } from './base';
 
-type UpdatableProfileData = Partial<
-	Omit<GetProfileResponse['data'], 'id' | 'userSince' | 'username'>
->;
+type UpdateProfileProps = Omit<GetProfileResponse['data'], 'id' | 'userSince' | 'username'>;
 
-type UpdateSessionMates = UpdatableProfileData['mates'];
+export type UpdateProfileOptions = Partial<UpdateProfileProps>;
 
-type UpdateSessionData = {
-	mates: UpdateSessionMates;
-};
-
-const parseSessionProfileData = () => {
+/**
+ * Return profile object from session data.
+ */
+export const parseSessionProfileData = () => {
 	const json = getSessionItem('profileInfo');
 	return json ? (JSON.parse(json) as GetProfileResponse) : undefined;
 };
+
 /**
- * Update session storage data.
+ * Update profile sessiondata.
  */
-export const updateSessionData = (infoToUpdate: UpdateSessionData) => {
-	if (infoToUpdate.mates) {
-		const existingProfileData = parseSessionProfileData();
-		if (existingProfileData) {
-			const update = (existingProfileData.data.mates = infoToUpdate.mates);
-			setSessionItem('profileInfo', `${update}`);
-			console.log('updated session data');
-		}
+export const updateProfileObject = ({ path, value }: Partial<SetObjPropertyProps>) => {
+	const obj = parseSessionProfileData();
+	console.log('obj', obj);
+	if (obj && path && value) {
+		console.log('value', value);
+		console.log('path', path);
+		const newobj = setNestedObj({ obj, path: `data.${path}`, value });
+		console.log('newobj', newobj);
+		console.log('new profile session data', parseSessionProfileData());
+		return parseSessionProfileData();
 	}
 };
 
