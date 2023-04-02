@@ -1,54 +1,33 @@
 import { Box, Heading, List, Text } from 'grommet';
-import { FC, useContext, useState } from 'react';
-import { updateProfile } from '../../apiHelpers/auth/updateProfile';
+import { FC, useContext, useEffect, useState } from 'react';
 import Form from '../../components/forms/base/Form';
 import { FormFieldProps } from '../../components/forms/base/FormTypes';
+import { Avatar } from '../../components/library/Avatar';
 import { Profile } from '../../context/context';
 import { GetProfileResponse } from '../../types/auth/users';
 import { requestMate } from '../../utils/apiHelpers';
-import { setSessionItem } from '../../utils/base';
-import { UpdateProfileOptions } from '../../utils/profileHelpers';
+import { UpdatePronouns } from './_forms';
 
-type UserDetailOptions = Pick<GetProfileResponse['data'], 'userSince' | 'username' | 'pronouns'>;
+type UserDetailOptions = Pick<
+	GetProfileResponse['data'],
+	'userSince' | 'username' | 'pronouns' | 'profilePhoto'
+>;
 type UserDetailsProps = Partial<UserDetailOptions>;
 /**
  * UserDetails.
  */
-export const UserDetails: FC<UserDetailsProps> = ({ pronouns, username, userSince }) => {
-	const { authToken: token, profileInfo, setProfileInfo } = useContext(Profile);
-	const [userPronouns, setUserPronouns] = useState<string | null | undefined>(pronouns);
-	type PronounsProps = Pick<UpdateProfileOptions, 'pronouns'>;
-	console.log('profileInfo in user section', profileInfo);
-	console.log('newPronouns', userPronouns);
+export const UserDetails: FC<UserDetailsProps> = ({
+	profilePhoto,
+	pronouns,
+	username,
+	userSince,
+}) => {
+	const { profileInfo } = useContext(Profile);
+	const [avatar, setAvatar] = useState<Avatar | undefined>(profilePhoto as Avatar);
 
-	const onSuccess = (userInfo) => {
-		console.log('hello??');
-		console.log('userInfo.pronouns', userInfo.data.pronouns);
-		console.log('userInfo', userInfo);
-		if (userInfo.data.pronouns && profileInfo) {
-			console.log('got to success');
-			const clonedProfile = profileInfo;
-			clonedProfile.data.pronouns = userInfo.data.pronouns;
-			console.log('clonedProfile', clonedProfile);
-			setProfileInfo(clonedProfile);
-			setSessionItem('profileInfo', JSON.stringify(clonedProfile));
-			setUserPronouns(clonedProfile.data.pronouns);
-		}
-	};
-
-	const onSubmit = (pronouns: PronounsProps) => {
-		console.log('values', pronouns);
-		if (token) {
-			console.log('update profile req');
-			updateProfile({
-				handleFail: (err) => console.log('err', err),
-				onSuccess,
-				token,
-				values: pronouns,
-			});
-			console.log('finished');
-		}
-	};
+	useEffect(() => {
+		if (profileInfo?.data.profilePhoto) setAvatar(profileInfo?.data.profilePhoto as Avatar);
+	}, [profileInfo]);
 
 	return (
 		<Box margin="small">
@@ -57,24 +36,11 @@ export const UserDetails: FC<UserDetailsProps> = ({ pronouns, username, userSinc
 				primaryKey="id"
 				secondaryKey="value"
 				data={[
+					{ id: 'Avatar', value: <Avatar avatar={avatar} /> },
 					{ id: 'Username', value: username },
-					{ id: 'Pronouns', value: userPronouns },
+					{ id: 'Pronouns', value: <UpdatePronouns /> },
 					{ id: 'User since', value: userSince },
 				]}
-			/>
-			<Form
-				onSubmit={(values: FormFieldProps) => onSubmit(values)}
-				fields={[
-					{
-						label: 'Pronouns',
-						name: 'pronouns',
-						options: ['She/Her', 'He/Him', 'They/Them'],
-						placeholder: 'Select pronouns',
-						type: 'select',
-						validation: { required: false },
-					},
-				]}
-				submitButton="update pronouns"
 			/>
 		</Box>
 	);

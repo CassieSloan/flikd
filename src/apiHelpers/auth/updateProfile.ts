@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { UserInfo } from '../../types/auth/users';
 import { UpdateProfileOptions } from '../../utils/profileHelpers';
 import { generateConfig, urls } from '../sharedConfig';
 import { GetProfileProps } from './getProfile';
@@ -20,9 +21,7 @@ export const updateProfile = async ({
 		.then((response) => {
 			const { data, status } = response;
 			if (status === 200) {
-				console.log('suucess');
-				data ? onSuccess(data) : handleFail(response);
-				console.log('fnishh');
+				data.data ? onSuccess(data.data as UserInfo) : handleFail(response);
 			}
 		})
 		.catch((err) => {
