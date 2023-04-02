@@ -1,4 +1,6 @@
+import { Select } from 'grommet';
 import { FC } from 'react';
+import { Control, Controller, FieldValues } from 'react-hook-form';
 import styled, { css } from 'styled-components';
 import { tertiary60, tertiary70, tertiary80 } from '../../../design/colors/colors';
 import { black } from '../../../design/colors/shades';
@@ -48,10 +50,14 @@ export const FieldContainer = styled.div`
 	width: 100%;
 `;
 
+export const SelectField = styled(Select)``;
+
+export type CustomFormFieldProps = { control: Control<FieldValues> };
 /**
  * FormField component.
  */
-export const FormFieldNew: FC<ReactHookFormField> = ({
+export const FormFieldNew: FC<ReactHookFormField & CustomFormFieldProps> = ({
+	control,
 	defaultValue = '',
 	handleChange,
 	label,
@@ -74,14 +80,21 @@ export const FormFieldNew: FC<ReactHookFormField> = ({
 		);
 	}
 	if (type === 'select') {
+		if (!options) return null;
 		return (
-			<select {...register(name, validation)}>
-				{options?.map((option) => (
-					<option value={option} defaultValue={defaultValue} key={option}>
-						{option}
-					</option>
-				))}
-			</select>
+			<Controller
+				name={name}
+				control={control}
+				render={({ field: { name, onChange, value }, fieldState }) => (
+					<Select
+						{...fieldState}
+						name={name}
+						options={options}
+						value={value}
+						onChange={({ value: nextValue }) => onChange(nextValue)}
+					/>
+				)}
+			/>
 		);
 	}
 

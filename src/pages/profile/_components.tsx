@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from 'grommet';
+import { Box, Heading, List, Text } from 'grommet';
 import { FC, useContext, useState } from 'react';
 import { updateProfile } from '../../apiHelpers/auth/updateProfile';
 import Form from '../../components/forms/base/Form';
@@ -16,10 +16,10 @@ type UserDetailsProps = Partial<UserDetailOptions>;
  */
 export const UserDetails: FC<UserDetailsProps> = ({ pronouns, username, userSince }) => {
 	const { authToken: token, profileInfo, setProfileInfo } = useContext(Profile);
-	const [newPronouns, setNewPronouns] = useState<string | null>();
+	const [userPronouns, setUserPronouns] = useState<string | null | undefined>(pronouns);
 	type PronounsProps = Pick<UpdateProfileOptions, 'pronouns'>;
 	console.log('profileInfo in user section', profileInfo);
-	console.log('newPronouns', newPronouns);
+	console.log('newPronouns', userPronouns);
 
 	const onSuccess = (userInfo) => {
 		console.log('hello??');
@@ -32,7 +32,7 @@ export const UserDetails: FC<UserDetailsProps> = ({ pronouns, username, userSinc
 			console.log('clonedProfile', clonedProfile);
 			setProfileInfo(clonedProfile);
 			setSessionItem('profileInfo', JSON.stringify(clonedProfile));
-			setNewPronouns(clonedProfile.data.pronouns);
+			setUserPronouns(clonedProfile.data.pronouns);
 		}
 	};
 
@@ -53,17 +53,15 @@ export const UserDetails: FC<UserDetailsProps> = ({ pronouns, username, userSinc
 	return (
 		<Box margin="small">
 			<Heading level={3}>Profile</Heading>
-			{username && (
-				<Text key={username} size="small">
-					username: {username}
-				</Text>
-			)}
-			{newPronouns && (
-				<Text key={newPronouns} size="small">
-					newPronouns: {newPronouns}
-				</Text>
-			)}
-			{userSince && <Text size="small">user since: {userSince}</Text>}
+			<List
+				primaryKey="id"
+				secondaryKey="value"
+				data={[
+					{ id: 'Username', value: username },
+					{ id: 'Pronouns', value: userPronouns },
+					{ id: 'User since', value: userSince },
+				]}
+			/>
 			<Form
 				onSubmit={(values: FormFieldProps) => onSubmit(values)}
 				fields={[
