@@ -12,7 +12,7 @@ type GridProps = {
  */
 export const Grid = styled.div<GridProps>`
 	display: grid;
-	${(props) => props.columns && `grid-template-columns: ${props.columns}, 1fr`};
+	${(props) => props.columns && `grid-template-columns: repeat(${props.columns}, 1fr)`};
 	${(props) => props.gap && `gap: ${props.gap}px`};
 	${(props) => props.align && `align-items: ${props.align}`};
 `;

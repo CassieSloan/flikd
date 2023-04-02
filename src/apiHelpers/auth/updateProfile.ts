@@ -16,11 +16,13 @@ export const updateProfile = async ({
 	token,
 	values,
 }: UpdateProfileProps) => {
+	console.log('values', values);
 	const config = generateConfig({ authToken: token, method: 'POST', values });
 	await axios(urls.profilePost, config)
 		.then((response) => {
 			const { data, status } = response;
 			if (status === 200) {
+				console.log('200');
 				data.data ? onSuccess(data.data as UserInfo) : handleFail(response);
 			}
 		})

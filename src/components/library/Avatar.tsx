@@ -1,6 +1,7 @@
 import { Avatar as GrommetAvatar } from 'grommet';
 import { User } from 'grommet-icons';
 import { FC } from 'react';
+import styled from 'styled-components';
 import { tertiary80 } from '../../design/colors/colors';
 import bird from '../../images/avatars/bird.png';
 import cat from '../../images/avatars/cat.png';
@@ -12,6 +13,7 @@ import meercat from '../../images/avatars/meercat.png';
 import rabbit from '../../images/avatars/rabbit.png';
 import tiger from '../../images/avatars/tiger.png';
 import turtle from '../../images/avatars/turtle.png';
+import Image from '../common/Image';
 
 export type Avatar = keyof typeof avatars;
 type AvatarProps = { avatar?: Avatar };
@@ -28,6 +30,12 @@ const avatars = {
 	tiger,
 	turtle,
 };
+
+const CircleFrame = styled(Image)`
+	border-radius: 50%;
+	height: 48px;
+	width: 48px;
+`;
 /**
  * Render Component component.
  */
@@ -35,7 +43,7 @@ export const Avatar: FC<AvatarProps> = ({ avatar }) => {
 	return (
 		<>
 			{avatar ? (
-				<GrommetAvatar src={require(`${avatars[avatar]}`)} />
+				<CircleFrame src={avatars[avatar]} />
 			) : (
 				<GrommetAvatar background={tertiary80}>
 					<User color="text-strong" />

@@ -1,4 +1,5 @@
 import { Box, Heading, List, Text } from 'grommet';
+import moment from 'moment';
 import { FC, useContext, useEffect, useState } from 'react';
 import Form from '../../components/forms/base/Form';
 import { FormFieldProps } from '../../components/forms/base/FormTypes';
@@ -6,7 +7,7 @@ import { Avatar } from '../../components/library/Avatar';
 import { Profile } from '../../context/context';
 import { GetProfileResponse } from '../../types/auth/users';
 import { requestMate } from '../../utils/apiHelpers';
-import { UpdatePronouns } from './_forms';
+import { UpdateAvatar, UpdatePronouns } from './_forms';
 
 type UserDetailOptions = Pick<
 	GetProfileResponse['data'],
@@ -16,18 +17,15 @@ type UserDetailsProps = Partial<UserDetailOptions>;
 /**
  * UserDetails.
  */
-export const UserDetails: FC<UserDetailsProps> = ({
-	profilePhoto,
-	pronouns,
-	username,
-	userSince,
-}) => {
+export const UserDetails: FC<UserDetailsProps> = ({ profilePhoto, username, userSince }) => {
 	const { profileInfo } = useContext(Profile);
 	const [avatar, setAvatar] = useState<Avatar | undefined>(profilePhoto as Avatar);
 
 	useEffect(() => {
 		if (profileInfo?.data.profilePhoto) setAvatar(profileInfo?.data.profilePhoto as Avatar);
 	}, [profileInfo]);
+
+	const formattedUserSince = moment(userSince).format('D MMMM YYYY');
 
 	return (
 		<Box margin="small">
@@ -36,10 +34,10 @@ export const UserDetails: FC<UserDetailsProps> = ({
 				primaryKey="id"
 				secondaryKey="value"
 				data={[
-					{ id: 'Avatar', value: <Avatar avatar={avatar} /> },
+					{ id: 'Avatar', value: <UpdateAvatar /> },
 					{ id: 'Username', value: username },
 					{ id: 'Pronouns', value: <UpdatePronouns /> },
-					{ id: 'User since', value: userSince },
+					{ id: 'User since', value: formattedUserSince },
 				]}
 			/>
 		</Box>
