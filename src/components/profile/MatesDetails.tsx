@@ -1,0 +1,30 @@
+import { Box, DataTable, Heading } from 'grommet';
+import { FC, useContext } from 'react';
+import { Profile } from '../../context/context';
+import { Flex } from '../../design/components/Flex';
+import { Avatar } from '../library/Avatar';
+import { AddMate } from './UpdateMates';
+
+/**
+ * Mates Details.
+ */
+export const MatesDetails: FC = () => {
+	const { authToken, profileInfo } = useContext(Profile);
+	console.log('authToken', authToken);
+
+	const mateData = profileInfo?.data.mates.Mates.map(({ profilePhoto, pronouns, username }) => ({
+		profilePhoto: <Avatar avatar={profilePhoto as Avatar} />,
+		pronouns: pronouns || 'No pronouns set',
+		username,
+	}));
+
+	return (
+		<Box margin="small">
+			<Flex justify="space-between">
+				<Heading level={3}>Mates</Heading>
+				<AddMate />
+			</Flex>
+			<DataTable data={mateData} />
+		</Box>
+	);
+};
