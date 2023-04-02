@@ -25,7 +25,8 @@ export type FormSubmitApiProps = {
 	handleFail: (json: unknown) => void;
 	onSuccess: (arg: any) => void;
 };
-
+export type AuthReqProps = Omit<FormSubmitApiProps, 'values'> & WithToken;
+export type WithToken = { token: string };
 type Method = 'GET' | 'POST' | 'DELETE';
 type GenerateConfigOptions = {
 	values?: FieldValues;

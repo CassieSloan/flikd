@@ -1,18 +1,17 @@
 import axios from 'axios';
-import { GetProfileResponse } from '../../types/auth/users';
 import { AuthReqProps, generateConfig, urls } from '../sharedConfig';
 
 /**
- * GetProfile Function.
+ * Get mates api fetch.
  */
-export const getProfile = async ({ handleFail, onSuccess, token }: AuthReqProps) => {
+export const getMates = async ({ handleFail, onSuccess, token }: AuthReqProps) => {
 	const config = generateConfig({ authToken: token, method: 'GET' });
-	await axios(urls.profileGet, config)
+	await axios(urls.matesGet, config)
 		.then((response) => {
 			console.log('response', response);
 			const { data, status } = response;
 			if (status === 200) {
-				const formattedResponse = data as GetProfileResponse;
+				const formattedResponse = data.data;
 				formattedResponse ? onSuccess(formattedResponse) : handleFail(response);
 			}
 		})

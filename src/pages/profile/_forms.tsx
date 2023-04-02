@@ -3,6 +3,9 @@ import { Close, Edit } from 'grommet-icons';
 import { FC, SyntheticEvent, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { updateProfile } from '../../apiHelpers/auth/updateProfile';
+import { addMate } from '../../apiHelpers/mates/addMate';
+import Form from '../../components/forms/base/Form';
+import { FormFieldProps } from '../../components/forms/base/FormTypes';
 import { Avatar } from '../../components/library/Avatar';
 import { Profile } from '../../context/context';
 import { tertiary80 } from '../../design/colors/colors';
@@ -159,6 +162,75 @@ export const UpdateAvatar: FC = () => {
 							<Avatar avatar={profilePhoto as Avatar} />
 						</Option>
 					))}
+					<CloseButton icon={<Close color={tertiary80} onClick={() => setOpen(false)} />} />
+				</OptionsContainer>
+			}
+		/>
+	);
+};
+
+/**
+ * Update Mates form.
+ */
+export const AddMate: FC = () => {
+	const { authToken, profileInfo, setProfileInfo } = useContext(Profile);
+	const [open, setOpen] = useState<boolean>();
+	const [loading, setLoading] = useState<boolean>();
+
+	const onSuccess = (userInfo) => {
+		console.log('userInfo on success');
+		if (userInfo.profilePhoto && profileInfo) {
+			const clonedProfile = profileInfo;
+			clonedProfile.data.profilePhoto = userInfo.profilePhoto;
+			setProfileInfo(clonedProfile);
+			setSessionItem('profileInfo', JSON.stringify(clonedProfile));
+			setLoading(false);
+		}
+	};
+
+	const onSubmit = (mateReq) => {
+		setOpen(false);
+		setLoading(true);
+		const username = mateReq.mateUsername;
+		console.log('username', username);
+		if (authToken) {
+			addMate({
+				handleFail: (err) => console.log('err', err),
+				onSuccess,
+				token: authToken,
+				username,
+			});
+		}
+	};
+
+	const OptionsContainer = styled(Grid)`
+		padding: 12px;
+	`;
+
+	const label = loading ? <Spinner /> : 'Add mate';
+
+	return (
+		<DropButton
+			label={label}
+			dropAlign={{ left: 'left', top: 'top' }}
+			onClick={() => setOpen(true)}
+			open={open}
+			icon={<Edit color={tertiary80} />}
+			dropContent={
+				<OptionsContainer gap={24} columns={5}>
+					<Form
+						onSubmit={(values: FormFieldProps) => onSubmit(values)}
+						fields={[
+							{
+								label: 'Mate username',
+								name: 'mateUsername',
+								placeholder: 'Bilbo',
+								type: 'text',
+								validation: { required: true },
+							},
+						]}
+						submitButton="Add mate"
+					/>
 					<CloseButton icon={<Close color={tertiary80} onClick={() => setOpen(false)} />} />
 				</OptionsContainer>
 			}

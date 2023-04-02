@@ -14,7 +14,7 @@ type ProfileContext = {
 	authToken?: string;
 	setAuthToken: Dispatch<SetStateAction<string | undefined>>;
 	profileInfo?: GetProfileResponse;
-	setProfileInfo: Dispatch<GetProfileResponse>;
+	setProfileInfo: Dispatch<GetProfileResponse | undefined>;
 } & PropsWithChildren;
 
 export const Profile = createContext<ProfileContext>({
@@ -27,7 +27,7 @@ export const Profile = createContext<ProfileContext>({
  */
 const Context = ({ children }: PropsWithChildren) => {
 	const [authToken, setAuthToken] = useState<string | undefined>();
-	const [profileInfo, setProfileInfo] = useState<GetProfileResponse>();
+	const [profileInfo, setProfileInfo] = useState<GetProfileResponse | undefined>();
 
 	console.log('profileInfo in  context', profileInfo);
 

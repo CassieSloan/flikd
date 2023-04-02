@@ -1,6 +1,9 @@
-import { FC } from 'react';
+import Router from 'next/router';
+import { FC, useContext } from 'react';
 import styled from 'styled-components';
-import { SettingsCog } from '../navigation/SettingsCog';
+import { Profile } from '../../context/context';
+import { Flex } from '../../design/components/Flex';
+import { Button } from './Buttons';
 import Link from './Link';
 import { Section } from './Section';
 
@@ -13,22 +16,32 @@ const headerNavLinks = [
 const NavLink = styled(Link)`
 	padding: 16px;
 `;
-
 /**
  * Render Navigation Navigation.
  */
 export const Navigation: FC = () => {
+	const { setAuthToken, setProfileInfo } = useContext(Profile);
+	const logout = () => {
+		setAuthToken(undefined);
+		setProfileInfo(undefined);
+		Router.push('/');
+	};
 	return (
 		<Section padding={24}>
-			{headerNavLinks.map((navItem) => {
-				const { link, text } = navItem;
-				return (
-					<NavLink key={text} to={link}>
-						{text}
-					</NavLink>
-				);
-			})}
-			<SettingsCog />
+			<Flex justify="space-between">
+				<div>
+					{headerNavLinks.map((navItem) => {
+						const { link, text } = navItem;
+						return (
+							<NavLink key={text} to={link}>
+								{text}
+							</NavLink>
+						);
+					})}
+				</div>
+				<Button onClick={logout}>Logout</Button>
+			</Flex>
+			{/* <SettingsCog /> */}
 		</Section>
 	);
 };

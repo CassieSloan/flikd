@@ -1,13 +1,11 @@
-import { Box, Heading, List, Text } from 'grommet';
+import { Box, DataTable, Heading, List } from 'grommet';
 import moment from 'moment';
-import { FC, useContext, useEffect, useState } from 'react';
-import Form from '../../components/forms/base/Form';
-import { FormFieldProps } from '../../components/forms/base/FormTypes';
+import { FC, useContext } from 'react';
 import { Avatar } from '../../components/library/Avatar';
 import { Profile } from '../../context/context';
+import { Flex } from '../../design/components/Flex';
 import { GetProfileResponse } from '../../types/auth/users';
-import { requestMate } from '../../utils/apiHelpers';
-import { UpdateAvatar, UpdatePronouns } from './_forms';
+import { AddMate, UpdateAvatar, UpdatePronouns } from './_forms';
 
 type UserDetailOptions = Pick<
 	GetProfileResponse['data'],
@@ -17,14 +15,7 @@ type UserDetailsProps = Partial<UserDetailOptions>;
 /**
  * UserDetails.
  */
-export const UserDetails: FC<UserDetailsProps> = ({ profilePhoto, username, userSince }) => {
-	const { profileInfo } = useContext(Profile);
-	const [avatar, setAvatar] = useState<Avatar | undefined>(profilePhoto as Avatar);
-
-	useEffect(() => {
-		if (profileInfo?.data.profilePhoto) setAvatar(profileInfo?.data.profilePhoto as Avatar);
-	}, [profileInfo]);
-
+export const UserDetails: FC<UserDetailsProps> = ({ username, userSince }) => {
 	const formattedUserSince = moment(userSince).format('D MMMM YYYY');
 
 	return (
@@ -44,45 +35,26 @@ export const UserDetails: FC<UserDetailsProps> = ({ profilePhoto, username, user
 	);
 };
 
-type MateDetailsProps = { mates: string[] };
 /**
  * Mates Details.
  */
-export const MatesDetails = ({ mates }: MateDetailsProps) => {
-	const { authToken: token } = useContext(Profile);
+export const MatesDetails: FC = () => {
+	const { authToken, profileInfo } = useContext(Profile);
+	console.log('authToken', authToken);
 
-	const onSubmit = (formValues: any) => {
-		console.log('formValues', formValues);
-		const username = formValues.mateUsername;
-		if (token) requestMate({ token, username });
-	};
+	const mateData = profileInfo?.data.mates.Mates.map(({ profilePhoto, pronouns, username }) => ({
+		profilePhoto: <Avatar avatar={profilePhoto as Avatar} />,
+		pronouns: pronouns || 'No pronouns set',
+		username,
+	}));
 
 	return (
 		<Box margin="small">
-			<Heading level={3}>Mates</Heading>
-			{mates &&
-				mates?.map((item) => {
-					return (
-						<>
-							<Text key={item} size="small">
-								{item}
-							</Text>
-						</>
-					);
-				})}
-			<Form
-				onSubmit={(values: FormFieldProps) => onSubmit(values)}
-				fields={[
-					{
-						label: 'Mate username',
-						name: 'mateUsername',
-						placeholder: 'Bilbo',
-						type: 'text',
-						validation: { required: true },
-					},
-				]}
-				submitButton="Add mate"
-			/>
+			<Flex justify="space-between">
+				<Heading level={3}>Mates</Heading>
+				<AddMate />
+			</Flex>
+			<DataTable data={mateData} />
 		</Box>
 	);
 };

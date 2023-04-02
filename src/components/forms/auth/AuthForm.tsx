@@ -2,6 +2,7 @@
 import Router from 'next/router';
 import { FC, useContext, useState } from 'react';
 import { login } from '../../../apiHelpers/auth/login';
+import { registerUser } from '../../../apiHelpers/auth/registerUser';
 import { Profile } from '../../../context/context';
 import { setSessionItem } from '../../../utils/base';
 import { LoadingSpinner } from '../../common/LoadingSpinner';
@@ -20,6 +21,7 @@ export const AuthForm: FC<AuthFormProps> = ({ isLoggingIn }: AuthFormProps) => {
 	const formProps = getAuthFormValues(isLoggingIn);
 	console.log('formProps', formProps);
 	const errorMsg = getAuthFormError(isLoggingIn);
+
 	const handleFail = () => setError(errorMsg);
 	const onSuccess = (token: string) => {
 		setAuthToken(token);
@@ -30,7 +32,9 @@ export const AuthForm: FC<AuthFormProps> = ({ isLoggingIn }: AuthFormProps) => {
 
 	const onSubmit = async (values: FieldValues) => {
 		setLoading(true);
-		login({ handleFail, onSuccess, values });
+		isLoggingIn
+			? login({ handleFail, onSuccess, values })
+			: registerUser({ handleFail, onSuccess, values });
 		setLoading(false);
 	};
 

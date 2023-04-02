@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { UserInfo } from '../../types/auth/users';
 import { UpdateProfileOptions } from '../../utils/profileHelpers';
-import { generateConfig, urls } from '../sharedConfig';
-import { GetProfileProps } from './getProfile';
+import { AuthReqProps, generateConfig, urls } from '../sharedConfig';
 
 export type UpdateProfileProps = {
 	values: UpdateProfileOptions;
-} & GetProfileProps;
+} & AuthReqProps;
 /**
  * Register user function.
  */
