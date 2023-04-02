@@ -15,6 +15,7 @@ export const urls = {
 	matesGet: `${baseUrl}/profile/get-mates`,
 	matesGetProfile: `${baseUrl}/profile/get-mates-profile`,
 	matesPost: `${baseUrl}/profile/add-mate`,
+	profileDelete: `${baseUrl}/profile/delete-profile`,
 	profileGet: `${baseUrl}/profile/get-profile`,
 	profilePost: `${baseUrl}/profile/update-profile`,
 	register: `${baseUrl}/auth/register`,
