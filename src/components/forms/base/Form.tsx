@@ -1,3 +1,4 @@
+import { Spinner } from 'grommet';
 import { FC, Fragment, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Heading4 } from '../../../design/typography/typography';
@@ -57,6 +58,7 @@ const Form: FC<FormProps> = ({ className, fields, onSubmit, submitButton, title 
 			setSubmissionError(true);
 		}
 	};
+	const label = isSubmitting ? <Spinner /> : submitButton || 'None set';
 
 	return (
 		<StyledForm onSubmit={handleSubmit(onSubmit || defaultOnSubmit)} className={className}>
@@ -71,9 +73,7 @@ const Form: FC<FormProps> = ({ className, fields, onSubmit, submitButton, title 
 					</Fragment>
 				);
 			})}
-			<SubmitButton type="submit" disabled={isSubmitting}>
-				{submitButton || 'Submit'}
-			</SubmitButton>
+			<SubmitButton type="submit" disabled={isSubmitting} label={label} />
 			{submissionError && <p>{submissionError}</p>}
 		</StyledForm>
 	);

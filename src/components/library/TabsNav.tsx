@@ -1,4 +1,4 @@
-import { Box, Tab, Tabs, Text } from 'grommet';
+import { Box, Tab, Tabs } from 'grommet';
 import { Favorite, Group, Inspect, User, View } from 'grommet-icons';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
@@ -25,14 +25,7 @@ const StyledTab = styled(Tab)`
 /**
  * Tabs withIcons.
  */
-export const TabsWithIcons: FC<FormattedProfileData> = ({
-	favourites,
-	mates,
-	seenIts,
-	toWatch,
-	user,
-}) => {
-	const formattedMates = mates.map(({ username }) => username);
+export const TabsWithIcons: FC<FormattedProfileData> = ({ user }) => {
 	return (
 		<Box align="center" pad="medium">
 			<Tabs>
@@ -40,18 +33,18 @@ export const TabsWithIcons: FC<FormattedProfileData> = ({
 					<UserDetails {...user} />
 				</StyledTab>
 				<StyledTab icon={<Group />}>
-					<MatesDetails mates={formattedMates} />
+					<MatesDetails />
 				</StyledTab>
 				<StyledTab icon={<Favorite />}>
 					<Box margin="small">
-						{favourites &&
+						{/* {favourites &&
 							favourites.map((item) => {
 								return (
 									<Text key={item.title} size="small">
 										item.title
 									</Text>
 								);
-							})}
+							})} */}
 					</Box>
 				</StyledTab>
 				<StyledTab icon={<View />}>
@@ -59,13 +52,13 @@ export const TabsWithIcons: FC<FormattedProfileData> = ({
 				</StyledTab>
 				<StyledTab icon={<Inspect />}>
 					<Box margin="small">
-						{toWatch.map((item) => {
+						{/* {toWatch.map((item) => {
 							return (
 								<Text key={item.t} size="small">
 									{item.title}
 								</Text>
 							);
-						})}
+						})} */}
 					</Box>
 				</StyledTab>
 			</Tabs>

@@ -28,10 +28,10 @@ const Profile: FC<ProfileProps> = () => {
 	const [userInfo, setUserInfo] = useState<FormattedProfileData>();
 	const { authToken, profileInfo, setProfileInfo } = useContext(ProfileContext);
 	console.log('profileInfo in profile', profileInfo);
-	const handleFail = (something: any) => console.log(something);
+	const handleFail = (something: GetProfileResponse) => console.log(something);
 	console.log('userInfo', userInfo);
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	const onSuccess = (profileInfo: GetProfileResponse) => {
+	const onSuccess = (profileInfo: GetProfileResponse | undefined) => {
 		if (profileInfo) {
 			setProfileInfo(profileInfo);
 			setSessionItem('profileInfo', JSON.stringify(profileInfo));

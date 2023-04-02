@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { updateProfile } from '../../apiHelpers/auth/updateProfile';
 import { addMate } from '../../apiHelpers/mates/addMate';
 import Form from '../../components/forms/base/Form';
-import { FormFieldProps } from '../../components/forms/base/FormTypes';
 import { Avatar } from '../../components/library/Avatar';
 import { Profile } from '../../context/context';
 import { tertiary80 } from '../../design/colors/colors';
@@ -177,8 +176,7 @@ export const AddMate: FC = () => {
 	const [open, setOpen] = useState<boolean>();
 	const [loading, setLoading] = useState<boolean>();
 
-	const onSuccess = (userInfo) => {
-		console.log('userInfo on success');
+	const onSuccess = (userInfo: { profilePhoto: string }) => {
 		if (userInfo.profilePhoto && profileInfo) {
 			const clonedProfile = profileInfo;
 			clonedProfile.data.profilePhoto = userInfo.profilePhoto;
@@ -188,7 +186,7 @@ export const AddMate: FC = () => {
 		}
 	};
 
-	const onSubmit = (mateReq) => {
+	const onSubmit = (mateReq: { mateUsername: string }) => {
 		setOpen(false);
 		setLoading(true);
 		const username = mateReq.mateUsername;
@@ -219,7 +217,7 @@ export const AddMate: FC = () => {
 			dropContent={
 				<OptionsContainer gap={24} columns={5}>
 					<Form
-						onSubmit={(values: FormFieldProps) => onSubmit(values)}
+						onSubmit={(values: { mateUsername: string }) => onSubmit(values)}
 						fields={[
 							{
 								label: 'Mate username',

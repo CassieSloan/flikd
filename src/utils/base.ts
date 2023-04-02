@@ -17,3 +17,12 @@ export type SetObjPropertyProps = { obj: Record<string, any>; path: string; valu
 export const setNestedObj = ({ obj, path, value }: SetObjPropertyProps) => {
 	_.set(obj, path, value);
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+type JSONValue = string | number | boolean | JSONObject | JSONArray;
+
+export interface JSONObject {
+	[x: string]: JSONValue;
+}
+type JSONArray = Array<JSONValue>;

@@ -1,4 +1,4 @@
-import { Select } from 'grommet';
+import { Button, Select } from 'grommet';
 import { FC } from 'react';
 import { Control, Controller, FieldValues } from 'react-hook-form';
 import styled, { css } from 'styled-components';
@@ -22,7 +22,7 @@ export const TextInput = styled.input`
 	border: 1px solid ${tertiary60};
 	flex-shrink: 0;
 `;
-export const SubmitButton = styled.button`
+export const SubmitButton = styled(Button)`
 	padding: 12px;
 	border-radius: 12px;
 	background: ${tertiary70};

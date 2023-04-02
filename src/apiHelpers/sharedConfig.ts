@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FieldValues } from '../components/forms/base/FormTypes';
 
 export const headers = {
@@ -22,9 +23,10 @@ export const urls = {
 
 export type FormSubmitApiProps = {
 	values: FieldValues;
-	handleFail: (json: unknown) => void;
-	onSuccess: (arg: any) => void;
+	handleFail: (res: any) => void;
+	onSuccess: (res: any) => void;
 };
+
 export type AuthReqProps = Omit<FormSubmitApiProps, 'values'> & WithToken;
 export type WithToken = { token: string };
 type Method = 'GET' | 'POST' | 'DELETE';
