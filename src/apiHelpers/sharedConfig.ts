@@ -20,6 +20,7 @@ export const urls = {
 	profilePost: `${baseUrl}/profile/update-profile`,
 	register: `${baseUrl}/auth/register`,
 	timelineGet: `${baseUrl}/profile/get-timeline`,
+	upcomingFliks: `${baseUrl}/fliks/upcoming-fliks`,
 };
 
 export type FormSubmitApiProps = {
@@ -28,7 +29,8 @@ export type FormSubmitApiProps = {
 	onSuccess: (res: any) => void;
 };
 
-export type AuthReqProps = Omit<FormSubmitApiProps, 'values'> & WithToken;
+export type ApiHandlers = Omit<FormSubmitApiProps, 'values'>;
+export type AuthReqProps = ApiHandlers & WithToken;
 export type WithToken = { token: string };
 type Method = 'GET' | 'POST' | 'DELETE';
 type GenerateConfigOptions = {

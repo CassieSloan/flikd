@@ -12,10 +12,6 @@ import { GetProfileResponse } from '../../types/auth/users';
 import { setSessionItem } from '../../utils/base';
 import { formatProfileData, FormattedProfileData } from '../../utils/profileHelpers';
 
-type ProfileProps = {
-	profileId: string;
-};
-
 const BackgroundStyle = createGlobalStyle`
 	body {
 		${animatedGradientBackground()};
@@ -24,7 +20,7 @@ const BackgroundStyle = createGlobalStyle`
 /**
  * Render Profile component.
  */
-const Profile: FC<ProfileProps> = () => {
+const Profile: FC = () => {
 	const [userInfo, setUserInfo] = useState<FormattedProfileData>();
 	const { authToken, profileInfo, setProfileInfo } = useContext(ProfileContext);
 	console.log('profileInfo in profile', profileInfo);
