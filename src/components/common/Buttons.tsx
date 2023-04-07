@@ -14,7 +14,7 @@ type StyledButtonProps = { background?: Color };
 
 const buttonStyles = (background?: Color) => css`
 	padding: 8px 12px;
-	background: ${background ? colors[background] : colors.tertiary50};
+	background: ${background ? colors[background] : colors.tertiary300};
 	color: white;
 	text-decoration: none;
 	border-radius: 12px;
@@ -22,11 +22,11 @@ const buttonStyles = (background?: Color) => css`
 `;
 
 const StyledButton = styled(StrippedButton)<StyledButtonProps>`
-	${({ background }) => buttonStyles(background || 'tertiary50')}
+	${({ background }) => buttonStyles(background || 'tertiary300')}
 `;
 
 const StyledLink = styled(Link)<StyledButtonProps>`
-	${({ background }) => buttonStyles(background || 'tertiary50')};
+	${({ background }) => buttonStyles(background || 'tertiary300')};
 `;
 
 type ButtonProps = {
@@ -109,7 +109,7 @@ export const ToWatchButton: FC<FlikActionButton> = ({ id }) => {
 
 	return (
 		<StrippedButton id={formattedId} onClick={onClick}>
-			<View color={colors.tertiary100} fill={hasAdded ? colors.tertiary100 : 'transparent'} />
+			<View color={colors.tertiary100} fill="transparent" />
 		</StrippedButton>
 	);
 };

@@ -4,7 +4,7 @@ import { FC, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { addMate } from '../../apiHelpers/mates/addMate';
 import { Profile } from '../../context/context';
-import { tertiary80 } from '../../design/colors/colors';
+import { tertiary500 } from '../../design/colors/colors';
 import { Grid } from '../../design/components/Grid';
 import { setSessionItem } from '../../utils/base';
 import Form from '../forms/base/Form';
@@ -56,7 +56,7 @@ export const AddMate: FC = () => {
 			dropAlign={{ left: 'left', top: 'top' }}
 			onClick={() => setOpen(true)}
 			open={open}
-			icon={<Edit color={tertiary80} />}
+			icon={<Edit color={tertiary500} />}
 			dropContent={
 				<OptionsContainer gap={24} columns={5}>
 					<Form
@@ -72,7 +72,7 @@ export const AddMate: FC = () => {
 						]}
 						submitButton="Add mate"
 					/>
-					<CloseButton icon={<Close color={tertiary80} onClick={() => setOpen(false)} />} />
+					<CloseButton icon={<Close color={tertiary500} onClick={() => setOpen(false)} />} />
 				</OptionsContainer>
 			}
 		/>

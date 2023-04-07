@@ -4,7 +4,7 @@ import { FC, SyntheticEvent, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { updateProfile } from '../../apiHelpers/auth/updateProfile';
 import { Profile } from '../../context/context';
-import { tertiary80 } from '../../design/colors/colors';
+import { tertiary500 } from '../../design/colors/colors';
 import { Grid } from '../../design/components/Grid';
 import { UserInfo } from '../../types/auth/users';
 import { setSessionItem } from '../../utils/base';
@@ -78,7 +78,7 @@ export const UpdateAvatar: FC = () => {
 			dropAlign={{ left: 'left', top: 'top' }}
 			onClick={() => setOpen(true)}
 			open={open}
-			icon={<Edit color={tertiary80} />}
+			icon={<Edit color={tertiary500} />}
 			dropContent={
 				<OptionsContainer gap={24} columns={5}>
 					{options.map((profilePhoto) => (
@@ -86,7 +86,7 @@ export const UpdateAvatar: FC = () => {
 							<Avatar avatar={profilePhoto as Avatar} />
 						</Option>
 					))}
-					<CloseButton icon={<Close color={tertiary80} onClick={() => setOpen(false)} />} />
+					<CloseButton icon={<Close color={tertiary500} onClick={() => setOpen(false)} />} />
 				</OptionsContainer>
 			}
 		/>

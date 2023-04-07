@@ -5,7 +5,7 @@ import { FC, SyntheticEvent, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { deleteProfile } from '../../apiHelpers/auth/deleteProfile';
 import { Profile } from '../../context/context';
-import { tertiary80 } from '../../design/colors/colors';
+import { tertiary500 } from '../../design/colors/colors';
 import { Flex } from '../../design/components/Flex';
 
 const CloseButton = styled(Button)``;
@@ -40,7 +40,7 @@ export const DeleteAccount: FC = () => {
 	const Option = styled(Button)`
 		padding: 12px;
 		color: white;
-		background: ${tertiary80};
+		background: ${tertiary500};
 		border-radius: 32px;
 		display: inline;
 		max-width: fit-content;
@@ -59,12 +59,12 @@ export const DeleteAccount: FC = () => {
 			dropAlign={{ left: 'left', top: 'top' }}
 			onClick={() => setOpen(true)}
 			open={open}
-			icon={<Trash color={tertiary80} />}
+			icon={<Trash color={tertiary500} />}
 			dropContent={
 				<OptionsContainer gap={24} direction="column">
 					<Flex>
 						<Text>Are you sure you want to delete your account? This action is irreversable</Text>
-						<CloseButton icon={<Close color={tertiary80} onClick={() => setOpen(false)} />} />
+						<CloseButton icon={<Close color={tertiary500} onClick={() => setOpen(false)} />} />
 					</Flex>
 					<Option primary onClick={(e) => onSubmit(e)}>
 						Yes

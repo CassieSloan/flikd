@@ -2,7 +2,7 @@ import { Button, Select } from 'grommet';
 import { FC } from 'react';
 import { Control, Controller, FieldValues } from 'react-hook-form';
 import styled, { css } from 'styled-components';
-import { tertiary60, tertiary70, tertiary80 } from '../../../design/colors/colors';
+import { tertiary300, tertiary500 } from '../../../design/colors/colors';
 import { black } from '../../../design/colors/shades';
 import { jump } from '../../../design/micro-interactions';
 import { flex, onHover } from '../../../design/utils';
@@ -19,18 +19,18 @@ export const TextInput = styled.input`
 	padding: 12px;
 	background: transparent;
 	border-radius: 8px;
-	border: 1px solid ${tertiary60};
+	border: 1px solid ${tertiary300};
 	flex-shrink: 0;
 `;
 export const SubmitButton = styled(Button)`
 	padding: 12px;
 	border-radius: 12px;
-	background: ${tertiary70};
+	background: ${tertiary500};
 	${jump()};
 	transition: background 0.2s ease, top 0.3s ease;
 	${onHover(
 		css`
-			background: ${tertiary80};
+			background: ${tertiary500};
 		`
 	)}
 	color: white;

@@ -28,7 +28,7 @@ export const Profile = createContext<ProfileContext>({
 const Context = ({ children }: PropsWithChildren) => {
 	const [authToken, setAuthToken] = useState<string | undefined>();
 	const [profileInfo, setProfileInfo] = useState<GetProfileResponse | undefined>();
-
+	console.log('authToken in context', authToken);
 	console.log('profileInfo in  context', profileInfo);
 
 	useEffect(() => {

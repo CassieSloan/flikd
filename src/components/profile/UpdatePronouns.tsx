@@ -4,7 +4,7 @@ import { FC, SyntheticEvent, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { updateProfile } from '../../apiHelpers/auth/updateProfile';
 import { Profile } from '../../context/context';
-import { tertiary80 } from '../../design/colors/colors';
+import { tertiary500 } from '../../design/colors/colors';
 import { Flex } from '../../design/components/Flex';
 import { UserInfo } from '../../types/auth/users';
 import { setSessionItem } from '../../utils/base';
@@ -51,7 +51,7 @@ export const UpdatePronouns: FC = () => {
 	const Option = styled(Button)`
 		padding: 12px;
 		color: white;
-		background: ${tertiary80};
+		background: ${tertiary500};
 		border-radius: 32px;
 		display: inline;
 		max-width: fit-content;
@@ -69,7 +69,7 @@ export const UpdatePronouns: FC = () => {
 			dropAlign={{ left: 'left', top: 'top' }}
 			onClick={() => setOpen(true)}
 			open={open}
-			icon={<Edit color={tertiary80} />}
+			icon={<Edit color={tertiary500} />}
 			dropContent={
 				<OptionsContainer gap={24}>
 					{options.map((pronoun) => (
@@ -77,7 +77,7 @@ export const UpdatePronouns: FC = () => {
 							{pronoun}
 						</Option>
 					))}
-					<CloseButton icon={<Close color={tertiary80} onClick={() => setOpen(false)} />} />
+					<CloseButton icon={<Close color={tertiary500} onClick={() => setOpen(false)} />} />
 				</OptionsContainer>
 			}
 		/>

@@ -2,7 +2,7 @@ import { Avatar as GrommetAvatar } from 'grommet';
 import { User } from 'grommet-icons';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { tertiary80 } from '../../design/colors/colors';
+import { tertiary500 } from '../../design/colors/colors';
 import bird from '../../images/avatars/bird.png';
 import cat from '../../images/avatars/cat.png';
 import dog from '../../images/avatars/dog.png';
@@ -45,7 +45,7 @@ export const Avatar: FC<AvatarProps> = ({ avatar }) => {
 			{avatar ? (
 				<CircleFrame src={avatars[avatar]} />
 			) : (
-				<GrommetAvatar background={tertiary80}>
+				<GrommetAvatar background={tertiary500}>
 					<User color="text-strong" />
 				</GrommetAvatar>
 			)}

@@ -2,7 +2,7 @@ import { Box, Tab, Tabs } from 'grommet';
 import { Favorite, Group, Inspect, User, View } from 'grommet-icons';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
-import { tertiary80 } from '../../design/colors/colors';
+import { tertiary500 } from '../../design/colors/colors';
 import { white } from '../../design/colors/shades';
 import { onSelected } from '../../design/utils';
 import { FormattedProfileData } from '../../utils/profileHelpers';
@@ -16,7 +16,7 @@ const StyledTab = styled(Tab)`
 	}
 	${onSelected(css`
 		svg {
-			stroke: ${tertiary80};
+			stroke: ${tertiary500};
 		}
 	`)}
 	* {

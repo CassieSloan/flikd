@@ -1,7 +1,7 @@
 import '@fontsource/inter';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
-import { primary70, primary80, secondary70, secondary80, tertiary70 } from '../colors/colors';
+import { primary500, secondary500, secondary700, tertiary500 } from '../colors/colors';
 import { black, white } from '../colors/shades';
 
 export const FontFamily = css`
@@ -12,16 +12,24 @@ export const FontFamily = css`
 `;
 
 export const Heading1 = styled.h1`
-	font-size: 32px;
-	margin: 0;
+	font-size: 34px;
+	line-height: 46px;
+	letter-spacing: 0em;
+`;
+export const Heading2 = styled.h1`
+	font-size: 28px;
+	line-height: 38px;
+	letter-spacing: 0.02em;
 `;
 export const Heading3 = styled.h3`
 	font-size: 24px;
-	margin: 0;
+	line-height: 32px;
+	letter-spacing: 0em;
 `;
 export const Heading4 = styled.h4`
 	font-size: 20px;
-	margin: 0;
+	line-height: 27px;
+	letter-spacing: 0em;
 `;
 
 export const Body = styled.p`
@@ -68,27 +76,27 @@ type TagStyleProps = TagBackgroundStyle | ColorBackgroundStyles;
 export const tagStyles = (props: TagStyleProps) => {
 	console.log('props', props);
 	const alert = css`
-		background: ${primary70};
+		background: ${primary500};
 		color: ${white};
 	`;
 
 	const success = css`
-		background: ${secondary70};
+		background: ${secondary500};
 		color: ${black};
 	`;
 
 	const primary = css`
-		background: ${primary80};
+		background: ${primary500};
 		color: ${white};
 	`;
 
 	const secondary = css`
-		background: ${secondary80};
+		background: ${secondary700};
 		color: ${white};
 	`;
 
 	const tertiary = css`
-		background: ${tertiary70};
+		background: ${tertiary500};
 		color: ${white};
 	`;
 	if (props === 'alert') return alert;

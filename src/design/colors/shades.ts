@@ -1,13 +1,13 @@
 export const white = '#ffffff';
-export const offWhite = '#fefefe';
+export const offWhite = '#FFFBFE';
 export const black = '#000000';
-export const offBlack = '#202020';
+export const offBlack = '#1D1A22';
 
-export const grey90 = '#404040';
-export const grey80 = '#606060';
-export const grey70 = '#808080';
-export const grey60 = '#9f9f9f';
-export const grey50 = '#bfbfbf';
-export const grey40 = '#dfdfdf';
-export const grey20 = '#eeeeee';
-export const grey10 = '#dedede';
+export const grey900 = '#322F37';
+export const grey800 = '#49454F';
+export const grey700 = '#605D66';
+export const grey600 = '#79747E';
+export const grey500 = '#938F99';
+export const grey400 = '#AEA9B4';
+export const grey200 = '#CAC4D0';
+export const grey100 = '#F5EEFA';
