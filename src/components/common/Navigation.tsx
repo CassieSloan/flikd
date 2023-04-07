@@ -8,7 +8,7 @@ import Link from './Link';
 import { Section } from './Section';
 
 const headerNavLinks = [
-	{ link: '/', text: 'Home' },
+	{ link: '/profile', text: 'Profile' },
 	{ link: '/expore', text: 'Discover' },
 ];
 

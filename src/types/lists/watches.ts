@@ -1,4 +1,6 @@
+import { Fliks } from '../fliks/fliks';
+
 export type WatchesResponse = {
 	id: string;
-	Watchs: Record<string, any>[];
+	Watchs: Fliks;
 };

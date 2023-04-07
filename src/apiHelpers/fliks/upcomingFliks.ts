@@ -8,16 +8,11 @@ export type UpcomingFliks = {
  * Register user function.
  */
 export const getUpcomingFliks = async ({ handleFail, onSuccess, values }: UpcomingFliks) => {
-	console.log('api req', values);
 	const config = generateConfig({ method: 'POST', values });
-	await axios(urls.upcomingFliks, config)
+	await axios(urls.fliksUpcoming, config)
 		.then((response) => {
 			const { data, status } = response;
-			if (status === 200) {
-				console.log('200');
-				console.log('data', data);
-				data ? onSuccess(data) : handleFail(response);
-			}
+			if (status === 200) data ? onSuccess(data) : handleFail(response);
 		})
 		.catch((err) => {
 			handleFail(err);

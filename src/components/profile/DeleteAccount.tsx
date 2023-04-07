@@ -14,9 +14,8 @@ const CloseButton = styled(Button)``;
  * Update pronouns form.
  */
 export const DeleteAccount: FC = () => {
-	const { authToken, profileInfo, setAuthToken, setProfileInfo } = useContext(Profile);
+	const { authToken, setAuthToken, setProfileInfo } = useContext(Profile);
 	const [open, setOpen] = useState<boolean>();
-	console.log('open', open);
 	const [loading, setLoading] = useState<boolean>();
 
 	const onSuccess = () => {

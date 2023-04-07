@@ -9,8 +9,7 @@ import { AddMate } from './UpdateMates';
  * Mates Details.
  */
 export const MatesDetails: FC = () => {
-	const { authToken, profileInfo } = useContext(Profile);
-	console.log('authToken', authToken);
+	const { profileInfo } = useContext(Profile);
 
 	const mateData = profileInfo?.data.mates.Mates.map(({ profilePhoto, pronouns, username }) => ({
 		profilePhoto: <Avatar avatar={profilePhoto as Avatar} />,

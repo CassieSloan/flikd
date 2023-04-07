@@ -1,13 +1,13 @@
-import { Box, Button, Card, Heading, Image, InfiniteScroll, Paragraph, Text } from 'grommet';
-import { Favorite, Inspect, View } from 'grommet-icons';
+import { Box, Card, Heading, Image, InfiniteScroll, Paragraph, Text } from 'grommet';
 import moment from 'moment';
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getUpcomingFliks } from '../apiHelpers/fliks/upcomingFliks';
+import { ToWatchButton } from '../components/common/Buttons';
 import { Navigation } from '../components/common/Navigation';
 import { PageLayout } from '../components/common/PageLayout';
 import { Section } from '../components/common/Section';
-import { primary100, secondary100, tertiary100 } from '../design/colors/colors';
+import { Profile } from '../context/context';
 import { Flex } from '../design/components/Flex';
 import { Grid } from '../design/components/Grid';
 import { UpcomingFlik, UpcomingFliks, UpcomingFliksResponse } from '../types/fliks/fliks';
@@ -15,18 +15,14 @@ import { UpcomingFlik, UpcomingFliks, UpcomingFliksResponse } from '../types/fli
 const FlikInfo = styled(Box)`
 	padding: 16px;
 `;
-
-const FavouriteButton = () => <Button icon={<Favorite color={primary100} />} />;
-const ToWatchButton = () => <Button icon={<View color={tertiary100} />} />;
-const SeenItButton = () => <Button icon={<Inspect color={secondary100} />} />;
 /**
  * Render Explore page.
  */
 const Explore: FC = () => {
 	const [page, setPage] = useState(1);
 	const [items, setItems] = useState<UpcomingFliks | []>([]);
-	console.log('page', page);
-	console.log('items', items);
+	const [hasAdded, setHasAdded] = useState<boolean>();
+	const { profileInfo } = useContext(Profile);
 
 	const onSuccess = (response: UpcomingFliksResponse) => {
 		console.log('response', response);
@@ -37,6 +33,17 @@ const Explore: FC = () => {
 			setItems(expandedList);
 		}
 	};
+
+	// useEffect(() => {
+	// 	const idsOnList = profileInfo?.data.toWatch.Watchs.map((item) => parseInt(item.id)) || [];
+	// 	console.log('idsOnList', idsOnList);
+	// 	const hasSeenFlik = idsOnList.indexOf(id) !== -1;
+	// 	console.log('hasSeenFlik', hasSeenFlik);
+	// 	if (!hasSeenFlik) {
+	// 		console.log('has not seen ans settinfs');
+	// 		setHasAdded(true);
+	// 	}
+	// }, [profileInfo]);
 
 	useEffect(() => {
 		if (!items.length) {
@@ -59,6 +66,8 @@ const Explore: FC = () => {
 		});
 	};
 
+	const idsOnList = profileInfo?.data.toWatch.Watchs.map((item) => item.flikId) || [];
+	console.log('idsOnList', idsOnList);
 	return (
 		<PageLayout>
 			<Navigation />
@@ -76,10 +85,9 @@ const Explore: FC = () => {
 									</Heading>
 									<Text>Coming: {moment(item.releaseDate).format('DD MMMM YYYY')}</Text>
 									<Paragraph maxLines={3}>{item.synopsis}</Paragraph>
+
 									<Flex>
-										<FavouriteButton />
-										<ToWatchButton />
-										<SeenItButton />
+										<ToWatchButton id={item.id} />
 									</Flex>
 								</FlikInfo>
 							</Card>

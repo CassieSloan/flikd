@@ -10,6 +10,8 @@ export const headers = {
 const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}`;
 
 export const urls = {
+	fliksAdd: `${baseUrl}/fliks/add-flik`,
+	fliksUpcoming: `${baseUrl}/fliks/upcoming-fliks`,
 	login: `${baseUrl}/auth/login`,
 	matesDelete: `${baseUrl}/remove-mate`,
 	matesGet: `${baseUrl}/profile/get-mates`,
@@ -20,7 +22,6 @@ export const urls = {
 	profilePost: `${baseUrl}/profile/update-profile`,
 	register: `${baseUrl}/auth/register`,
 	timelineGet: `${baseUrl}/profile/get-timeline`,
-	upcomingFliks: `${baseUrl}/fliks/upcoming-fliks`,
 };
 
 export type FormSubmitApiProps = {
