@@ -6,8 +6,7 @@ import { black, white } from '../colors/shades';
 
 export const FontFamily = css`
 	* {
-		font-family: 'Inter';
-		font-weight: 300;
+		font-family: 'Satoshi Variable';
 	}
 `;
 
