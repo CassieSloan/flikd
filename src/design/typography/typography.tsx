@@ -1,4 +1,3 @@
-import '@fontsource/inter';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { primary500, secondary500, secondary700, tertiary500 } from '../colors/colors';
