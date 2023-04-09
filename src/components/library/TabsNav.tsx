@@ -6,8 +6,9 @@ import { tertiary500 } from '../../design/colors/colors';
 import { white } from '../../design/colors/shades';
 import { onSelected } from '../../design/utils';
 import { FormattedProfileData } from '../../utils/profileHelpers';
-import { MatesDetails } from '../profile/MatesDetails';
-import { UserDetails } from '../profile/UserDetails';
+import { MatesDetails } from '../profile/mates/MatesDetails';
+import { UserDetails } from '../profile/user/UserDetails';
+import { WatchList } from '../profile/watchList/WatchList';
 
 const StyledTab = styled(Tab)`
 	padding: 24px;
@@ -49,18 +50,10 @@ export const TabsWithIcons: FC<FormattedProfileData> = ({ user }) => {
 					</Box>
 				</StyledTab>
 				<StyledTab icon={<View />}>
-					<Box margin="small"></Box>
+					<WatchList />
 				</StyledTab>
 				<StyledTab icon={<Inspect />}>
-					<Box margin="small">
-						{/* {toWatch.map((item) => {
-							return (
-								<Text key={item.t} size="small">
-									{item.title}
-								</Text>
-							);
-						})} */}
-					</Box>
+					<WatchList />
 				</StyledTab>
 			</Tabs>
 		</Box>

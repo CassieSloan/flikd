@@ -3,10 +3,10 @@ import { Close, Trash } from 'grommet-icons';
 import Router from 'next/router';
 import { FC, SyntheticEvent, useContext, useState } from 'react';
 import styled from 'styled-components';
-import { deleteProfile } from '../../apiHelpers/auth/deleteProfile';
-import { Profile } from '../../context/context';
-import { tertiary500 } from '../../design/colors/colors';
-import { Flex } from '../../design/components/Flex';
+import { deleteProfile } from '../../../apiHelpers/auth/deleteProfile';
+import { Profile } from '../../../context/context';
+import { tertiary500 } from '../../../design/colors/colors';
+import { Flex } from '../../../design/components/Flex';
 
 const CloseButton = styled(Button)``;
 

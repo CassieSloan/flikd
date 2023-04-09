@@ -1,4 +1,3 @@
-import '@fontsource/inter';
 import { Grommet } from 'grommet';
 import type { AppProps } from 'next/app';
 import { createGlobalStyle } from 'styled-components';

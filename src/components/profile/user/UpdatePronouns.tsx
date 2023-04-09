@@ -2,12 +2,12 @@ import { Button, DropButton, Spinner } from 'grommet';
 import { Close, Edit } from 'grommet-icons';
 import { FC, SyntheticEvent, useContext, useState } from 'react';
 import styled from 'styled-components';
-import { updateProfile } from '../../apiHelpers/auth/updateProfile';
-import { Profile } from '../../context/context';
-import { tertiary500 } from '../../design/colors/colors';
-import { Flex } from '../../design/components/Flex';
-import { UserInfo } from '../../types/auth/users';
-import { setSessionItem } from '../../utils/base';
+import { updateProfile } from '../../../apiHelpers/auth/updateProfile';
+import { Profile } from '../../../context/context';
+import { tertiary500 } from '../../../design/colors/colors';
+import { Flex } from '../../../design/components/Flex';
+import { UserInfo } from '../../../types/auth/users';
+import { setSessionItem } from '../../../utils/base';
 
 const CloseButton = styled(Button)``;
 
