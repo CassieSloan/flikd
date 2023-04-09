@@ -2,7 +2,7 @@ import { Box, DataTable, Heading } from 'grommet';
 import { FC, useContext } from 'react';
 import { Profile } from '../../../context/context';
 import { Flex } from '../../../design/components/Flex';
-import { Avatar } from '../../library/Avatar';
+import { Avatar } from '../../grommety-things/Avatar';
 import { AddMate } from './UpdateMates';
 
 /**

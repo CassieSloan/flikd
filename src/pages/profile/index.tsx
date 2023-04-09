@@ -5,7 +5,7 @@ import { Navigation } from '../../components/common/Navigation';
 import { PageLayout } from '../../components/common/PageLayout';
 import { Panel } from '../../components/common/Panel';
 import { Section } from '../../components/common/Section';
-import { TabsWithIcons } from '../../components/library/TabsNav';
+import { TabsWithIcons } from '../../components/grommety-things/TabsNav';
 import { Profile as ProfileContext } from '../../context/context';
 import { animatedGradientBackground } from '../../design/backgrounds/backgrounds';
 import { GetProfileResponse } from '../../types/auth/users';

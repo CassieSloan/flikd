@@ -8,7 +8,7 @@ import { tertiary500 } from '../../../design/colors/colors';
 import { Grid } from '../../../design/components/Grid';
 import { UserInfo } from '../../../types/auth/users';
 import { setSessionItem } from '../../../utils/base';
-import { Avatar } from '../../library/Avatar';
+import { Avatar } from '../../grommety-things/Avatar';
 
 const CloseButton = styled(Button)``;
 
