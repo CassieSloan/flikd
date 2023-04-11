@@ -9,7 +9,7 @@ import { Section } from './Section';
 
 const headerNavLinks = [
 	{ link: '/profile', text: 'Profile' },
-	{ link: '/expore', text: 'Discover' },
+	{ link: '/explore', text: 'Discover' },
 ];
 
 const NavLink = styled(Link)`

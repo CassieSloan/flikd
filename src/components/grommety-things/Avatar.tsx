@@ -31,10 +31,12 @@ const avatars = {
 	turtle,
 };
 
-const CircleFrame = styled(Image)`
-	border-radius: 50%;
+const CircleFrame = styled.div`
+	aspect-ratio: 1/1;
 	height: 48px;
-	width: 48px;
+	border-radius: 48px;
+	position: relative;
+	overflow: hidden;
 `;
 /**
  * Render Component component.
@@ -43,7 +45,9 @@ export const Avatar: FC<AvatarProps> = ({ avatar }) => {
 	return (
 		<>
 			{avatar ? (
-				<CircleFrame src={avatars[avatar]} />
+				<CircleFrame>
+					<Image src={avatars[avatar]} />
+				</CircleFrame>
 			) : (
 				<GrommetAvatar background={tertiary500}>
 					<User color="text-strong" />

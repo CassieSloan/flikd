@@ -1,7 +1,10 @@
-import { FC } from 'react';
+import '@fontsource/fira-code'; // Defaults to weight 400.
+import { FC, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 import { primary500, secondary500, secondary700, tertiary500 } from '../colors/colors';
 import { black, white } from '../colors/shades';
+import { BodyStyleProps } from './styles/body';
+import { heading1Styles, heading2Styles, heading3Styles, heading4Styles } from './styles/heading';
 
 export const FontFamily = css`
 	* {
@@ -9,34 +12,50 @@ export const FontFamily = css`
 	}
 `;
 
-export const Heading1 = styled.h1`
-	font-size: 34px;
-	line-height: 46px;
+export const LabelAltMedium = styled.p`
+	font-family: 'Fira Code';
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 17px;
 	letter-spacing: 0em;
 `;
-export const Heading2 = styled.h1`
-	font-size: 28px;
-	line-height: 38px;
-	letter-spacing: 0.02em;
-`;
-export const Heading3 = styled.h3`
-	font-size: 24px;
-	line-height: 32px;
-	letter-spacing: 0em;
-`;
-export const Heading4 = styled.h4`
-	font-size: 20px;
-	line-height: 27px;
+export const LabelAltSmall = styled.p`
+	font-family: 'Fira Code';
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 14px;
 	letter-spacing: 0em;
 `;
 
-export const Body = styled.p`
-	font-size: 16px;
+export const Heading1 = styled.h1`
+	${heading1Styles}
+`;
+
+export const Heading2 = styled.h2`
+	${heading2Styles}
+`;
+
+export const Heading3 = styled.h3`
+	${heading3Styles}
+`;
+
+export const Heading4 = styled.h4`
+	${heading4Styles}
 `;
 
 export const Span = styled.span`
 	font-size: 16px;
 `;
+
+type BodyProps = BodyStyleProps & PropsWithChildren;
+/**
+ * Body component
+ * + renders a p tag
+ * + accepts pre-defined styles from ./design/typography.
+ */
+// export const Body: FC<BodyProps> = ({ children, style }) => (
+// 	<Paragraph style={style}>{children}</Paragraph>
+// );
 
 const StyledRichText = styled.div`
 	p {

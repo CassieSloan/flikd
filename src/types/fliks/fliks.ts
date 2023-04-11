@@ -13,12 +13,15 @@ export type FlikList = 'watchList' | 'favourites' | 'seenIt';
 
 export type UpcomingFlik = {
 	genreIds: number[];
+	genres: string[];
 	id: number;
 	language: string;
 	mainImage: string;
 	releaseDate: string;
 	synopsis: string;
+	mediaType: MediaType;
 	title: string;
+	trailer: string;
 };
 
 export type UpcomingFliksResponse = {

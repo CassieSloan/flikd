@@ -1,20 +1,14 @@
-import { Box, Card, Heading, Image, InfiniteScroll, Paragraph, Text } from 'grommet';
-import moment from 'moment';
+import { Heading, InfiniteScroll } from 'grommet';
 import { FC, useContext, useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { getUpcomingFliks } from '../apiHelpers/fliks/upcomingFliks';
-import { ToWatchButton } from '../components/common/Buttons';
+import { UpcomingFlikCard } from '../components/cards/UpcomingFlik';
 import { Navigation } from '../components/common/Navigation';
 import { PageLayout } from '../components/common/PageLayout';
 import { Section } from '../components/common/Section';
 import { Profile } from '../context/context';
-import { Flex } from '../design/components/Flex';
 import { Grid } from '../design/components/Grid';
 import { UpcomingFlik, UpcomingFliks, UpcomingFliksResponse } from '../types/fliks/fliks';
 
-const FlikInfo = styled(Box)`
-	padding: 16px;
-`;
 /**
  * Render Explore page.
  */
@@ -71,26 +65,26 @@ const Explore: FC = () => {
 	return (
 		<PageLayout>
 			<Navigation />
-
 			<Section>
 				<Heading level={3}>Upcoming Fliks</Heading>
 				<Grid columns={4} gap={24}>
 					<InfiniteScroll items={items} onMore={fetchMore}>
 						{(item: UpcomingFlik) => (
-							<Card>
-								<Image fit="cover" src={item.mainImage} alt="feature image" />
-								<FlikInfo>
-									<Heading margin={{ top: '0' }} level={5}>
-										{item.title}
-									</Heading>
-									<Text>Coming: {moment(item.releaseDate).format('DD MMMM YYYY')}</Text>
-									<Paragraph maxLines={3}>{item.synopsis}</Paragraph>
+							<UpcomingFlikCard {...item} />
+							// <Card>
+							// 	<Image fit="cover" src={item.mainImage} alt="feature image" />
+							// 	<FlikInfo
+							// 		<Heading margin={{ top: '0' }} level={5}>
+							// 			{item.title}
+							// 		</Heading>
+							// 		<Text>Coming: {moment(item.releaseDate).format('DD MMMM YYYY')}</Text>
+							// 		<Paragraph maxLines={3}>{item.synopsis}</Paragraph>
 
-									<Flex>
-										<ToWatchButton id={item.id} />
-									</Flex>
-								</FlikInfo>
-							</Card>
+							// 		<Flex>
+							// 			<ToWatchButton id={item.id} />
+							// 		</Flex>
+							// 	</FlikInfo>
+							// </Card>
 						)}
 					</InfiniteScroll>
 				</Grid>
