@@ -1,7 +1,7 @@
 import { Spinner } from 'grommet';
 import { FC, Fragment, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Heading4 } from '../../../design/typography/typography';
+import { Heading3 } from '../../../design/typography/typography';
 import { FormFieldNew, StyledForm, SubmitButton } from './FormComponents';
 import { FormProps } from './FormTypes';
 
@@ -63,7 +63,7 @@ const Form: FC<FormProps> = ({ className, fields, onSubmit, submitButton, title 
 	return (
 		<StyledForm onSubmit={handleSubmit(onSubmit || defaultOnSubmit)} className={className}>
 			<button type="submit" disabled aria-hidden="true" style={{ display: 'none' }} />
-			{title && <Heading4>{title}</Heading4>}
+			{title && <Heading3>{title}</Heading3>}
 			{(fields || defaultFields).map((field) => {
 				const hasError = errors[field.name];
 				return (

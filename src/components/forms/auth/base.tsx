@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { tertiary100 } from '../../../design/colors/colors';
 import { offWhite, white } from '../../../design/colors/shades';
-import { Heading4 } from '../../../design/typography/typography';
+import { Heading3 } from '../../../design/typography/typography';
 import Form from '../base/Form';
 import { Label, TextInput } from '../base/FormComponents';
 
@@ -21,8 +21,9 @@ export const StyledAuthForm = styled(Form)`
 	${TextInput} {
 		width: -webkit-fill-available;
 	}
-	${Heading4} {
+	${Heading3} {
 		text-align: center;
+		margin: 0;
 	}
 `;
 

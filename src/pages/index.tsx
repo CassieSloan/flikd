@@ -4,11 +4,10 @@ import { PageLayout } from '../components/common/PageLayout';
 import { Section } from '../components/common/Section';
 import { AuthForm } from '../components/forms/auth/AuthForm';
 import { animatedBlockBackground } from '../design/backgrounds/backgrounds';
-import { white } from '../design/colors/shades';
 import { Flex } from '../design/components/Flex';
 import { StrippedButton } from '../design/components/StrippedButton';
 import { Heading4 } from '../design/typography/typography';
-import FilmHeart from '../images/icons/filmHeart.svg';
+import Logo from '../images/icons/Logo.svg';
 
 const RegisterButton = styled(StrippedButton)`
 	font-weight: 400;
@@ -25,6 +24,9 @@ const BackgroundStyle = createGlobalStyle`
 	}
 `;
 
+const SubHeading = styled(Heading4)`
+	margin: 0;
+`;
 /**
  * Login Screen.
  */
@@ -37,14 +39,14 @@ const Login = () => {
 				<BackgroundStyle />
 				<Section>
 					<Flex direction="column" gap={16} justify="center" align="center">
-						<FilmHeart height={48} fill={white} width={48} />
+						<Logo height={56} />
 						<AuthForm isLoggingIn={isLoggingIn} />
-						<Heading4>
+						<SubHeading>
 							{isLoggingIn ? 'Dont have an account?' : 'Already have an account?'}
 							<RegisterButton onClick={() => setIsLogginIn(!isLoggingIn)}>
 								{isLoggingIn ? 'Create one' : 'Login'}
 							</RegisterButton>
-						</Heading4>
+						</SubHeading>
 					</Flex>
 				</Section>
 			</>
