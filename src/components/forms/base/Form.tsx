@@ -58,6 +58,7 @@ const Form: FC<FormProps> = ({ className, fields, onSubmit, submitButton, title 
 			setSubmissionError(true);
 		}
 	};
+
 	const label = isSubmitting ? <Spinner /> : submitButton || 'None set';
 
 	return (

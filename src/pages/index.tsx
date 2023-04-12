@@ -38,7 +38,7 @@ const Login = () => {
 			<>
 				<BackgroundStyle />
 				<Section>
-					<Flex direction="column" gap={16} justify="center" align="center">
+					<Flex direction="column" gap={24} justify="center" align="center">
 						<Logo height={56} />
 						<AuthForm isLoggingIn={isLoggingIn} />
 						<SubHeading>

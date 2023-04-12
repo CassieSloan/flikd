@@ -2,14 +2,13 @@ import '@fontsource/fira-code'; // Defaults to weight 400.
 import { FC, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 import { primary500, secondary500, secondary700, tertiary500 } from '../colors/colors';
-import { black, white } from '../colors/shades';
+import { black, grey900, offBlack, white } from '../colors/shades';
 import { BodyStyleProps } from './styles/body';
 import { heading1Styles, heading2Styles, heading3Styles, heading4Styles } from './styles/heading';
 
 export const FontFamily = css`
-	* {
-		font-family: 'Satoshi Variable';
-	}
+	font-family: 'Satoshi Variable';
+	color: ${offBlack};
 `;
 
 export const LabelAltMedium = styled.p`
