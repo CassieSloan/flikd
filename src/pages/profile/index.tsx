@@ -1,4 +1,5 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { Spinner } from 'grommet';
+import { FC, ReactNode, useContext, useEffect, useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { getProfile } from '../../apiHelpers/auth/getProfile';
 import { Navigation } from '../../components/common/Navigation';
@@ -44,13 +45,15 @@ const Profile: FC = () => {
 		if (profileInfo) setUserInfo(formatProfileData(profileInfo));
 	}, [profileInfo]);
 
+	const profileUI = userInfo ? <TabsWithIcons {...userInfo} /> : <Spinner />;
+
 	return (
 		<PageLayout>
 			<BackgroundStyle />
 			<Navigation />
 			<Section>
 				<Panel padding="16px" background="glassBackground">
-					{userInfo && <TabsWithIcons {...userInfo} />}
+					{profileUI}
 				</Panel>
 			</Section>
 		</PageLayout>
