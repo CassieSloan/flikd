@@ -5,6 +5,7 @@ import { primary500, secondary500, secondary700, tertiary500 } from '../colors/c
 import { black, grey900, offBlack, white } from '../colors/shades';
 import { BodyStyleProps } from './styles/body';
 import { heading1Styles, heading2Styles, heading3Styles, heading4Styles } from './styles/heading';
+import { labelAltMediumStyles, labelAltSmallStyles } from './styles/labels';
 
 export const FontFamily = css`
 	font-family: 'Satoshi Variable';
@@ -12,18 +13,10 @@ export const FontFamily = css`
 `;
 
 export const LabelAltMedium = styled.p`
-	font-family: 'Fira Code';
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 17px;
-	letter-spacing: 0em;
+	${labelAltMediumStyles}
 `;
 export const LabelAltSmall = styled.p`
-	font-family: 'Fira Code';
-	font-size: 12px;
-	font-weight: 500;
-	line-height: 14px;
-	letter-spacing: 0em;
+	${labelAltSmallStyles}
 `;
 
 export const Heading1 = styled.h1`

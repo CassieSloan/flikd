@@ -1,32 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { View } from 'grommet-icons';
-import { FC, MouseEventHandler, PropsWithChildren, useContext } from 'react';
-import styled, { css } from 'styled-components';
-import { addFlikToList } from '../../apiHelpers/fliks/addFlikToList';
-import { Profile } from '../../context/context';
-import * as colors from '../../design/colors/colors';
-import { StrippedButton } from '../../design/components/StrippedButton';
-import PlusTile from '../../images/icons/plusTile.svg';
-import Link, { LinkProps } from './Link';
+import { ButtonHTMLAttributes, FC, MouseEventHandler, PropsWithChildren, useContext } from 'react';
+import styled, { css, IntrinsicElementsKeys } from 'styled-components';
+import { addFlikToList } from '../../../apiHelpers/fliks/addFlikToList';
+import { Profile } from '../../../context/context';
+import * as colors from '../../../design/colors/colors';
+import { StrippedButton } from '../../../design/components/StrippedButton';
+import { labelMediumStyles } from '../../../design/typography/styles/labels';
+import PlusTile from '../../../images/icons/plusTile.svg';
+import Link, { LinkProps } from '../Link';
+import { getButtonStyles, sharedButtonStyles } from './styles';
 
-type Color = keyof typeof colors;
-type StyledButtonProps = { background?: Color };
-
-const buttonStyles = (background?: Color) => css`
-	padding: 8px 12px;
-	background: ${background ? colors[background] : colors.tertiary300};
-	color: white;
-	text-decoration: none;
-	border-radius: 12px;
-	text-align: center;
-`;
+type StyledButtonProps = { theme?: Theme; shape?: ButtonType };
+export type Theme = 'primary' | 'secondary' | 'tertiary';
+export type ButtonType = 'filled' | 'outline' | 'text';
 
 const StyledButton = styled(StrippedButton)<StyledButtonProps>`
-	${({ background }) => buttonStyles(background || 'tertiary300')}
+	${sharedButtonStyles()};
+	${({ theme }) => getButtonStyles(theme || 'tertiary')}
 `;
 
 const StyledLink = styled(Link)<StyledButtonProps>`
-	${({ background }) => buttonStyles(background || 'tertiary300')};
+	${({ theme }) => getButtonStyles(theme || 'tertiary')};
 `;
 
 type ButtonProps = {
@@ -35,13 +30,22 @@ type ButtonProps = {
 /**
  * Render Component component.
  */
-export const Button: FC<ButtonProps & StyledButtonProps> = ({
-	background,
+export const Button: FC<StyledButtonProps & ButtonHTMLAttributes<ButtonProps>> = ({
 	children,
 	onClick,
-}: ButtonProps & StyledButtonProps) => {
+	shape,
+	theme,
+	...buttonProps
+}) => {
+	console.log('shape', shape);
+	console.log('theme', theme);
 	return (
-		<StyledButton background={background} onClick={onClick}>
+		<StyledButton
+			theme={theme}
+			shape={shape}
+			onClick={() => onClick}
+			disabled={buttonProps.disabled}
+		>
 			{children}
 		</StyledButton>
 	);
@@ -50,12 +54,12 @@ export const Button: FC<ButtonProps & StyledButtonProps> = ({
  * Render Component component.
  */
 export const ButtonLink: FC<LinkProps & StyledButtonProps> = ({
-	background,
 	children,
+	theme,
 	to,
 }: LinkProps & StyledButtonProps) => {
 	return (
-		<StyledLink background={background} to={to}>
+		<StyledLink theme={theme} to={to}>
 			{children}
 		</StyledLink>
 	);

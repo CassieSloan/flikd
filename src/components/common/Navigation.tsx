@@ -3,7 +3,7 @@ import { FC, useContext } from 'react';
 import styled from 'styled-components';
 import { Profile } from '../../context/context';
 import { Flex } from '../../design/components/Flex';
-import { Button } from './Buttons';
+import { Button } from './buttons/base';
 import Link from './Link';
 import { Section } from './Section';
 
