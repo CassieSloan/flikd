@@ -7,6 +7,7 @@ import { AuthReqProps, generateConfig, urls } from '../sharedConfig';
  */
 export const getProfile = async ({ handleFail, onSuccess, token }: AuthReqProps) => {
 	const config = generateConfig({ authToken: token, method: 'GET' });
+
 	await axios(urls.profileGet, config)
 		.then((response) => {
 			console.log('response', response);
