@@ -1,16 +1,13 @@
-import { Collapsible, Image } from 'grommet';
-import { Link } from 'grommet-icons';
+import { Image } from 'grommet';
 import moment from 'moment';
 import { FC, ReactNode, useState } from 'react';
 import styled from 'styled-components';
-import { tertiary300, tertiary500 } from '../../design/colors/colors';
-import { Flex } from '../../design/components/Flex';
-import { StrippedButton } from '../../design/components/StrippedButton';
-import { BodyMMedium, BodyMRegular } from '../../design/typography/styles/body';
-import { LabelAltMedium } from '../../design/typography/typography';
-import Calendar from '../../images/icons/calendar.svg';
-
-// import Info from '../../images/icons/
+import { StrippedButton } from '@/design/components/buttons/base';
+import { Flex } from '@/design/components/layout/Flex';
+import { Grid } from '@/design/components/layout/Grid';
+import { BodyMMedium, BodyMRegular } from '@/design/typography/styles/body';
+import { ButtonLink } from 'components/common/buttons/base/ButtonLink';
+import { Modal } from 'components/grommety-things/Modal';
 import { UpcomingFlik as UpcomingFlikResponse } from '../../types/fliks/fliks';
 
 const Poster = styled(Image)`
@@ -18,47 +15,38 @@ const Poster = styled(Image)`
 	width: 100%;
 `;
 
-const InfoContainer = styled(StrippedButton)`
-	border: ${tertiary300} 2px solid;
-	border-radius: 8px;
-	padding: 0 16px;
+const InfoContainer = styled(Flex)`
+	overflow-y: scroll;
 `;
-
-const CollapseContainer = styled(Collapsible)`
-	transition: all 0.3s ease;
-`;
-
-const ButtonText = styled(LabelAltMedium)`
-	color: ${tertiary500};
-`;
-
 type UpcomingFlikProps = Partial<UpcomingFlikResponse>;
 
 const FlikDetail: FC<{ property: string; value: ReactNode }> = ({ property, value }) => {
 	return (
-		<Flex justify="space-between">
+		<Flex direction="column">
 			<BodyMMedium>{property}</BodyMMedium>
 			<BodyMRegular>{value}</BodyMRegular>
 		</Flex>
 	);
 };
 
-const CollapsableContent: FC<UpcomingFlikProps & { open: boolean }> = ({
-	genres,
-	open,
-	releaseDate,
-	synopsis,
-	title,
-	trailer,
-}) => {
+const FlikInfo: FC<UpcomingFlikProps> = ({ genres, releaseDate, synopsis, title, trailer }) => {
 	return (
-		<CollapseContainer open={open}>
+		<InfoContainer direction="column">
 			<FlikDetail property="Title" value={title} />
-			<FlikDetail property="Release date" value={releaseDate} />
-			<FlikDetail property="Genres" value={genres} />
+			<FlikDetail property="Release date" value={moment(releaseDate).format('MMMM DD')} />
+			{genres?.length !== 0 && <FlikDetail property="Genres" value={genres} />}
 			<FlikDetail property="Synopsis" value={synopsis} />
-			{trailer && <FlikDetail property="Trailor" value={<Link to={trailer}>View</Link>} />}
-		</CollapseContainer>
+			{trailer && (
+				<FlikDetail
+					property="Trailor"
+					value={
+						<ButtonLink to={trailer} shape="outlined">
+							Watch
+						</ButtonLink>
+					}
+				/>
+			)}
+		</InfoContainer>
 	);
 };
 /**
@@ -77,14 +65,15 @@ export const UpcomingFlikCard: FC<UpcomingFlikProps> = ({
 
 	return (
 		<Flex direction="column" gap={8}>
-			<Poster src={mainImage} />
-			<InfoContainer type="button" onClick={toggleCollapse}>
-				<Flex gap={8} align="center">
-					<Calendar />
-					<ButtonText>{moment(releaseDate).format('MMMM DD')}</ButtonText>
-				</Flex>
-				<CollapsableContent {...otherProps} open={open} />
-			</InfoContainer>
+			<StrippedButton type="button" onClick={toggleCollapse}>
+				<Poster src={mainImage} />
+			</StrippedButton>
+			<Modal open={open} setOpen={(open) => setOpen(open)}>
+				<Grid gap={16} columns={2}>
+					<FlikInfo {...{ ...otherProps, releaseDate }} />
+					<Poster src={mainImage} />
+				</Grid>
+			</Modal>
 		</Flex>
 	);
 };

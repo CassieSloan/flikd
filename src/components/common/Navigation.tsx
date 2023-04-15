@@ -1,10 +1,9 @@
 import Router from 'next/router';
 import { FC, useContext } from 'react';
-import styled from 'styled-components';
 import { Profile } from '../../context/context';
-import { Flex } from '../../design/components/Flex';
-import { Button, ButtonLink } from './buttons/base';
-import Link from './Link';
+import { Flex } from '../../design/components/layout/Flex';
+import { Button } from './buttons/base/Button';
+import { ButtonLink } from './buttons/base/ButtonLink';
 import { Section } from './Section';
 
 const headerNavLinks = [

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { updateProfile } from '../../../apiHelpers/auth/updateProfile';
 import { Profile } from '../../../context/context';
 import { tertiary500 } from '../../../design/colors/colors';
-import { Flex } from '../../../design/components/Flex';
+import { Flex } from '../../../design/components/layout/Flex';
 import { UserInfo } from '../../../types/auth/users';
 import { setSessionItem } from '../../../utils/base';
 

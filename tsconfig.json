@@ -22,7 +22,8 @@
     "paths": {
       "@/design/*": ["design/*"],
       "@/context/*": ["context/*"],
-      "@/types/*": ["types/*"]
+      "@/types/*": ["types/*"],
+      "@/components/*": ["components/*"]
     }
   },
   "include": [

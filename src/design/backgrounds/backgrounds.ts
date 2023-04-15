@@ -1,4 +1,5 @@
 import { css } from 'styled-components';
+import * as colors from '@/design/colors/colors';
 import {
 	highlight80,
 	highlight100,
@@ -9,6 +10,14 @@ import {
 	tertiary300,
 	tertiary500,
 } from '../colors/colors';
+
+// type BrandColor = keyof typeof colors;
+// /**
+//  * Brand Color background.
+//  */
+// export const colorBackground = (color: BrandColor) => css`
+// 	background: ${colors[color]};
+// `;
 
 /**
  * Frosted glass effect.

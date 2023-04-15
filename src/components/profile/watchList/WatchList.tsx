@@ -2,9 +2,9 @@ import { Card, CardBody, Heading } from 'grommet';
 import { Cards } from 'grommet/components';
 import { FC, useContext, useEffect, useState } from 'react';
 import { Profile } from '@/context/context';
-import { Flex } from '@/design/components/Flex';
+import { Flex } from '@/design/components/layout/Flex';
 import { Fliks } from '@/types/fliks/fliks';
-import { Button } from '../../common/buttons/base';
+import { Button } from '../../common/buttons/base/Button';
 import { Section } from '../../common/Section';
 
 /**

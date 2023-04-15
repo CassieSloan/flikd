@@ -1,7 +1,7 @@
 import { Box, Heading, List } from 'grommet';
 import moment from 'moment';
 import { FC } from 'react';
-import { Flex } from '../../../design/components/Flex';
+import { Flex } from '../../../design/components/layout/Flex';
 import { GetProfileResponse } from '../../../types/auth/users';
 import { DeleteAccount } from './DeleteAccount';
 import { UpdateAvatar } from './UpdateAvatar';

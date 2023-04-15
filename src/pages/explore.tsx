@@ -1,12 +1,12 @@
 import { Heading, InfiniteScroll } from 'grommet';
 import { FC, useContext, useEffect, useState } from 'react';
+import { Navigation } from '@/components/common/Navigation';
+import { PageLayout } from '@/components/common/PageLayout';
+import { Section } from '@/components/common/Section';
+import { Profile } from '@/context/context';
+import { Grid } from '@/design/components/layout/Grid';
 import { getUpcomingFliks } from '../apiHelpers/fliks/upcomingFliks';
 import { UpcomingFlikCard } from '../components/cards/UpcomingFlik';
-import { Navigation } from '../components/common/Navigation';
-import { PageLayout } from '../components/common/PageLayout';
-import { Section } from '../components/common/Section';
-import { Profile } from '../context/context';
-import { Grid } from '../design/components/Grid';
 import { UpcomingFlik, UpcomingFliks, UpcomingFliksResponse } from '../types/fliks/fliks';
 
 /**

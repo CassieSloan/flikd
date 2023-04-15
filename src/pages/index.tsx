@@ -4,8 +4,8 @@ import { PageLayout } from '../components/common/PageLayout';
 import { Section } from '../components/common/Section';
 import { AuthForm } from '../components/forms/auth/AuthForm';
 import { animatedBlockBackground } from '../design/backgrounds/backgrounds';
-import { Flex } from '../design/components/Flex';
-import { StrippedButton } from '../design/components/StrippedButton';
+import { Flex } from '../design/components/layout/Flex';
+import { StrippedButton } from '../design/components/buttons/base';
 import { Heading4 } from '../design/typography/typography';
 import Logo from '../images/icons/Logo.svg';
 
