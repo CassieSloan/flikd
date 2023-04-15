@@ -9,10 +9,10 @@ import { Section } from '@/components/common/Section';
 import { TabsWithIcons } from '@/components/grommety-things/TabsNav';
 import { Profile as ProfileContext } from '@/context/context';
 import { primaryTint } from '@/design/colors/colors';
-import { getProfile } from '../../apiHelpers/auth/getProfile';
-import { GetProfileResponse } from '../../types/auth/users';
-import { setSessionItem } from '../../utils/base';
-import { formatProfileData, FormattedProfileData } from '../../utils/profileHelpers';
+import { getProfile } from '../apiHelpers/auth/getProfile';
+import { GetProfileResponse } from '../types/auth/users';
+import { setSessionItem } from '../utils/base';
+import { formatProfileData, FormattedProfileData } from '../utils/profileHelpers';
 
 const Container = styled(Panel)`
 	background: ${primaryTint};
