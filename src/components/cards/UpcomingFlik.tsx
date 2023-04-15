@@ -2,7 +2,7 @@ import { Image } from 'grommet';
 import moment from 'moment';
 import { FC, ReactNode, useState } from 'react';
 import styled from 'styled-components';
-import { StrippedButton } from '@/design/components/buttons/base';
+import { UnstyledButton } from '@/design/components/buttons/base';
 import { Flex } from '@/design/components/layout/Flex';
 import { Grid } from '@/design/components/layout/Grid';
 import { BodyMMedium, BodyMRegular } from '@/design/typography/styles/body';
@@ -67,9 +67,9 @@ export const UpcomingFlikCard: FC<UpcomingFlikProps> = ({
 
 	return (
 		<Flex direction="column" gap={8}>
-			<StrippedButton type="button" onClick={toggleCollapse}>
+			<UnstyledButton type="button" onClick={toggleCollapse}>
 				<Poster src={mainImage} />
-			</StrippedButton>
+			</UnstyledButton>
 			<Modal open={open} setOpen={(open) => setOpen(open)}>
 				<Grid gap={16} columns={2}>
 					<FlikInfo {...{ ...otherProps, releaseDate }} />

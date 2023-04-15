@@ -2,7 +2,7 @@ import { View } from 'grommet-icons';
 import { FC, PropsWithChildren, useContext } from 'react';
 import { Profile } from '@/context/context';
 import * as colors from '@/design/colors/colors';
-import { StrippedButton } from '@/design/components/buttons/base';
+import { UnstyledButton } from '@/design/components/buttons/base';
 import { addFlikToList } from 'apiHelpers/fliks/addFlikToList';
 
 type FlikActionButton = { id: number } & PropsWithChildren;
@@ -38,8 +38,8 @@ export const ToWatchButton: FC<FlikActionButton> = ({ id }) => {
 	};
 
 	return (
-		<StrippedButton id={formattedId} onClick={onClick}>
+		<UnstyledButton id={formattedId} onClick={onClick}>
 			<View color={colors.primary500} fill="transparent" />
-		</StrippedButton>
+		</UnstyledButton>
 	);
 };

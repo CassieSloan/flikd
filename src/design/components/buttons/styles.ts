@@ -1,16 +1,23 @@
+import { ReactNode } from 'react';
 import { css, FlattenSimpleInterpolation } from 'styled-components';
 import * as colors from 'design/colors/colors';
 import { grey100, grey200, grey300, grey600, transparent, white } from 'design/colors/shades';
 import { Background, Border, TextColor } from 'design/types';
-import { labelMediumStyles } from 'design/typography/styles/labels';
+import { labelMedium } from 'design/typography/styles/labels';
 
 export type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
 export type ButtonShape = 'filled' | 'outlined' | 'text';
+export type WithIcon = { icon?: ReactNode };
+
+export type GenerateButtonStyleOptions = {
+	theme: ButtonTheme;
+	shape: ButtonShape;
+} & WithIcon;
 
 type ButtonState = { base: string; focus: string; hover: string; disabled: string };
 type ButtonColorState = Omit<ButtonState, 'disabled'>;
-type ButtonColorTheme = Record<ButtonTheme, ButtonColorState>;
 
+type ButtonColorTheme = Record<ButtonTheme, ButtonColorState>;
 export const buttonColorThemes: ButtonColorTheme = {
 	primary: {
 		base: colors.primary500,
@@ -66,11 +73,8 @@ const textButtonStyles = ({ base }: ButtonColorState): ButtonStyles => ({
 	hover: generateButtonTheme({ background: grey100, border: grey100, color: base }),
 });
 
-type ThemeStyles = {
-	[theme in ButtonTheme]: ButtonStyles;
-};
+type ThemeStyles = { [theme in ButtonTheme]: ButtonStyles };
 type ButtonStylesRef = { [shape in ButtonShape]: ThemeStyles };
-
 const buttonStyles: ButtonStylesRef = {
 	filled: {
 		primary: filledButtonStyles(buttonColorThemes.primary),
@@ -89,7 +93,16 @@ const buttonStyles: ButtonStylesRef = {
 	},
 };
 
-export type GenerateButtonStyleOptions = { theme: ButtonTheme; shape: ButtonShape };
+const hoverBoxShadow = () =>
+	css`
+		box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.2);
+	`;
+
+const focusBoxShadow = (theme: ButtonTheme) =>
+	css`
+		box-shadow: 0px 0px 0px 4px ${buttonColorThemes[theme].focus};
+	`;
+
 /**
  * Generate filled buttom styles.
  */
@@ -97,10 +110,11 @@ export const generateButtonStyle = ({ shape, theme }: GenerateButtonStyleOptions
 	${buttonStyles?.[shape]?.[theme].base}
 	&:hover {
 		${buttonStyles?.[shape]?.[theme].hover}
+		${hoverBoxShadow}
 	}
 	&:focus {
 		${buttonStyles?.[shape]?.[theme].focus}
-		box-shadow: 0px 0px 0px 4px ${buttonColorThemes[theme].focus};
+		${focusBoxShadow(theme)}
 	}
 	&:disabled {
 		cursor: not-allowed;
@@ -112,10 +126,23 @@ export const generateButtonStyle = ({ shape, theme }: GenerateButtonStyleOptions
  * Styles shared by all button shapes and themes.
  */
 export const sharedButtonStyles = () => css`
-	${labelMediumStyles};
+	${labelMedium()};
 	padding: 12px 24px;
 	border-radius: 100vw;
 	text-align: center;
 	text-decoration: none;
 	transition: all 0.5s ease;
+`;
+
+/**
+ * Styles shared by all button shapes and themes.
+ */
+export const iconButtonStyles = () => css`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	svg {
+		flex-shrink: 0;
+	}
 `;

@@ -1,8 +1,9 @@
 import { Spinner } from 'grommet';
 import { FC, Fragment, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Button } from '@/components/common/buttons/base/Button';
 import { Heading3 } from '../../../design/typography/typography';
-import { FormFieldNew, StyledForm, SubmitButton } from './FormComponents';
+import { FormFieldNew, StyledForm } from './FormComponents';
 import { FormProps } from './FormTypes';
 
 /**
@@ -74,7 +75,9 @@ const Form: FC<FormProps> = ({ className, fields, onSubmit, submitButton, title 
 					</Fragment>
 				);
 			})}
-			<SubmitButton type="submit" disabled={isSubmitting} label={label} />
+			<Button type="submit" disabled={isSubmitting}>
+				{label}
+			</Button>
 			{submissionError && <p>{submissionError}</p>}
 		</StyledForm>
 	);

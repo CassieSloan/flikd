@@ -1,26 +1,29 @@
 import { ButtonHTMLAttributes, FC } from 'react';
+import styled from 'styled-components';
 import { StyledButton } from '@/design/components/buttons/base';
-import { GenerateButtonStyleOptions } from '@/design/components/buttons/styles';
+import { GenerateButtonStyleOptions, iconButtonStyles } from '@/design/components/buttons/styles';
 
-type ButtonProps = Partial<GenerateButtonStyleOptions>;
+export type ButtonStyleProps = Partial<GenerateButtonStyleOptions> & { onClick?: () => void };
+export type ButtonProps = ButtonStyleProps & ButtonHTMLAttributes<ButtonStyleProps>;
+
+const ButtonContainer = styled(StyledButton)`
+	${iconButtonStyles()}
+`;
 /**
  * Render Component component.
  */
-export const Button: FC<ButtonProps & ButtonHTMLAttributes<ButtonProps>> = ({
+export const Button: FC<ButtonProps> = ({
 	children,
+	icon = undefined,
 	onClick,
 	shape = 'filled',
 	theme = 'primary',
 	...buttonProps
 }) => {
 	return (
-		<StyledButton
-			theme={theme}
-			shape={shape}
-			onClick={() => onClick}
-			disabled={buttonProps.disabled}
-		>
+		<ButtonContainer theme={theme} shape={shape} onClick={onClick} disabled={buttonProps.disabled}>
+			{icon && icon}
 			{children}
-		</StyledButton>
+		</ButtonContainer>
 	);
 };

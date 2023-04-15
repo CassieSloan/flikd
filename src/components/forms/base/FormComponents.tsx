@@ -22,21 +22,7 @@ export const TextInput = styled.input`
 	border: 1px solid ${tertiary700};
 	flex-shrink: 0;
 `;
-export const SubmitButton = styled(Button)`
-	padding: 12px;
-	border-radius: 12px;
-	background: ${tertiary500};
-	${jump()};
-	transition: background 0.2s ease, top 0.3s ease;
-	${onHover(
-		css`
-			background: ${tertiary500};
-		`
-	)}
-	color: white;
-	border: none;
-	cursor: pointer;
-`;
+
 export const Label = styled.label`
 	width: min-content;
 	padding: 4px;

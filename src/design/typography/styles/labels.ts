@@ -1,6 +1,11 @@
 import { css } from 'styled-components';
 
-export const labelAltMediumStyles = css`
+/**
+ * Css for label styles: label/alt/m
+ * + font-family: 'Fira Code';
+ * + font-size: 14px;.
+ */
+export const labelAltM = () => css`
 	font-family: 'Fira Code';
 	font-size: 14px;
 	font-weight: 500;
@@ -8,7 +13,12 @@ export const labelAltMediumStyles = css`
 	letter-spacing: 0em;
 `;
 
-export const labelAltSmallStyles = css`
+/**
+ * Css for label styles: label/alt/s
+ * + font-family: 'Fira Code';
+ * + font-size: 12px;.
+ */
+export const labelAltS = () => css`
 	font-family: 'Fira Code';
 	font-size: 12px;
 	font-weight: 500;
@@ -16,7 +26,12 @@ export const labelAltSmallStyles = css`
 	letter-spacing: 0em;
 `;
 
-export const labelMediumStyles = css`
+/**
+ * Css for label styles: label/regular/s
+ * + font-family: 'Satoshi Variable';
+ * + font-size: 14x;.
+ */
+export const labelMedium = () => css`
 	font-family: 'Satoshi Variable';
 	font-size: 14px;
 	font-weight: 700;
@@ -24,7 +39,12 @@ export const labelMediumStyles = css`
 	letter-spacing: 0em;
 `;
 
-export const labelSmallStyles = css`
+/**
+ * Css for label styles: label/regular/s
+ * + font-family: 'Satoshi Variable';
+ * + font-size: 12x;.
+ */
+export const labelSmall = () => css`
 	font-family: 'Satoshi Variable';
 	font-size: 12px;
 	font-weight: 700;

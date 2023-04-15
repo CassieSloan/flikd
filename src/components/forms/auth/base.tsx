@@ -1,5 +1,12 @@
 import styled from 'styled-components';
-import { tertiary100, tertiary500, tertiary700 } from '../../../design/colors/colors';
+import {
+	primary100,
+	primary500,
+	primary700,
+	tertiary100,
+	tertiary500,
+	tertiary700,
+} from '../../../design/colors/colors';
 import { offWhite, white } from '../../../design/colors/shades';
 import { Heading3 } from '../../../design/typography/typography';
 import Form from '../base/Form';
@@ -16,13 +23,15 @@ export const StyledAuthForm = styled(Form)`
 		left: 8px;
 		line-height: 0.3;
 		background: ${offWhite};
-		color: ${tertiary700};
+		color: ${primary700};
 		padding: 0 5px;
 	}
 	${TextInput} {
 		width: -webkit-fill-available;
+		border: 1px solid ${primary500};
+
 		&::placeholder {
-			color: ${tertiary100};
+			color: ${primary100};
 		}
 	}
 	${Heading3} {

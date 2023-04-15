@@ -23,7 +23,8 @@
       "@/design/*": ["design/*"],
       "@/context/*": ["context/*"],
       "@/types/*": ["types/*"],
-      "@/components/*": ["components/*"]
+      "@/components/*": ["components/*"],
+      "@/images/*": ["images/*"]
     }
   },
   "include": [

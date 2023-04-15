@@ -1,8 +1,10 @@
 import { Button, DropButton, Spinner, Text } from 'grommet';
-import { Close, Trash } from 'grommet-icons';
+import { Close } from 'grommet-icons';
 import Router from 'next/router';
 import { FC, SyntheticEvent, useContext, useState } from 'react';
 import styled from 'styled-components';
+import { ButtonWithModal } from '@/components/common/buttons/base/ButtonWithModal';
+import Trash from '@/images/icons/trashcan.svg';
 import { deleteProfile } from '../../../apiHelpers/auth/deleteProfile';
 import { Profile } from '../../../context/context';
 import { tertiary500 } from '../../../design/colors/colors';
@@ -15,7 +17,7 @@ const CloseButton = styled(Button)``;
  */
 export const DeleteAccount: FC = () => {
 	const { authToken, setAuthToken, setProfileInfo } = useContext(Profile);
-	const [open, setOpen] = useState<boolean>();
+	const [open, setOpen] = useState<boolean>(false);
 	const [loading, setLoading] = useState<boolean>();
 
 	const onSuccess = () => {
@@ -54,13 +56,14 @@ export const DeleteAccount: FC = () => {
 	const label = loading ? <Spinner /> : 'Delete account';
 
 	return (
-		<DropButton
-			label={label}
-			dropAlign={{ left: 'left', top: 'top' }}
-			onClick={() => setOpen(true)}
+		<ButtonWithModal
+			type="button"
+			setOpen={(open: boolean) => setOpen(open)}
 			open={open}
-			icon={<Trash color={tertiary500} />}
-			dropContent={
+			icon={<Trash />}
+			shape="filled"
+			theme="primary"
+			modalContent={
 				<OptionsContainer gap={24} direction="column">
 					<Flex>
 						<Text>Are you sure you want to delete your account? This action is irreversable</Text>
@@ -71,6 +74,8 @@ export const DeleteAccount: FC = () => {
 					</Option>
 				</OptionsContainer>
 			}
-		/>
+		>
+			{label}
+		</ButtonWithModal>
 	);
 };

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { white } from '@/design/colors/shades';
 import { Panel } from 'components/common/Panel';
 
-type ModalProps = { open: boolean; setOpen: (open: boolean) => void } & PropsWithChildren;
+export type ModalProps = { open: boolean; setOpen: (open: boolean) => void } & PropsWithChildren;
 
 const ModalContainer = styled(Panel)`
 	background-color: ${white};

@@ -5,7 +5,7 @@ import { primary500, secondary500, secondary700, tertiary500 } from '../colors/c
 import { black, grey900, offBlack, white } from '../colors/shades';
 import { BodyStyleProps } from './styles/body';
 import { heading1Styles, heading2Styles, heading3Styles, heading4Styles } from './styles/heading';
-import { labelAltMediumStyles, labelAltSmallStyles } from './styles/labels';
+import { labelAltM, labelAltS } from './styles/labels';
 
 export const FontFamily = css`
 	font-family: 'Satoshi Variable';
@@ -13,10 +13,10 @@ export const FontFamily = css`
 `;
 
 export const LabelAltMedium = styled.p`
-	${labelAltMediumStyles}
+	${labelAltM()}
 `;
 export const LabelAltSmall = styled.p`
-	${labelAltSmallStyles}
+	${labelAltS()}
 `;
 
 export const Heading1 = styled.h1`

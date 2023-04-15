@@ -1,23 +1,25 @@
-import { Button, DropButton, Spinner } from 'grommet';
-import { Close, Edit } from 'grommet-icons';
+import { Spinner } from 'grommet';
+import { Close } from 'grommet-icons';
 import { FC, SyntheticEvent, useContext, useState } from 'react';
 import styled from 'styled-components';
+import { ButtonWithModal } from '@/components/common/buttons/base/ButtonWithModal';
+import { Profile } from '@/context/context';
+import { UnstyledButton } from '@/design/components/buttons/base';
+import { Flex } from '@/design/components/layout/Flex';
 import { Grid } from '@/design/components/layout/Grid';
+import Pencil from '@/images/icons/pencil.svg';
+import { UserInfo } from '@/types/auth/users';
 import { updateProfile } from '../../../apiHelpers/auth/updateProfile';
-import { Profile } from '../../../context/context';
-import { tertiary500 } from '../../../design/colors/colors';
-import { UserInfo } from '../../../types/auth/users';
 import { setSessionItem } from '../../../utils/base';
 import { Avatar } from '../../grommety-things/Avatar';
-
-const CloseButton = styled(Button)``;
 
 /**
  * Update Avatar form.
  */
 export const UpdateAvatar: FC = () => {
 	const { authToken, profileInfo, setProfileInfo } = useContext(Profile);
-	const [open, setOpen] = useState<boolean>();
+	const [open, setOpen] = useState<boolean>(false);
+	console.log('open', open);
 	const [loading, setLoading] = useState<boolean>();
 
 	const onSuccess = (userInfo: UserInfo) => {
@@ -58,7 +60,8 @@ export const UpdateAvatar: FC = () => {
 		'tiger',
 		'turtle',
 	] as const;
-	const Option = styled(Button)`
+
+	const Option = styled(UnstyledButton)`
 		display: inline;
 	`;
 
@@ -66,29 +69,35 @@ export const UpdateAvatar: FC = () => {
 		padding: 12px;
 	`;
 
-	const label = loading ? (
-		<Spinner />
-	) : (
-		<Avatar avatar={profileInfo?.data.profilePhoto as Avatar} /> || <Avatar />
-	);
-
 	return (
-		<DropButton
-			label={label}
-			dropAlign={{ left: 'left', top: 'top' }}
-			onClick={() => setOpen(true)}
-			open={open}
-			icon={<Edit color={tertiary500} />}
-			dropContent={
-				<OptionsContainer gap={24} columns={5}>
-					{options.map((profilePhoto) => (
-						<Option key={profilePhoto} onClick={(e) => onSubmit(e, profilePhoto)}>
-							<Avatar avatar={profilePhoto as Avatar} />
-						</Option>
-					))}
-					<CloseButton icon={<Close color={tertiary500} onClick={() => setOpen(false)} />} />
-				</OptionsContainer>
-			}
-		/>
+		<Flex gap={16}>
+			{loading ? (
+				<Spinner />
+			) : (
+				<Avatar avatar={profileInfo?.data.profilePhoto as Avatar} /> || <Avatar />
+			)}
+			<ButtonWithModal
+				type="button"
+				setOpen={(open: boolean) => setOpen(open)}
+				open={open}
+				icon={<Pencil />}
+				shape="filled"
+				theme="primary"
+				modalContent={
+					<OptionsContainer gap={24} columns={5}>
+						{options.map((profilePhoto) => (
+							<Option key={profilePhoto} onClick={(e) => onSubmit(e, profilePhoto)}>
+								<Avatar avatar={profilePhoto as Avatar} />
+							</Option>
+						))}
+						<UnstyledButton onClick={() => setOpen(false)}>
+							<Close />
+						</UnstyledButton>
+					</OptionsContainer>
+				}
+			>
+				Edit
+			</ButtonWithModal>
+		</Flex>
 	);
 };
