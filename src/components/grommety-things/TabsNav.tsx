@@ -2,6 +2,7 @@ import { Box, Tab, Tabs } from 'grommet';
 import { Favorite, Group, Inspect, User, View } from 'grommet-icons';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
+import { Heading2 } from '@/design/typography/typography';
 import { tertiary500 } from '../../design/colors/colors';
 import { white } from '../../design/colors/shades';
 import { onSelected } from '../../design/utils';
@@ -47,10 +48,11 @@ export const TabsWithIcons: FC<FormattedProfileData> = ({ user }) => {
 									</Text>
 								);
 							})} */}
+						<Heading2>No Favourites yet</Heading2>
 					</Box>
 				</StyledTab>
 				<StyledTab icon={<View />}>
-					<WatchList />
+					<Heading2>No Seen its yet</Heading2>
 				</StyledTab>
 				<StyledTab icon={<Inspect />}>
 					<WatchList />

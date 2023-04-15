@@ -1,17 +1,22 @@
 import { Spinner } from 'grommet';
 import jwt_decode from 'jwt-decode';
 import { FC, useContext, useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { Navigation } from '@/components/common/Navigation';
 import { PageLayout } from '@/components/common/PageLayout';
 import { Panel } from '@/components/common/Panel';
 import { Section } from '@/components/common/Section';
 import { TabsWithIcons } from '@/components/grommety-things/TabsNav';
 import { Profile as ProfileContext } from '@/context/context';
+import { primaryTint } from '@/design/colors/colors';
 import { getProfile } from '../../apiHelpers/auth/getProfile';
 import { GetProfileResponse } from '../../types/auth/users';
 import { setSessionItem } from '../../utils/base';
 import { formatProfileData, FormattedProfileData } from '../../utils/profileHelpers';
 
+const Container = styled(Panel)`
+	background: ${primaryTint};
+`;
 /**
  * Render Profile component.
  */
@@ -49,9 +54,9 @@ const Profile: FC = () => {
 		<PageLayout>
 			<Navigation />
 			<Section>
-				<Panel padding="16px" background="animatedGradientBackground">
+				<Container padding="16px" background="animatedGradientBackground">
 					{profileUI}
-				</Panel>
+				</Container>
 			</Section>
 		</PageLayout>
 	);

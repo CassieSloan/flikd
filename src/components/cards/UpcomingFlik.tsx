@@ -9,6 +9,7 @@ import { BodyMMedium, BodyMRegular } from '@/design/typography/styles/body';
 import { ButtonLink } from 'components/common/buttons/base/ButtonLink';
 import { Modal } from 'components/grommety-things/Modal';
 import { UpcomingFlik as UpcomingFlikResponse } from '../../types/fliks/fliks';
+import { ToWatchButton } from '../common/buttons/userActions/ToWatchButton';
 
 const Poster = styled(Image)`
 	border-radius: 8px;
@@ -29,7 +30,7 @@ const FlikDetail: FC<{ property: string; value: ReactNode }> = ({ property, valu
 	);
 };
 
-const FlikInfo: FC<UpcomingFlikProps> = ({ genres, releaseDate, synopsis, title, trailer }) => {
+const FlikInfo: FC<UpcomingFlikProps> = ({ genres, id, releaseDate, synopsis, title, trailer }) => {
 	return (
 		<InfoContainer direction="column">
 			<FlikDetail property="Title" value={title} />
@@ -46,6 +47,7 @@ const FlikInfo: FC<UpcomingFlikProps> = ({ genres, releaseDate, synopsis, title,
 					}
 				/>
 			)}
+			{id && <FlikDetail property="Add to watch list" value={<ToWatchButton id={id} />} />}
 		</InfoContainer>
 	);
 };

@@ -69,23 +69,7 @@ const Explore: FC = () => {
 				<Heading level={3}>Upcoming Fliks</Heading>
 				<Grid columns={4} gap={24}>
 					<InfiniteScroll items={items} onMore={fetchMore}>
-						{(item: UpcomingFlik) => (
-							<UpcomingFlikCard {...item} />
-							// <Card>
-							// 	<Image fit="cover" src={item.mainImage} alt="feature image" />
-							// 	<FlikInfo
-							// 		<Heading margin={{ top: '0' }} level={5}>
-							// 			{item.title}
-							// 		</Heading>
-							// 		<Text>Coming: {moment(item.releaseDate).format('DD MMMM YYYY')}</Text>
-							// 		<Paragraph maxLines={3}>{item.synopsis}</Paragraph>
-
-							// 		<Flex>
-							// 			<ToWatchButton id={item.id} />
-							// 		</Flex>
-							// 	</FlikInfo>
-							// </Card>
-						)}
+						{(item: UpcomingFlik) => <UpcomingFlikCard {...item} />}
 					</InfiniteScroll>
 				</Grid>
 				{/* // search

@@ -1,6 +1,9 @@
 import { Card, CardBody, Heading } from 'grommet';
 import { Cards } from 'grommet/components';
+import { stringify } from 'querystring';
 import { FC, useContext, useEffect, useState } from 'react';
+import { FlikCard } from '@/components/cards/Flik.tsx';
+import { UpcomingFlikCard } from '@/components/cards/UpcomingFlik';
 import { Profile } from '@/context/context';
 import { Flex } from '@/design/components/layout/Flex';
 import { Fliks } from '@/types/fliks/fliks';
@@ -26,52 +29,8 @@ export const WatchList: FC = () => {
 	const movies = profileInfo?.data.toWatch.Watchs || moviesToWatch;
 
 	return (
-		// <Cards data={movies} pad="medium">
-		// 	{(movie) => (
-		// 		<Card key={movie.title} as="li">
-		// 			<CardBody>
-		// 				<Heading level={2} size="small" margin="none">
-		// 					{movie.title}
-		// 				</Heading>
-		// 			</CardBody>
-		// 		</Card>
-		// 	)}
-		// </Cards>
-		<Section>
-			<Flex gap={8}>
-				<Button theme="tertiary">filled</Button>
-				<Button theme="secondary">filled</Button>
-				<Button theme="primary">filled</Button>
-				<Button disabled>filled</Button>
-			</Flex>
-			<Flex gap={8}>
-				<Button theme="tertiary" shape="outlined">
-					outlined
-				</Button>
-				<Button theme="secondary" shape="outlined">
-					outlined
-				</Button>
-				<Button theme="primary" shape="outlined">
-					outlined
-				</Button>
-				<Button shape="outlined" disabled>
-					disabled
-				</Button>
-			</Flex>
-			<Flex gap={8}>
-				<Button theme="tertiary" shape="text">
-					text
-				</Button>
-				<Button theme="secondary" shape="text">
-					text
-				</Button>
-				<Button theme="primary" shape="text">
-					text
-				</Button>
-				<Button shape="text" disabled>
-					disabled
-				</Button>
-			</Flex>
-		</Section>
+		<Cards data={movies} pad="medium">
+			{(movie) => <FlikCard {...movie} />}
+		</Cards>
 	);
 };
