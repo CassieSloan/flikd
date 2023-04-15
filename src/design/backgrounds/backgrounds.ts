@@ -1,11 +1,13 @@
 import { css } from 'styled-components';
 import {
-	highlight100, highlight80, primary100,
+	highlight80,
+	highlight100,
 	primary500,
 	secondary500,
 	secondary700,
+	tertiary100,
 	tertiary300,
-	tertiary500
+	tertiary500,
 } from '../colors/colors';
 
 /**
@@ -82,7 +84,13 @@ export const animatedBlockBackground = () => css`
  * Dynamic gradient Background.
  */
 export const animatedGradientBackground = () => css`
-	background: linear-gradient(45deg, ${highlight80}, ${secondary500}, ${tertiary300}, ${primary100});
+	background: linear-gradient(
+		45deg,
+		${highlight80},
+		${secondary500},
+		${tertiary300},
+		${tertiary100}
+	);
 	background-size: 600% 100%;
 	animation: gradient 60s linear infinite;
 	animation-direction: alternate;

@@ -3,7 +3,7 @@ import { FC, useContext } from 'react';
 import styled from 'styled-components';
 import { Profile } from '../../context/context';
 import { Flex } from '../../design/components/Flex';
-import { Button } from './buttons/base';
+import { Button, ButtonLink } from './buttons/base';
 import Link from './Link';
 import { Section } from './Section';
 
@@ -11,10 +11,6 @@ const headerNavLinks = [
 	{ link: '/profile', text: 'Profile' },
 	{ link: '/explore', text: 'Discover' },
 ];
-
-const NavLink = styled(Link)`
-	padding: 16px;
-`;
 /**
  * Render Navigation Navigation.
  */
@@ -28,16 +24,16 @@ export const Navigation: FC = () => {
 	return (
 		<Section padding={24}>
 			<Flex justify="space-between">
-				<div>
+				<Flex gap={8}>
 					{headerNavLinks.map((navItem) => {
 						const { link, text } = navItem;
 						return (
-							<NavLink key={text} to={link}>
+							<ButtonLink key={text} to={link} shape="outlined">
 								{text}
-							</NavLink>
+							</ButtonLink>
 						);
 					})}
-				</div>
+				</Flex>
 				<Button onClick={logout}>Logout</Button>
 			</Flex>
 			{/* <SettingsCog /> */}

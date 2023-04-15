@@ -1,6 +1,6 @@
 import { Spinner } from 'grommet';
+import jwt_decode from 'jwt-decode';
 import { FC, ReactNode, useContext, useEffect, useState } from 'react';
-import { createGlobalStyle } from 'styled-components';
 import { getProfile } from '../../apiHelpers/auth/getProfile';
 import { Navigation } from '../../components/common/Navigation';
 import { PageLayout } from '../../components/common/PageLayout';
@@ -8,16 +8,10 @@ import { Panel } from '../../components/common/Panel';
 import { Section } from '../../components/common/Section';
 import { TabsWithIcons } from '../../components/grommety-things/TabsNav';
 import { Profile as ProfileContext } from '../../context/context';
-import { animatedGradientBackground } from '../../design/backgrounds/backgrounds';
 import { GetProfileResponse } from '../../types/auth/users';
 import { setSessionItem } from '../../utils/base';
 import { formatProfileData, FormattedProfileData } from '../../utils/profileHelpers';
 
-const BackgroundStyle = createGlobalStyle`
-	body {
-		${animatedGradientBackground()};
-	}
-`;
 /**
  * Render Profile component.
  */
@@ -38,6 +32,10 @@ const Profile: FC = () => {
 	useEffect(() => {
 		if (!profileInfo?.data && authToken) {
 			getProfile({ handleFail, onSuccess, token: authToken });
+			// const decoded = jwt_decode(authToken);
+			// console.log('decoded', decoded);
+			// setProfileInfo(decoded as GetProfileResponse);
+			// setSessionItem('profileInfo', JSON.stringify(decoded));
 		}
 	});
 
@@ -49,10 +47,9 @@ const Profile: FC = () => {
 
 	return (
 		<PageLayout>
-			<BackgroundStyle />
 			<Navigation />
 			<Section>
-				<Panel padding="16px" background="glassBackground">
+				<Panel padding="16px" background="animatedGradientBackground">
 					{profileUI}
 				</Panel>
 			</Section>

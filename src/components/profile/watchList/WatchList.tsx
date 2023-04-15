@@ -1,8 +1,9 @@
 import { Card, CardBody, Heading } from 'grommet';
 import { Cards } from 'grommet/components';
 import { FC, useContext, useEffect, useState } from 'react';
-import { Profile } from '../../../context/context';
-import { Fliks } from '../../../types/fliks/fliks';
+import { Profile } from '@/context/context';
+import { Flex } from '@/design/components/Flex';
+import { Fliks } from '@/types/fliks/fliks';
 import { Button } from '../../common/buttons/base';
 import { Section } from '../../common/Section';
 
@@ -37,21 +38,40 @@ export const WatchList: FC = () => {
 		// 	)}
 		// </Cards>
 		<Section>
-			<Button theme="tertiary">Hello</Button>
-			<Button theme="secondary">Hello</Button>
-			<Button theme="primary">Hello</Button>
-			<Button theme="primary" disabled>
-				Hello
-			</Button>
-			<Button theme="tertiary" shape="outline">
-				Hello
-			</Button>
-			<Button theme="secondary" shape="filled">
-				Hello
-			</Button>
-			<Button theme="primary" shape="text">
-				Hello
-			</Button>
+			<Flex gap={8}>
+				<Button theme="tertiary">filled</Button>
+				<Button theme="secondary">filled</Button>
+				<Button theme="primary">filled</Button>
+				<Button disabled>filled</Button>
+			</Flex>
+			<Flex gap={8}>
+				<Button theme="tertiary" shape="outlined">
+					outlined
+				</Button>
+				<Button theme="secondary" shape="outlined">
+					outlined
+				</Button>
+				<Button theme="primary" shape="outlined">
+					outlined
+				</Button>
+				<Button shape="outlined" disabled>
+					disabled
+				</Button>
+			</Flex>
+			<Flex gap={8}>
+				<Button theme="tertiary" shape="text">
+					text
+				</Button>
+				<Button theme="secondary" shape="text">
+					text
+				</Button>
+				<Button theme="primary" shape="text">
+					text
+				</Button>
+				<Button shape="text" disabled>
+					disabled
+				</Button>
+			</Flex>
 		</Section>
 	);
 };
