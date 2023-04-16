@@ -7,7 +7,7 @@ import { animatedBlockBackground } from '../design/backgrounds/backgrounds';
 import { UnstyledButton } from '../design/components/buttons/base';
 import { Flex } from '../design/components/layout/Flex';
 import { Heading4 } from '../design/typography/typography';
-import Logo from '../images/icons/Logo.svg';
+import Logo from '../images/icons/logo.svg';
 
 const RegisterButton = styled(UnstyledButton)`
 	font-weight: 400;

@@ -14,7 +14,7 @@ export const ToWatchButton: FC<FlikActionButton> = ({ id }) => {
 	const { authToken: token, profileInfo, setProfileInfo } = useContext(Profile);
 
 	const formattedId = id.toString();
-	const onSuccess = (res) => {
+	const onSuccess = (res: { data: any }) => {
 		console.log('res', res);
 		const fliksToWatch = res.data;
 		if (fliksToWatch && profileInfo) {
@@ -25,7 +25,7 @@ export const ToWatchButton: FC<FlikActionButton> = ({ id }) => {
 		}
 	};
 
-	const onClick = (e) => {
+	const onClick = (e: { preventDefault: () => void }) => {
 		e.preventDefault();
 		if (token) {
 			addFlikToList({

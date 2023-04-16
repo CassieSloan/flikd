@@ -1,7 +1,6 @@
 import { ButtonHTMLAttributes, FC } from 'react';
-import styled from 'styled-components';
 import { StyledButton } from '@/design/components/buttons/base';
-import { GenerateButtonStyleOptions, iconButtonStyles } from '@/design/components/buttons/styles';
+import { GenerateButtonStyleOptions } from '@/design/components/buttons/styles';
 
 export type ButtonStyleProps = Partial<GenerateButtonStyleOptions> & { onClick?: () => void };
 export type ButtonProps = ButtonStyleProps & ButtonHTMLAttributes<ButtonStyleProps>;
