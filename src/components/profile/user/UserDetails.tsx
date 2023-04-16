@@ -33,6 +33,7 @@ export const UserDetails: FC<UserDetailsProps> = ({ username, userSince }) => {
 					{ id: 'Username', value: username },
 					{ id: 'Pronouns', value: <UpdatePronouns /> },
 					{ id: 'User since', value: formattedUserSince },
+					{ id: 'Verified', value: 'add verify screen' },
 				]}
 			/>
 		</Box>

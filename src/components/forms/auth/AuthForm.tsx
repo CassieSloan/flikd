@@ -1,6 +1,8 @@
 // eslint-disable-next-line import/no-named-as-default
+import jwt_decode from 'jwt-decode';
 import Router from 'next/router';
 import { FC, useContext, useState } from 'react';
+import { GetProfileResponse } from '@/types/auth/users';
 import { login } from '../../../apiHelpers/auth/login';
 import { registerUser } from '../../../apiHelpers/auth/registerUser';
 import { Profile } from '../../../context/context';
@@ -16,7 +18,7 @@ type AuthFormProps = { isLoggingIn: boolean };
 export const AuthForm: FC<AuthFormProps> = ({ isLoggingIn }: AuthFormProps) => {
 	const [error, setError] = useState<string | undefined>();
 	const [loading, setLoading] = useState(false);
-	const { setAuthToken } = useContext(Profile);
+	const { setAuthToken, setProfileInfo } = useContext(Profile);
 
 	const formProps = getAuthFormValues(isLoggingIn);
 	console.log('formProps', formProps);
@@ -26,7 +28,9 @@ export const AuthForm: FC<AuthFormProps> = ({ isLoggingIn }: AuthFormProps) => {
 	const onSuccess = (token: string) => {
 		setAuthToken(token);
 		setSessionItem('userAuth', token);
-		console.log('redirecting');
+		const decoded = jwt_decode(token);
+		console.log('decoded', decoded);
+		setProfileInfo(decoded as GetProfileResponse);
 		Router.push('/profile');
 	};
 

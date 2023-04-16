@@ -60,3 +60,23 @@ export const rotate360 = () => css`
 		}
 	}
 `;
+
+/**
+ * Generates styles to hide or show element (display: none prevents ability to animate/transition).
+ */
+export const toggleShow = (showElement?: boolean) =>
+	showElement
+		? css`
+				opacity: 1;
+				height: auto;
+				width: auto;
+				overflow: visible;
+				visibility: visible;
+		  `
+		: css`
+				opacity: 0;
+				height: 0;
+				width: 0;
+				overflow: hidden;
+				visibility: hidden;
+		  `;

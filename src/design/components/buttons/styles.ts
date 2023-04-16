@@ -132,12 +132,6 @@ export const sharedButtonStyles = () => css`
 	text-align: center;
 	text-decoration: none;
 	transition: all 0.5s ease;
-`;
-
-/**
- * Styles shared by all button shapes and themes.
- */
-export const iconButtonStyles = () => css`
 	display: flex;
 	align-items: center;
 	justify-content: center;

@@ -1,5 +1,5 @@
 import { Spinner } from 'grommet';
-import { Favorite, Group, Inspect, Time, View as Eye } from 'grommet-icons';
+import { Group, User, View } from 'grommet-icons';
 import { userInfo } from 'os';
 import { FC, useContext } from 'react';
 import styled from 'styled-components';
@@ -10,36 +10,24 @@ import { Section } from '@/components/common/Section';
 import { TabbedScreens } from '@/components/grommety-things/TabbedScreens';
 import { MatesDetails } from '@/components/profile/mates/MatesDetails';
 import { UserDetails } from '@/components/profile/user/UserDetails';
-import { WatchList } from '@/components/profile/watchList/WatchList';
 import { Profile as ProfileContext } from '@/context/context';
 import { primaryTint } from '@/design/colors/colors';
-import { Heading2 } from '@/design/typography/typography';
 import { formatProfileData } from '../utils/profileHelpers';
 
 const Container = styled(Panel)`
 	background: ${primaryTint};
 `;
 
-const profileTabData = [
+const adminTabData = [
 	{
-		children: <WatchList />,
-		icon: <Eye />,
-		label: 'Watch',
+		children: <UserDetails {...userInfo} />,
+		icon: <User />,
+		label: 'Profile',
 	},
 	{
-		children: <Heading2>No Seen its yet</Heading2>,
-		icon: <Inspect />,
-		label: 'Seen',
-	},
-	{
-		children: <Heading2>No Favourites yet</Heading2>,
-		icon: <Favorite />,
-		label: 'Favourites',
-	},
-	{
-		children: <Heading2>Timeline UI</Heading2>,
-		icon: <Time />,
-		label: 'Timeline',
+		children: <MatesDetails />,
+		icon: <Group />,
+		label: 'Mates',
 	},
 ];
 
@@ -49,7 +37,7 @@ const profileTabData = [
 const Profile: FC = () => {
 	const { profileInfo } = useContext(ProfileContext);
 	const userInfo = profileInfo && formatProfileData(profileInfo);
-	const ProfileUi = () => (userInfo ? <TabbedScreens tabs={profileTabData} /> : <Spinner />);
+	const ProfileUi = () => (userInfo ? <TabbedScreens tabs={adminTabData} /> : <Spinner />);
 
 	return (
 		<PageLayout>

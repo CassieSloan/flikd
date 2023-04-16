@@ -9,12 +9,14 @@ type ButtonStyleProps = Partial<GenerateButtonStyleOptions>;
  */
 export const ButtonLink: FC<LinkProps & ButtonStyleProps> = ({
 	children,
+	icon = undefined,
 	shape = 'filled',
 	theme = 'primary',
 	to,
 }) => {
 	return (
 		<StyledLink theme={theme} shape={shape} to={to}>
+			{icon && icon}
 			{children}
 		</StyledLink>
 	);

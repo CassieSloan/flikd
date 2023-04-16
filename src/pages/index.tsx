@@ -35,21 +35,19 @@ const Login = () => {
 	console.log('isLoggingIn', isLoggingIn);
 	return (
 		<PageLayout seo={seo}>
-			<>
-				<BackgroundStyle />
-				<Section>
-					<Flex direction="column" gap={24} justify="center" align="center">
-						<Logo height={56} />
-						<AuthForm isLoggingIn={isLoggingIn} />
-						<SubHeading>
-							{isLoggingIn ? 'Dont have an account?' : 'Already have an account?'}
-							<RegisterButton onClick={() => setIsLogginIn(!isLoggingIn)}>
-								{isLoggingIn ? 'Create one' : 'Login'}
-							</RegisterButton>
-						</SubHeading>
-					</Flex>
-				</Section>
-			</>
+			<BackgroundStyle />
+			<Section>
+				<Flex direction="column" gap={24} justify="center" align="center">
+					<Logo height={56} />
+					<AuthForm isLoggingIn={isLoggingIn} />
+					<SubHeading>
+						{isLoggingIn ? 'Dont have an account?' : 'Already have an account?'}
+						<RegisterButton onClick={() => setIsLogginIn(!isLoggingIn)}>
+							{isLoggingIn ? 'Create one' : 'Login'}
+						</RegisterButton>
+					</SubHeading>
+				</Flex>
+			</Section>
 		</PageLayout>
 	);
 };

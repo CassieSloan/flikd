@@ -5,10 +5,6 @@ import { GenerateButtonStyleOptions, iconButtonStyles } from '@/design/component
 
 export type ButtonStyleProps = Partial<GenerateButtonStyleOptions> & { onClick?: () => void };
 export type ButtonProps = ButtonStyleProps & ButtonHTMLAttributes<ButtonStyleProps>;
-
-const ButtonContainer = styled(StyledButton)`
-	${iconButtonStyles()}
-`;
 /**
  * Render Component component.
  */
@@ -21,9 +17,9 @@ export const Button: FC<ButtonProps> = ({
 	...buttonProps
 }) => {
 	return (
-		<ButtonContainer theme={theme} shape={shape} onClick={onClick} disabled={buttonProps.disabled}>
+		<StyledButton theme={theme} shape={shape} onClick={onClick} disabled={buttonProps.disabled}>
 			{icon && icon}
 			{children}
-		</ButtonContainer>
+		</StyledButton>
 	);
 };

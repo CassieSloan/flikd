@@ -8,6 +8,7 @@ export const UnstyledButton = styled.button`
 	border: none;
 	font-size: inherit;
 	cursor: pointer;
+	padding: 0px;
 `;
 
 export const StyledButton = styled(UnstyledButton)<GenerateButtonStyleOptions>`
