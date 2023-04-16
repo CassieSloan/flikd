@@ -1,5 +1,4 @@
-import { PropsWithChildren } from 'react';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const bodyLRegular = css`
 	font-size: 18px;
@@ -43,14 +42,14 @@ export const bodySMedium = css`
 	letter-spacing: 0.01em;
 `;
 
-const bodyStyles: Record<string, FlattenSimpleInterpolation> = {
-	bodyLMedium,
-	bodyLRegular,
-	bodyMMedium,
-	bodyMRegular,
-	bodySMedium,
-	bodySRegular,
-};
+// const bodyStyles: Record<string, FlattenSimpleInterpolation> = {
+// 	bodyLMedium,
+// 	bodyLRegular,
+// 	bodyMMedium,
+// 	bodyMRegular,
+// 	bodySMedium,
+// 	bodySRegular,
+// };
 
 type BodyType =
 	| 'bodyLMedium'
@@ -61,7 +60,7 @@ type BodyType =
 	| 'bodySRegular';
 
 export type BodyStyleProps = { style: BodyType };
-type BodyProps = BodyStyleProps & PropsWithChildren;
+// type BodyProps = BodyStyleProps & PropsWithChildren;
 
 // export const Paragraph = styled.p<BodyProps>`
 // 	${({ style }) =>
@@ -70,6 +69,8 @@ type BodyProps = BodyStyleProps & PropsWithChildren;
 // 			${bodyStyles[style]}
 // 		`}/* ${bodyMMedium} */
 // `;
+
+// TODO: fix above:
 export const BodyMMedium = styled.p`
 	${bodyMMedium}
 `;

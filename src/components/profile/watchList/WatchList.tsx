@@ -8,7 +8,7 @@ import { Fliks } from '@/types/fliks/fliks';
  * Render Component component.
  */
 export const WatchList: FC = () => {
-	const { profileInfo, setProfileInfo } = useContext(Profile);
+	const { profileInfo } = useContext(Profile);
 	console.log('profileInfo in watchlist', profileInfo);
 	const [moviesToWatch, setMoviesToWatch] = useState<Fliks | undefined>();
 	console.log('moviesToWatch', moviesToWatch);

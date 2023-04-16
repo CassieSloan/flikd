@@ -1,9 +1,8 @@
 import '@fontsource/fira-code'; // Defaults to weight 400.
-import { FC, PropsWithChildren } from 'react';
+import { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { primary500, secondary500, secondary700, tertiary500 } from '../colors/colors';
 import { black, offBlack, white } from '../colors/shades';
-import { BodyStyleProps } from './styles/body';
 import { heading1Styles, heading2Styles, heading3Styles, heading4Styles } from './styles/heading';
 import { labelAltM, labelAltS } from './styles/labels';
 
@@ -39,7 +38,7 @@ export const Span = styled.span`
 	font-size: 16px;
 `;
 
-type BodyProps = BodyStyleProps & PropsWithChildren;
+// type BodyProps = BodyStyleProps & PropsWithChildren;
 /**
  * Body component
  * + renders a p tag
