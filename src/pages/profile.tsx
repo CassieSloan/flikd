@@ -1,6 +1,5 @@
 import { Spinner } from 'grommet';
-import { Favorite, Group, Inspect, Time, View as Eye } from 'grommet-icons';
-import { userInfo } from 'os';
+import { Favorite, Inspect, Time, View as Eye } from 'grommet-icons';
 import { FC, useContext } from 'react';
 import styled from 'styled-components';
 import { Navigation } from '@/components/common/Navigation';
@@ -8,8 +7,6 @@ import { PageLayout } from '@/components/common/PageLayout';
 import { Panel } from '@/components/common/Panel';
 import { Section } from '@/components/common/Section';
 import { TabbedScreens } from '@/components/grommety-things/TabbedScreens';
-import { MatesDetails } from '@/components/profile/mates/MatesDetails';
-import { UserDetails } from '@/components/profile/user/UserDetails';
 import { WatchList } from '@/components/profile/watchList/WatchList';
 import { Profile as ProfileContext } from '@/context/context';
 import { primaryTint } from '@/design/colors/colors';
