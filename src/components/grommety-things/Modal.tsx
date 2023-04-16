@@ -1,5 +1,5 @@
 import { Layer } from 'grommet';
-import React, { FC, PropsWithChildren, useState } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import { white } from '@/design/colors/shades';
 import { Panel } from 'components/common/Panel';

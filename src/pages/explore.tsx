@@ -15,7 +15,7 @@ import { UpcomingFlik, UpcomingFliks, UpcomingFliksResponse } from '../types/fli
 const Explore: FC = () => {
 	const [page, setPage] = useState(1);
 	const [items, setItems] = useState<UpcomingFliks | []>([]);
-	const [hasAdded, setHasAdded] = useState<boolean>();
+	// const [hasAdded, setHasAdded] = useState<boolean>();
 	const { profileInfo } = useContext(Profile);
 
 	const onSuccess = (response: UpcomingFliksResponse) => {

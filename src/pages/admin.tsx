@@ -1,5 +1,5 @@
 import { Spinner } from 'grommet';
-import { Group, User, View } from 'grommet-icons';
+import { Group, User } from 'grommet-icons';
 import { userInfo } from 'os';
 import { FC, useContext } from 'react';
 import styled from 'styled-components';

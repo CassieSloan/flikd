@@ -1,6 +1,6 @@
 import { Spinner } from 'grommet';
 import { Close } from 'grommet-icons';
-import { FC, SyntheticEvent, useContext, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '@/components/common/buttons/base/Button';
 import { ButtonWithModal } from '@/components/common/buttons/base/ButtonWithModal';
@@ -9,7 +9,6 @@ import { ButtonTheme } from '@/design/components/buttons/styles';
 import Pencil from '@/images/icons/pencil.svg';
 import { updateProfile } from '../../../apiHelpers/auth/updateProfile';
 import { Profile } from '../../../context/context';
-import { tertiary500 } from '../../../design/colors/colors';
 import { Flex } from '../../../design/components/layout/Flex';
 import { UserInfo } from '../../../types/auth/users';
 import { setSessionItem } from '../../../utils/base';

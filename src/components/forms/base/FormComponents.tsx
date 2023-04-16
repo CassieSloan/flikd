@@ -1,11 +1,10 @@
-import { Button, Select } from 'grommet';
+import { Select } from 'grommet';
 import { FC } from 'react';
 import { Control, Controller, FieldValues } from 'react-hook-form';
-import styled, { css } from 'styled-components';
-import { tertiary300, tertiary500, tertiary700 } from '../../../design/colors/colors';
+import styled from 'styled-components';
+import { tertiary700 } from '../../../design/colors/colors';
 import { black } from '../../../design/colors/shades';
-import { jump } from '../../../design/micro-interactions';
-import { flex, onHover } from '../../../design/utils';
+import { flex } from '../../../design/utils';
 import { ReactHookFormField } from './FormTypes';
 
 export const StyledForm = styled.form`

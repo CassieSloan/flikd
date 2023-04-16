@@ -1,13 +1,6 @@
 import styled from 'styled-components';
-import {
-	primary100,
-	primary500,
-	primary700,
-	tertiary100,
-	tertiary500,
-	tertiary700,
-} from '../../../design/colors/colors';
-import { offWhite, white } from '../../../design/colors/shades';
+import { primary100, primary500, primary700 } from '../../../design/colors/colors';
+import { offWhite } from '../../../design/colors/shades';
 import { Heading3 } from '../../../design/typography/typography';
 import Form from '../base/Form';
 import { Label, TextInput } from '../base/FormComponents';

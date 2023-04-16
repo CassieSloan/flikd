@@ -11,7 +11,7 @@ module.exports = {
     'plugin:sort/recommended',
     'next/core-web-vitals'
   ],
-  plugins: ['react', '@typescript-eslint', 'prettier', 'jsdoc', 'sort'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'jsdoc', 'sort', 'unused-imports'],
   env: {
     browser: true,
     node: true,
@@ -45,7 +45,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off', //ts handles
     '@typescript-eslint/explicit-module-boundary-types': 'off', //ts handles
-    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-unused-vars': 'off', //ts handles
     '@typescript-eslint/ban-ts-comment': [
       'error',
       {
@@ -72,8 +72,8 @@ module.exports = {
       },
     ],
     // ★ 🎀 code style 🎀 ★
-    "prettier/prettier": ["warn"],
-    'no-multiple-empty-lines': ["error", { "max": 1, "maxEOF": 0 }],
+    'prettier/prettier': ['error'],
+    'no-multiple-empty-lines': ['error', { 'max': 1, 'maxEOF': 0 }],
     'quotes': ['error', 'single', { avoidEscape: true }],
     'no-else-return': ['error', { allowElseIf: false }],
     'no-case-declarations': 'error',
@@ -82,12 +82,15 @@ module.exports = {
     'no-useless-escape': 'error',
     'eqeqeq': 'error',
     'no-multi-spaces': ['error'],
-    'eol-last': ["error", "always"],
-    'no-trailing-spaces': "error",
-    'no-irregular-whitespace': "error",
-    'no-mixed-spaces-and-tabs': "off",
+    'eol-last': ['error', 'always'],
+    'no-trailing-spaces': 'error',
+    'no-irregular-whitespace': 'error',
+    'no-mixed-spaces-and-tabs': 'off',
+    'no-unused-vars': 'off',
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': 'warn',
     // ★ 🎀 imports 🎀 ★
-    "import/newline-after-import": ["error", { "count": 1, "considerComments": true }],
+    'import/newline-after-import': ['error', { 'count': 1, 'considerComments': true }],
     'import/namespace': ['error', { allowComputed: true }],
     'import/named': 'error',
     'import/default': 'error',

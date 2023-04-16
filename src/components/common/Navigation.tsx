@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import { FC, useContext, useState } from 'react';
-import styled, { css, SimpleInterpolation } from 'styled-components';
-import { secondary300, secondary500, secondary700 } from '@/design/colors/colors';
+import styled, { css } from 'styled-components';
+import { secondary700 } from '@/design/colors/colors';
 import { grey900 } from '@/design/colors/shades';
 import { lightBoxShadow } from '@/design/colors/shadows';
 import { UnstyledButton } from '@/design/components/buttons/base';

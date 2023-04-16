@@ -1,5 +1,4 @@
 import { css } from 'styled-components';
-import * as colors from '@/design/colors/colors';
 import {
 	highlight80,
 	highlight100,
