@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import Logo from '@/images/icons/logo.svg';
 import { PageLayout } from '../components/common/PageLayout';
 import { Section } from '../components/common/Section';
 import { AuthForm } from '../components/forms/auth/AuthForm';
@@ -7,7 +8,6 @@ import { animatedBlockBackground } from '../design/backgrounds/backgrounds';
 import { UnstyledButton } from '../design/components/buttons/base';
 import { Flex } from '../design/components/layout/Flex';
 import { Heading4 } from '../design/typography/typography';
-import Logo from '../images/icons/logo.svg';
 
 const RegisterButton = styled(UnstyledButton)`
 	font-weight: 400;
