@@ -7,6 +7,7 @@ import { PageLayout } from '@/components/common/PageLayout';
 import { Panel } from '@/components/common/Panel';
 import { Section } from '@/components/common/Section';
 import { TabbedScreens } from '@/components/grommety-things/TabbedScreens';
+import { ProfileInfo } from '@/components/profile/user/public/ProfileInfo';
 import { WatchList } from '@/components/profile/watchList/WatchList';
 import { Profile as ProfileContext } from '@/context/context';
 import { primaryTint } from '@/design/colors/colors';
@@ -67,6 +68,7 @@ const Profile: FC = () => {
 			<Navigation />
 			<Section>
 				<Container padding="16px" background="animatedGradientBackground">
+					<ProfileInfo />
 					<ProfileUi />
 				</Container>
 			</Section>

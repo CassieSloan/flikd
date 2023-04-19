@@ -9,8 +9,8 @@ import { Flex } from '@/design/components/layout/Flex';
 import { Grid } from '@/design/components/layout/Grid';
 import Pencil from '@/images/icons/pencil.svg';
 import { UserInfo } from '@/types/auth/users';
-import { updateProfile } from '../../../apiHelpers/auth/updateProfile';
-import { Avatar } from '../../grommety-things/Avatar';
+import { updateProfile } from '../../../../apiHelpers/auth/updateProfile';
+import { Avatar } from '../../../grommety-things/Avatar';
 
 /**
  * Update Avatar form.

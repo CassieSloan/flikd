@@ -24,7 +24,8 @@
       "@/context/*": ["context/*"],
       "@/types/*": ["types/*"],
       "@/components/*": ["components/*"],
-      "@/images/*": ["images/*"]
+      "@/images/*": ["images/*"],
+      "@/apiHelpers/*": ["apiHelpers/*"]
     }
   },
   "include": [

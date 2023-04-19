@@ -5,10 +5,10 @@ import { FC, SyntheticEvent, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { ButtonWithModal } from '@/components/common/buttons/base/ButtonWithModal';
 import Trash from '@/images/icons/trashcan.svg';
-import { deleteProfile } from '../../../apiHelpers/auth/deleteProfile';
-import { Profile } from '../../../context/context';
-import { tertiary500 } from '../../../design/colors/colors';
-import { Flex } from '../../../design/components/layout/Flex';
+import { deleteProfile } from '../../../../apiHelpers/auth/deleteProfile';
+import { Profile } from '../../../../context/context';
+import { tertiary500 } from '../../../../design/colors/colors';
+import { Flex } from '../../../../design/components/layout/Flex';
 
 const CloseButton = styled(Button)``;
 

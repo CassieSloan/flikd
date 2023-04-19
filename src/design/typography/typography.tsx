@@ -2,7 +2,10 @@ import '@fontsource/fira-code'; // Defaults to weight 400.
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { primary500, secondary500, secondary700, tertiary500 } from '../colors/colors';
+import * as colors from '../colors/colors';
+import * as shades from '../colors/shades';
 import { black, offBlack, white } from '../colors/shades';
+import { TextColorProps } from '../types';
 import { heading1Styles, heading2Styles, heading3Styles, heading4Styles } from './styles/heading';
 import { labelAltM, labelAltS } from './styles/labels';
 
@@ -11,11 +14,18 @@ export const FontFamily = css`
 	color: ${offBlack};
 `;
 
-export const LabelAltMedium = styled.p`
+const getColor = (color: TextColorProps['color']) =>
+	`${color}` in colors
+		? colors[color as keyof typeof colors]
+		: shades[color as keyof typeof shades];
+
+export const LabelAltMedium = styled.p<TextColorProps>`
 	${labelAltM()}
+	${({ color }) => color && `color: ${getColor(color)}`}
 `;
-export const LabelAltSmall = styled.p`
+export const LabelAltSmall = styled.p<TextColorProps>`
 	${labelAltS()}
+	${({ color }) => color && `color: ${getColor(color)}`}
 `;
 
 export const Heading1 = styled.h1`

@@ -9,6 +9,7 @@ import {
 	tertiary300,
 	tertiary500,
 } from '../colors/colors';
+import { white } from '../colors/shades';
 
 // type BrandColor = keyof typeof colors;
 // /**
@@ -17,6 +18,13 @@ import {
 // export const colorBackground = (color: BrandColor) => css`
 // 	background: ${colors[color]};
 // `;
+
+/**
+ * Plain white background.
+ */
+export const whiteSolid = () => css`
+	background: ${white};
+`;
 
 /**
  * Frosted glass effect.
