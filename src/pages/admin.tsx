@@ -8,7 +8,7 @@ import { Panel } from '@/components/common/Panel';
 import { Section } from '@/components/common/Section';
 import { TabbedScreens } from '@/components/grommety-things/TabbedScreens';
 import { MatesDetails } from '@/components/profile/mates/MatesDetails';
-import { UserDetails } from '@/components/profile/user/UserDetails';
+import { UserDetails } from '@/components/profile/user/admin/UserDetails';
 import { Profile as ProfileContext } from '@/context/context';
 import { primaryTint } from '@/design/colors/colors';
 

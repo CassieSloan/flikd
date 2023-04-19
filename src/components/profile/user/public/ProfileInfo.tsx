@@ -21,6 +21,7 @@ const Container = styled(Panel)`
 /**
  * Render ProfileInfo ProfileInfo.
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const ProfileInfo: FC<{}> = () => {
 	const { profileInfo, profileRef } = useContext(Profile);
 	console.log('profileRef', profileRef);

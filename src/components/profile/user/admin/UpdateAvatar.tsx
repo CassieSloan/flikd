@@ -10,7 +10,7 @@ import { Grid } from '@/design/components/layout/Grid';
 import Pencil from '@/images/icons/pencil.svg';
 import { UserInfo } from '@/types/auth/users';
 import { updateProfile } from '../../../../apiHelpers/auth/updateProfile';
-import { Avatar } from '../../../grommety-things/Avatar';
+import { Avatar, AvatarType } from '../../../grommety-things/Avatar';
 
 /**
  * Update Avatar form.
@@ -21,17 +21,17 @@ export const UpdateAvatar: FC = () => {
 	console.log('open', open);
 	const [loading, setLoading] = useState<boolean>();
 
-	const onSuccess = (userInfo: UserInfo) => {
+	const onSuccess = ({ profilePhoto }: UserInfo) => {
 		console.log('userInfo on success');
-		if (userInfo.profilePhoto && profileInfo) {
+		if (profilePhoto && profileInfo) {
 			const clonedProfile = profileInfo;
-			clonedProfile.profilePhoto = userInfo.profilePhoto;
+			clonedProfile.profilePhoto = profilePhoto;
 			setProfileInfo(clonedProfile);
 			setLoading(false);
 		}
 	};
 
-	const onSubmit = (e: SyntheticEvent, profilePhoto: string) => {
+	const onSubmit = (e: SyntheticEvent, profilePhoto: AvatarType) => {
 		e.preventDefault();
 		setOpen(false);
 		setLoading(true);
@@ -72,7 +72,7 @@ export const UpdateAvatar: FC = () => {
 			{loading ? (
 				<Spinner />
 			) : (
-				<Avatar avatar={profileInfo?.profilePhoto as Avatar} /> || <Avatar />
+				<Avatar avatar={profileInfo?.profilePhoto as AvatarType} /> || <Avatar />
 			)}
 			<ButtonWithModal
 				type="button"
@@ -85,7 +85,7 @@ export const UpdateAvatar: FC = () => {
 					<OptionsContainer gap={24} columns={5}>
 						{options.map((profilePhoto) => (
 							<Option key={profilePhoto} onClick={(e) => onSubmit(e, profilePhoto)}>
-								<Avatar avatar={profilePhoto as Avatar} />
+								<Avatar avatar={profilePhoto as AvatarType} />
 							</Option>
 						))}
 						<UnstyledButton onClick={() => setOpen(false)}>

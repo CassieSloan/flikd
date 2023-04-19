@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Avatar } from '@/components/grommety-things/Avatar';
+import { AvatarType } from '@/components/grommety-things/Avatar';
 import { FavouritesResponse } from '../lists/favourites';
 import { SeenItsCollection } from '../lists/seenIts';
 import { WatchesResponse } from '../lists/watches';
@@ -14,7 +14,7 @@ export type ProfileInfo = {
 	favourites: FavouritesResponse;
 	seenIts: SeenItsCollection;
 	toWatch: WatchesResponse;
-	profilePhoto: Avatar | null;
+	profilePhoto: AvatarType | null;
 	pronouns: string;
 };
 
@@ -36,12 +36,11 @@ interface ListReference {
 	id: string;
 	count: number;
 }
-
 export type ProfileReference = {
 	favourites: ListReference;
 	id: string;
 	mates: ListReference;
-	profilePhoto: Avatar | null;
+	profilePhoto: AvatarType | null;
 	pronouns: string | null;
 	seenIt: ListReference;
 	toWatch: ListReference;
@@ -54,5 +53,5 @@ export type UserInfo = {
 	username: string;
 	id: string;
 	pronouns: string | null;
-	profilePhoto: string | null;
+	profilePhoto: AvatarType | null;
 };

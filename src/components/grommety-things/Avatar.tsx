@@ -15,8 +15,8 @@ import tiger from '../../images/avatars/tiger.png';
 import turtle from '../../images/avatars/turtle.png';
 import Image from '../common/Image';
 
-export type Avatar = keyof typeof avatars;
-type AvatarProps = { avatar?: Avatar | null };
+export type AvatarType = keyof typeof avatars;
+type AvatarProps = { avatar?: AvatarType | null };
 
 const avatars = {
 	bird,

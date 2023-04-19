@@ -2,15 +2,15 @@ import { Spinner } from 'grommet';
 import { Close } from 'grommet-icons';
 import { FC, useContext, useState } from 'react';
 import styled from 'styled-components';
+import { updateProfile } from '@/apiHelpers/auth/updateProfile';
 import { Button } from '@/components/common/buttons/base/Button';
 import { ButtonWithModal } from '@/components/common/buttons/base/ButtonWithModal';
+import { Profile } from '@/context/context';
 import { UnstyledButton } from '@/design/components/buttons/base';
 import { ButtonTheme } from '@/design/components/buttons/styles';
+import { Flex } from '@/design/components/layout/Flex';
 import Pencil from '@/images/icons/pencil.svg';
-import { updateProfile } from '../../../apiHelpers/auth/updateProfile';
-import { Profile } from '../../../context/context';
-import { Flex } from '../../../design/components/layout/Flex';
-import { UserInfo } from '../../../types/auth/users';
+import { UserInfo } from '../../../../types/auth/users';
 
 /**
  * Update pronouns form.

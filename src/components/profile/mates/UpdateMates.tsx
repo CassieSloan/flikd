@@ -2,6 +2,7 @@ import { Button, DropButton, Spinner } from 'grommet';
 import { Close, Edit } from 'grommet-icons';
 import { FC, useContext, useState } from 'react';
 import styled from 'styled-components';
+import { AvatarType } from '@/components/grommety-things/Avatar';
 import { Grid } from '@/design/components/layout/Grid';
 import { addMate } from '../../../apiHelpers/mates/addMate';
 import { Profile } from '../../../context/context';
@@ -18,7 +19,7 @@ export const AddMate: FC = () => {
 	const [open, setOpen] = useState<boolean>();
 	const [loading, setLoading] = useState<boolean>();
 
-	const onSuccess = (userInfo: { profilePhoto: string }) => {
+	const onSuccess = (userInfo: { profilePhoto: AvatarType }) => {
 		if (userInfo.profilePhoto && profileInfo) {
 			const clonedProfile = profileInfo;
 			clonedProfile.profilePhoto = userInfo.profilePhoto;

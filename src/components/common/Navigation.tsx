@@ -12,7 +12,7 @@ import PowerIcon from '@/images/icons/power-symbol.svg';
 import SettingsIcon from '@/images/icons/settings-cog.svg';
 import { Profile } from '../../context/context';
 import { Flex } from '../../design/components/layout/Flex';
-import { Avatar } from '../grommety-things/Avatar';
+import { Avatar, AvatarType } from '../grommety-things/Avatar';
 import { ButtonLink } from './buttons/base/ButtonLink';
 import Link from './Link';
 import { Section } from './Section';
@@ -104,7 +104,7 @@ export const Navigation: FC = () => {
 				</Flex>
 				<DropDownContainer>
 					<UnstyledButton onClick={() => setOpen(!open)}>
-						<Avatar avatar={profileInfo?.profilePhoto as Avatar} />
+						<Avatar avatar={profileInfo?.profilePhoto as AvatarType} />
 					</UnstyledButton>
 					<DropDown>
 						<DropDownLink to="/admin">

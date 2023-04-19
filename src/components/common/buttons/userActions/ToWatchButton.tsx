@@ -19,7 +19,7 @@ export const ToWatchButton: FC<FlikActionButton> = ({ id }) => {
 		const fliksToWatch = res.data;
 		if (fliksToWatch && profileInfo) {
 			const clonedProfile = profileInfo;
-			clonedProfile.data.toWatch.Watchs = fliksToWatch;
+			clonedProfile.toWatch.Watchs = fliksToWatch;
 			console.log('clonedProfile', clonedProfile);
 			setProfileInfo(clonedProfile);
 		}
