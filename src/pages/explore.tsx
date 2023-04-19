@@ -1,9 +1,8 @@
 import { Heading, InfiniteScroll } from 'grommet';
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Navigation } from '@/components/common/Navigation';
 import { PageLayout } from '@/components/common/PageLayout';
 import { Section } from '@/components/common/Section';
-import { Profile } from '@/context/context';
 import { Grid } from '@/design/components/layout/Grid';
 import { getUpcomingFliks } from '../apiHelpers/fliks/upcomingFliks';
 import { UpcomingFlikCard } from '../components/cards/UpcomingFlik';
@@ -16,7 +15,6 @@ const Explore: FC = () => {
 	const [page, setPage] = useState(1);
 	const [items, setItems] = useState<UpcomingFliks | []>([]);
 	// const [hasAdded, setHasAdded] = useState<boolean>();
-	const { profileInfo } = useContext(Profile);
 
 	const onSuccess = (response: UpcomingFliksResponse) => {
 		console.log('response', response);
