@@ -7,7 +7,8 @@ import { animatedBlockBackground } from '../design/backgrounds/backgrounds';
 import { UnstyledButton } from '../design/components/buttons/base';
 import { Flex } from '../design/components/layout/Flex';
 import { Heading4 } from '../design/typography/typography';
-import Logo from '../images/icons/logo.svg';
+
+// import Logo from '../images/icons/logo.svg';
 
 const RegisterButton = styled(UnstyledButton)`
 	font-weight: 400;
@@ -38,7 +39,7 @@ const Login = () => {
 			<BackgroundStyle />
 			<Section>
 				<Flex direction="column" gap={24} justify="center" align="center">
-					<Logo height={56} />
+					{/* <Logo height={56} /> */}
 					<AuthForm isLoggingIn={isLoggingIn} />
 					<SubHeading>
 						{isLoggingIn ? 'Dont have an account?' : 'Already have an account?'}
