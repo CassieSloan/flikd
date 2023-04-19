@@ -11,7 +11,7 @@ import { AddMate } from './UpdateMates';
 export const MatesDetails: FC = () => {
 	const { profileInfo } = useContext(Profile);
 
-	const mateData = profileInfo?.data.mates.Mates.map(({ profilePhoto, pronouns, username }) => ({
+	const mateData = profileInfo?.mates.Mates.map(({ profilePhoto, pronouns, username }) => ({
 		profilePhoto: <Avatar avatar={profilePhoto as Avatar} />,
 		pronouns: pronouns || 'No pronouns set',
 		username,

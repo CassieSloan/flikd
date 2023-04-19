@@ -1,3 +1,4 @@
+import jwt_decode from 'jwt-decode';
 import {
 	createContext,
 	Dispatch,
@@ -6,20 +7,23 @@ import {
 	useEffect,
 	useState,
 } from 'react';
-import { GetProfileResponse } from '../types/auth/users';
+import { DecodedAuthToken, ProfileInfo, ProfileReference } from '../types/auth/users';
 import { getSessionItem } from '../utils/base';
 import { parseSessionProfileData } from '../utils/profileHelpers';
 
 type ProfileContext = {
 	authToken?: string;
 	setAuthToken: Dispatch<SetStateAction<string | undefined>>;
-	profileInfo?: GetProfileResponse;
-	setProfileInfo: Dispatch<GetProfileResponse | undefined>;
+	profileInfo?: ProfileInfo;
+	setProfileInfo: Dispatch<ProfileInfo | undefined>;
+	profileRef?: ProfileReference;
+	setProfileRef: Dispatch<ProfileReference | undefined>;
 } & PropsWithChildren;
 
 export const Profile = createContext<ProfileContext>({
 	setAuthToken: () => {},
 	setProfileInfo: () => {},
+	setProfileRef: () => {},
 });
 
 /**
@@ -27,13 +31,19 @@ export const Profile = createContext<ProfileContext>({
  */
 const Context = ({ children }: PropsWithChildren) => {
 	const [authToken, setAuthToken] = useState<string | undefined>();
-	const [profileInfo, setProfileInfo] = useState<GetProfileResponse | undefined>();
+	const [profileRef, setProfileRef] = useState<ProfileReference | undefined>();
+	const [profileInfo, setProfileInfo] = useState<ProfileInfo | undefined>();
 	console.log('authToken in context', authToken);
 	console.log('profileInfo in  context', profileInfo);
 
 	useEffect(() => {
 		const sessionToken = getSessionItem('userAuth');
 		const sessionProfileInfo = getSessionItem('profileInfo');
+		if (authToken && !profileInfo) {
+			const { profile }: DecodedAuthToken = jwt_decode(authToken);
+			setProfileRef(profile);
+		}
+
 		if (!profileInfo && sessionProfileInfo) {
 			console.log('no state, using session: profileinfo');
 			setProfileInfo(JSON.parse(sessionProfileInfo));
@@ -51,7 +61,9 @@ const Context = ({ children }: PropsWithChildren) => {
 	}, []);
 
 	return (
-		<Profile.Provider value={{ authToken, profileInfo, setAuthToken, setProfileInfo }}>
+		<Profile.Provider
+			value={{ authToken, profileInfo, profileRef, setAuthToken, setProfileInfo, setProfileRef }}
+		>
 			{children}
 		</Profile.Provider>
 	);

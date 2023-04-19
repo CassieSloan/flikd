@@ -10,7 +10,6 @@ import { Grid } from '@/design/components/layout/Grid';
 import Pencil from '@/images/icons/pencil.svg';
 import { UserInfo } from '@/types/auth/users';
 import { updateProfile } from '../../../apiHelpers/auth/updateProfile';
-import { setSessionItem } from '../../../utils/base';
 import { Avatar } from '../../grommety-things/Avatar';
 
 /**
@@ -26,9 +25,8 @@ export const UpdateAvatar: FC = () => {
 		console.log('userInfo on success');
 		if (userInfo.profilePhoto && profileInfo) {
 			const clonedProfile = profileInfo;
-			clonedProfile.data.profilePhoto = userInfo.profilePhoto;
+			clonedProfile.profilePhoto = userInfo.profilePhoto;
 			setProfileInfo(clonedProfile);
-			setSessionItem('profileInfo', JSON.stringify(clonedProfile));
 			setLoading(false);
 		}
 	};
@@ -74,7 +72,7 @@ export const UpdateAvatar: FC = () => {
 			{loading ? (
 				<Spinner />
 			) : (
-				<Avatar avatar={profileInfo?.data.profilePhoto as Avatar} /> || <Avatar />
+				<Avatar avatar={profileInfo?.profilePhoto as Avatar} /> || <Avatar />
 			)}
 			<ButtonWithModal
 				type="button"

@@ -31,6 +31,7 @@ export const TabbedScreens: FC<TabbedScreensProps> = ({ tabs }) => {
 		<Tabs>
 			{tabs.map((tab) => {
 				const { children, icon, label } = tab;
+				if (!children) return null;
 				return (
 					<StyledTab icon={icon} title={label} key={label}>
 						{children}

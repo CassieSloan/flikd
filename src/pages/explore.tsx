@@ -29,7 +29,7 @@ const Explore: FC = () => {
 	};
 
 	// useEffect(() => {
-	// 	const idsOnList = profileInfo?.data.toWatch.Watchs.map((item) => parseInt(item.id)) || [];
+	// 	const idsOnList = profileInfo?.toWatch.Watchs.map((item) => parseInt(item.id)) || [];
 	// 	console.log('idsOnList', idsOnList);
 	// 	const hasSeenFlik = idsOnList.indexOf(id) !== -1;
 	// 	console.log('hasSeenFlik', hasSeenFlik);
@@ -60,8 +60,6 @@ const Explore: FC = () => {
 		});
 	};
 
-	const idsOnList = profileInfo?.data.toWatch.Watchs.map((item) => item.flikId) || [];
-	console.log('idsOnList', idsOnList);
 	return (
 		<PageLayout>
 			<Navigation />

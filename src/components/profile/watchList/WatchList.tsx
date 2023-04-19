@@ -16,11 +16,11 @@ export const WatchList: FC = () => {
 
 	useEffect(() => {
 		if (profileInfo) {
-			setMoviesToWatch(profileInfo?.data.toWatch.Watchs);
+			setMoviesToWatch(profileInfo?.toWatch.Watchs);
 		}
 	}, []);
 
-	const movies = profileInfo?.data.toWatch.Watchs || moviesToWatch;
+	const movies = profileInfo?.toWatch.Watchs || moviesToWatch;
 
 	return (
 		<Cards data={movies} pad="medium">

@@ -11,7 +11,6 @@ import { updateProfile } from '../../../apiHelpers/auth/updateProfile';
 import { Profile } from '../../../context/context';
 import { Flex } from '../../../design/components/layout/Flex';
 import { UserInfo } from '../../../types/auth/users';
-import { setSessionItem } from '../../../utils/base';
 
 /**
  * Update pronouns form.
@@ -25,9 +24,8 @@ export const UpdatePronouns: FC = () => {
 	const onSuccess = (userInfo: UserInfo) => {
 		if (userInfo.pronouns && profileInfo) {
 			const clonedProfile = profileInfo;
-			clonedProfile.data.pronouns = userInfo.pronouns;
+			clonedProfile.pronouns = userInfo.pronouns;
 			setProfileInfo(clonedProfile);
-			setSessionItem('profileInfo', JSON.stringify(clonedProfile));
 			setLoading(false);
 		}
 	};
@@ -53,7 +51,7 @@ export const UpdatePronouns: FC = () => {
 		padding: 12px;
 	`;
 
-	const label = loading ? <Spinner /> : profileInfo?.data.pronouns || 'None set';
+	const label = loading ? <Spinner /> : profileInfo?.pronouns || 'None set';
 	const themeMap: ButtonTheme[] = ['primary', 'secondary', 'tertiary'];
 
 	return (

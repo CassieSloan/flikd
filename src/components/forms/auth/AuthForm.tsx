@@ -2,11 +2,10 @@
 import jwt_decode from 'jwt-decode';
 import Router from 'next/router';
 import { FC, useContext, useState } from 'react';
-import { GetProfileResponse } from '@/types/auth/users';
+import { DecodedAuthToken } from '@/types/auth/users';
 import { login } from '../../../apiHelpers/auth/login';
 import { registerUser } from '../../../apiHelpers/auth/registerUser';
 import { Profile } from '../../../context/context';
-import { setSessionItem } from '../../../utils/base';
 import { LoadingSpinner } from '../../common/LoadingSpinner';
 import { FieldValues } from '../base/FormTypes';
 import { getAuthFormError, getAuthFormValues, StyledAuthForm } from './base';
@@ -18,19 +17,16 @@ type AuthFormProps = { isLoggingIn: boolean };
 export const AuthForm: FC<AuthFormProps> = ({ isLoggingIn }: AuthFormProps) => {
 	const [error, setError] = useState<string | undefined>();
 	const [loading, setLoading] = useState(false);
-	const { setAuthToken, setProfileInfo } = useContext(Profile);
+	const { setAuthToken, setProfileRef } = useContext(Profile);
 
 	const formProps = getAuthFormValues(isLoggingIn);
-	console.log('formProps', formProps);
 	const errorMsg = getAuthFormError(isLoggingIn);
 
 	const handleFail = () => setError(errorMsg);
 	const onSuccess = (token: string) => {
 		setAuthToken(token);
-		setSessionItem('userAuth', token);
-		const decoded = jwt_decode(token);
-		console.log('decoded', decoded);
-		setProfileInfo(decoded as GetProfileResponse);
+		const decoded: DecodedAuthToken = jwt_decode(token);
+		setProfileRef(decoded?.profile);
 		Router.push('/profile');
 	};
 

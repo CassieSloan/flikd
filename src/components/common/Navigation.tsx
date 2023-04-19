@@ -104,7 +104,7 @@ export const Navigation: FC = () => {
 				</Flex>
 				<DropDownContainer>
 					<UnstyledButton onClick={() => setOpen(!open)}>
-						<Avatar avatar={profileInfo?.data.profilePhoto as Avatar} />
+						<Avatar avatar={profileInfo?.profilePhoto as Avatar} />
 					</UnstyledButton>
 					<DropDown>
 						<DropDownLink to="/admin">

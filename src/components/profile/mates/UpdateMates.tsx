@@ -6,7 +6,6 @@ import { Grid } from '@/design/components/layout/Grid';
 import { addMate } from '../../../apiHelpers/mates/addMate';
 import { Profile } from '../../../context/context';
 import { tertiary500 } from '../../../design/colors/colors';
-import { setSessionItem } from '../../../utils/base';
 import Form from '../../forms/base/Form';
 
 const CloseButton = styled(Button)``;
@@ -22,9 +21,8 @@ export const AddMate: FC = () => {
 	const onSuccess = (userInfo: { profilePhoto: string }) => {
 		if (userInfo.profilePhoto && profileInfo) {
 			const clonedProfile = profileInfo;
-			clonedProfile.data.profilePhoto = userInfo.profilePhoto;
+			clonedProfile.profilePhoto = userInfo.profilePhoto;
 			setProfileInfo(clonedProfile);
-			setSessionItem('profileInfo', JSON.stringify(clonedProfile));
 			setLoading(false);
 		}
 	};

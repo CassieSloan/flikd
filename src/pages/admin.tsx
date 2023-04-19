@@ -1,6 +1,5 @@
 import { Spinner } from 'grommet';
 import { Group, User } from 'grommet-icons';
-import { userInfo } from 'os';
 import { FC, useContext } from 'react';
 import styled from 'styled-components';
 import { Navigation } from '@/components/common/Navigation';
@@ -12,33 +11,29 @@ import { MatesDetails } from '@/components/profile/mates/MatesDetails';
 import { UserDetails } from '@/components/profile/user/UserDetails';
 import { Profile as ProfileContext } from '@/context/context';
 import { primaryTint } from '@/design/colors/colors';
-import { formatProfileData } from '../utils/profileHelpers';
 
 const Container = styled(Panel)`
 	background: ${primaryTint};
 `;
-
-const adminTabData = [
-	{
-		children: <UserDetails {...userInfo} />,
-		icon: <User />,
-		label: 'Profile',
-	},
-	{
-		children: <MatesDetails />,
-		icon: <Group />,
-		label: 'Mates',
-	},
-];
 
 /**
  * Render Profile component.
  */
 const Profile: FC = () => {
 	const { profileInfo } = useContext(ProfileContext);
-	const userInfo = profileInfo && formatProfileData(profileInfo);
-	const ProfileUi = () => (userInfo ? <TabbedScreens tabs={adminTabData} /> : <Spinner />);
-
+	const ProfileUi = () => (profileInfo ? <TabbedScreens tabs={adminTabData} /> : <Spinner />);
+	const adminTabData = [
+		{
+			children: <UserDetails username={profileInfo?.username} />,
+			icon: <User />,
+			label: 'Profile',
+		},
+		{
+			children: <MatesDetails />,
+			icon: <Group />,
+			label: 'Mates',
+		},
+	];
 	return (
 		<PageLayout>
 			<Navigation />

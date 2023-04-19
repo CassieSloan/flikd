@@ -1,6 +1,6 @@
 import { Spinner } from 'grommet';
 import { Favorite, Inspect, Time, View as Eye } from 'grommet-icons';
-import { FC, useContext } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { Navigation } from '@/components/common/Navigation';
 import { PageLayout } from '@/components/common/PageLayout';
@@ -11,7 +11,9 @@ import { WatchList } from '@/components/profile/watchList/WatchList';
 import { Profile as ProfileContext } from '@/context/context';
 import { primaryTint } from '@/design/colors/colors';
 import { Heading2 } from '@/design/typography/typography';
-import { formatProfileData } from '../utils/profileHelpers';
+import { GetProfileResponse } from '@/types/auth/users';
+import { getProfile } from 'apiHelpers/auth/getProfile';
+import { setSessionItem } from 'utils/base';
 
 const Container = styled(Panel)`
 	background: ${primaryTint};
@@ -44,9 +46,21 @@ const profileTabData = [
  * Render Profile component.
  */
 const Profile: FC = () => {
-	const { profileInfo } = useContext(ProfileContext);
-	const userInfo = profileInfo && formatProfileData(profileInfo);
-	const ProfileUi = () => (userInfo ? <TabbedScreens tabs={profileTabData} /> : <Spinner />);
+	const { authToken, profileInfo, setProfileInfo } = useContext(ProfileContext);
+	// const userInfo = profileInfo && formatProfileData(profileInfo);
+	const onSuccess = ({ data: profileInfo }: GetProfileResponse) => {
+		setSessionItem('profileInfo', JSON.stringify(profileInfo));
+		setProfileInfo(profileInfo);
+	};
+
+	useEffect(() => {
+		if (!profileInfo && authToken) {
+			console.log('finds use effect');
+			getProfile({ handleFail: (err) => console.log('err', err), onSuccess, token: authToken });
+		}
+	}, []);
+
+	const ProfileUi = () => (profileInfo ? <TabbedScreens tabs={profileTabData} /> : <Spinner />);
 
 	return (
 		<PageLayout>
