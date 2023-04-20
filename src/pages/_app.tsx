@@ -7,9 +7,10 @@ import { FontFamily } from '../design/typography/typography';
 const GlobalStyleSheet = createGlobalStyle`
 	* {
 		${FontFamily};
-		h1, h2, h3, h4, h5, h6, p, span {
-			margin: 0;
+		h1, h2, h3, h4, h5, h6 {
+			margin: 0 0 16px 0;
 		}
+		
 	}
 	body {
 		margin: 0;

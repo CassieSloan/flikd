@@ -3,14 +3,14 @@ import { MediaType } from '@/types/fliks/fliks';
 import { ApiHandlers, generateConfig, urls } from '../sharedConfig';
 
 export type UpcomingFliks = {
-	values: { page: number; mediaType?: MediaType; onToday?: boolean };
+	values: { mediaType: MediaType | null };
 } & ApiHandlers;
 /**
  * Register user function.
  */
-export const getUpcomingFliks = async ({ handleFail, onSuccess, values }: UpcomingFliks) => {
+export const getTrendingFliks = async ({ handleFail, onSuccess, values }: UpcomingFliks) => {
 	const config = generateConfig({ method: 'POST', values });
-	await axios(urls.fliksUpcoming, config)
+	await axios(urls.fliksTrending, config)
 		.then((response) => {
 			const { data, status } = response;
 			if (status === 200) data ? onSuccess(data) : handleFail(response);

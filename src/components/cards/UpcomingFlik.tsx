@@ -30,6 +30,10 @@ const FlikDetail: FC<{ property: string; value: ReactNode }> = ({ property, valu
 	);
 };
 
+const Container = styled(Flex)`
+	min-width: 300px;
+`;
+
 const FlikInfo: FC<UpcomingFlikProps> = ({ genres, id, releaseDate, synopsis, title, trailer }) => {
 	return (
 		<InfoContainer direction="column">
@@ -66,7 +70,7 @@ export const UpcomingFlikCard: FC<UpcomingFlikProps> = ({
 	};
 
 	return (
-		<Flex direction="column" gap={8}>
+		<Container direction="column" gap={8} flex="1">
 			<UnstyledButton type="button" onClick={toggleCollapse}>
 				<Poster src={mainImage} />
 			</UnstyledButton>
@@ -76,6 +80,6 @@ export const UpcomingFlikCard: FC<UpcomingFlikProps> = ({
 					<Poster src={mainImage} />
 				</Grid>
 			</Modal>
-		</Flex>
+		</Container>
 	);
 };
