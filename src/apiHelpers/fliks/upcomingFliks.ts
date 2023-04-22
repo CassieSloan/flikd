@@ -13,6 +13,7 @@ export const getUpcomingFliks = async ({ handleFail, onSuccess, values }: Upcomi
 	await axios(urls.fliksUpcoming, config)
 		.then((response) => {
 			const { data, status } = response;
+			console.log('upcoming', response);
 			if (status === 200) data ? onSuccess(data) : handleFail(response);
 		})
 		.catch((err) => {

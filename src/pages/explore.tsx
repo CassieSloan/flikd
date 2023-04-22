@@ -16,13 +16,14 @@ import { UpcomingFliks, UpcomingFliksResponse } from '../types/fliks/fliks';
  */
 const Explore: FC = () => {
 	const [page, setPage] = useState(1);
-	const [upcomingFliks, setUpcomingFliks] = useState<UpcomingFliks | []>([]);
-	const [trendingFliks, setTrendingFliks] = useState([]);
-	const [outNowFliks, setOutNowFliks] = useState<UpcomingFliks | []>([]);
+	const [upcomingFliks, setUpcomingFliks] = useState<any>();
+	const [trendingFliks, setTrendingFliks] = useState<any>();
+	const [outNowFliks, setOutNowFliks] = useState<any>();
 	// const [hasAdded, setHasAdded] = useState<boolean>();
-
+	console.log('outNowFliks', outNowFliks);
+	console.log('trendingFliks', trendingFliks);
+	console.log('upcomingFliks', upcomingFliks);
 	const onUpcomingSuccess = (response: UpcomingFliksResponse) => {
-		console.log('response', response);
 		const fliks = response.upcomingFliks;
 		if (fliks) {
 			setPage(page + 1);
@@ -32,7 +33,6 @@ const Explore: FC = () => {
 	};
 
 	const onTrendingSuccess = (response: any) => {
-		console.log('response', response);
 		const fliks = response.popularFliks;
 		if (fliks) {
 			setTrendingFliks(fliks);
@@ -40,40 +40,28 @@ const Explore: FC = () => {
 	};
 
 	const outNowOnSuccess = (response: UpcomingFliksResponse) => {
-		console.log('response', response);
 		const fliks = response.upcomingFliks;
 		if (fliks) {
 			setOutNowFliks(fliks);
 		}
 	};
 
-	// useEffect(() => {
-	// 	const idsOnList = profileInfo?.toWatch.Watchs.map((item) => parseInt(item.id)) || [];
-	// 	console.log('idsOnList', idsOnList);
-	// 	const hasSeenFlik = idsOnList.indexOf(id) !== -1;
-	// 	console.log('hasSeenFlik', hasSeenFlik);
-	// 	if (!hasSeenFlik) {
-	// 		console.log('has not seen ans settinfs');
-	// 		setHasAdded(true);
-	// 	}
-	// }, [profileInfo]);
-
 	useEffect(() => {
-		if (!upcomingFliks.length) {
+		if (!upcomingFliks?.length) {
 			getUpcomingFliks({
 				handleFail: (res) => console.log(res),
 				onSuccess: onUpcomingSuccess,
 				values: { page: 1 },
 			});
 		}
-		if (!trendingFliks.length) {
+		if (!trendingFliks?.length) {
 			getTrendingFliks({
 				handleFail: (res) => console.log(res),
 				onSuccess: onTrendingSuccess,
 				values: { mediaType: null },
 			});
 		}
-		if (!outNowFliks.length) {
+		if (!outNowFliks?.length) {
 			getUpcomingFliks({
 				handleFail: (res) => console.log(res),
 				onSuccess: outNowOnSuccess,
@@ -112,17 +100,23 @@ const Explore: FC = () => {
 			<Section>
 				<Heading level={3}>Upcoming Fliks</Heading>
 				<Grommet theme={{ carousel: { icons: { next: ChapterNext, previous: ChapterPrevious } } }}>
-					<FullWidthCarousel controls="arrows">
-						<UpcomingView items={upcomingFliks} />;
-					</FullWidthCarousel>
+					{upcomingFliks && (
+						<FullWidthCarousel controls="arrows">
+							<UpcomingView items={upcomingFliks} />;
+						</FullWidthCarousel>
+					)}
 					<Heading level={3}>Trending Fliks</Heading>
-					<FullWidthCarousel controls="arrows">
-						<UpcomingView items={trendingFliks} />;
-					</FullWidthCarousel>
+					{trendingFliks && (
+						<FullWidthCarousel controls="arrows">
+							<UpcomingView items={trendingFliks} />;
+						</FullWidthCarousel>
+					)}
 					<Heading level={3}>Out this week</Heading>
-					<FullWidthCarousel controls="arrows">
-						<UpcomingView items={outNowFliks} />;
-					</FullWidthCarousel>
+					{outNowFliks && (
+						<FullWidthCarousel controls="arrows">
+							<UpcomingView items={outNowFliks} />;
+						</FullWidthCarousel>
+					)}
 				</Grommet>
 				{/* <InfiniteScroll items={items} onMore={fetchMore}>
 					</InfiniteScroll> */}

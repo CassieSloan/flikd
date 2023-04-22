@@ -7,8 +7,8 @@ import { PageLayout } from '@/components/common/PageLayout';
 import { Panel } from '@/components/common/Panel';
 import { Section } from '@/components/common/Section';
 import { TabbedScreens } from '@/components/grommety-things/TabbedScreens';
+import { FlikdList } from '@/components/profile/FlikList/FlikdList';
 import { ProfileInfo } from '@/components/profile/user/public/ProfileInfo';
-import { WatchList } from '@/components/profile/watchList/WatchList';
 import { Profile as ProfileContext } from '@/context/context';
 import { primaryTint } from '@/design/colors/colors';
 import { Heading2 } from '@/design/typography/typography';
@@ -22,17 +22,17 @@ const Container = styled(Panel)`
 
 const profileTabData = [
 	{
-		children: <WatchList />,
+		children: <FlikdList listType="watchList" />,
 		icon: <Eye />,
 		label: 'Watch',
 	},
 	{
-		children: <Heading2>No Seen its yet</Heading2>,
+		children: <FlikdList listType="seenIts" />,
 		icon: <Inspect />,
 		label: 'Seen',
 	},
 	{
-		children: <Heading2>No Favourites yet</Heading2>,
+		children: <FlikdList listType="favourites" />,
 		icon: <Favorite />,
 		label: 'Favourites',
 	},
@@ -48,7 +48,6 @@ const profileTabData = [
  */
 const Profile: FC = () => {
 	const { authToken, profileInfo, setProfileInfo } = useContext(ProfileContext);
-	// const userInfo = profileInfo && formatProfileData(profileInfo);
 	const onSuccess = ({ data: profileInfo }: GetProfileResponse) => {
 		setSessionItem('profileInfo', JSON.stringify(profileInfo));
 		setProfileInfo(profileInfo);
@@ -56,7 +55,6 @@ const Profile: FC = () => {
 
 	useEffect(() => {
 		if (!profileInfo && authToken) {
-			console.log('finds use effect');
 			getProfile({ handleFail: (err) => console.log('err', err), onSuccess, token: authToken });
 		}
 	}, []);

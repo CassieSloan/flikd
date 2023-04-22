@@ -45,16 +45,17 @@ const Context = ({ children }: PropsWithChildren) => {
 		}
 
 		if (!profileInfo && sessionProfileInfo) {
-			console.log('no state, using session: profileinfo');
+			console.log('no context on mount, using session: profileinfo');
 			setProfileInfo(JSON.parse(sessionProfileInfo));
 		}
 
 		if (!authToken && sessionToken) {
-			console.log('no state, using session: authtoken');
+			console.log('no context on mount, using session: authtoken');
 			setAuthToken(sessionToken);
 		}
 
 		if (sessionToken && sessionProfileInfo) {
+			console.log('setting context from session');
 			setAuthToken(sessionToken);
 			setProfileInfo(parseSessionProfileData());
 		}

@@ -92,7 +92,6 @@ type TagStyleProps = TagBackgroundStyle | ColorBackgroundStyles;
  * Text tag styles.
  */
 export const tagStyles = (props: TagStyleProps) => {
-	console.log('props', props);
 	const alert = css`
 		background: ${primary500};
 		color: ${white};
@@ -117,6 +116,7 @@ export const tagStyles = (props: TagStyleProps) => {
 		background: ${tertiary500};
 		color: ${white};
 	`;
+
 	if (props === 'alert') return alert;
 	if (props === 'success') return success;
 	if (props === 'primary') return primary;

@@ -8,9 +8,8 @@ export const deleteProfile = async ({ handleFail, onSuccess, token }: AuthReqPro
 	const config = generateConfig({ authToken: token, method: 'POST' });
 	await axios(urls.profileDelete, config)
 		.then((response) => {
-			const { data, status } = response;
+			const { status } = response;
 			if (status === 200) {
-				console.log('data', data);
 				onSuccess(response);
 			}
 		})

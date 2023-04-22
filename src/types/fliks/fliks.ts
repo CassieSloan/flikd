@@ -9,7 +9,7 @@ export type Flik = {
 	userListId: string | number | null;
 };
 
-export type FlikList = 'watchList' | 'favourites' | 'seenIt';
+export type FlikList = 'watchList' | 'favourites' | 'seenIts';
 
 export type UpcomingFlik = {
 	genreIds: number[];
