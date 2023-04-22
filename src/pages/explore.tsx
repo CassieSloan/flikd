@@ -70,15 +70,15 @@ const Explore: FC = () => {
 		}
 	}, []);
 
-	const fetchMore = () => {
-		console.log('on more firing');
-		const nextPage = page + 1;
-		getUpcomingFliks({
-			handleFail: (res) => console.log(res),
-			onSuccess: onUpcomingSuccess,
-			values: { page: nextPage },
-		});
-	};
+	// const fetchMore = () => {
+	// 	console.log('on more firing');
+	// 	const nextPage = page + 1;
+	// 	getUpcomingFliks({
+	// 		handleFail: (res) => console.log(res),
+	// 		onSuccess: onUpcomingSuccess,
+	// 		values: { page: nextPage },
+	// 	});
+	// };
 
 	const FullWidthCarousel = styled(Carousel)`
 		width: 100%;
