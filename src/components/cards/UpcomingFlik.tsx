@@ -31,7 +31,7 @@ const InfoContainer = styled(Flex)`
 	overflow-y: scroll;
 `;
 
-type UpcomingFlikProps = Partial<UpcomingFlikResponse>;
+type UpcomingFlikProps = Partial<UpcomingFlikResponse> & Pick<UpcomingFlikResponse, 'id'>;
 const FlikInfo: FC<UpcomingFlikProps> = ({ genres, id, releaseDate, synopsis, title, trailer }) => {
 	return (
 		<InfoContainer direction="column">

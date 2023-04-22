@@ -26,7 +26,7 @@ export const FlikdList: FC<FlikdListProps> = ({ listType }) => {
 
 	const listToRender = {
 		favourites,
-		seenIt: seenIts,
+		seenIts: seenIts,
 		watchList: toWatch,
 	};
 
