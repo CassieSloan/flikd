@@ -7,6 +7,7 @@ import { Navigation } from '@/components/common/Navigation';
 import { PageLayout } from '@/components/common/PageLayout';
 import { Section } from '@/components/common/Section';
 import { FlikdCarousel } from '@/components/explore/FlikCarousel/FlikCarousel';
+import { FlikFilter } from '@/components/explore/FlikCarousel/FlikFilter';
 import { Search } from '@/components/search/FlikSearch';
 import { Grid } from '@/design/components/layout/Grid';
 import { Heading3 } from '@/design/typography/typography';
@@ -49,6 +50,7 @@ const Explore: FC = () => {
 		<PageLayout>
 			<Navigation />
 			<Search handleSearch={handleSearch} />
+			<FlikFilter searchResults={searchResults} />
 			<Section>
 				<Grid columns={5} gap={16}>
 					<InfiniteScroll items={searchResults} onMore={onMore}>
@@ -67,11 +69,6 @@ const Explore: FC = () => {
 						<FlikdCarousel type="trending" />
 					</Grommet>
 				)}
-				{/* <InfiniteScroll items={items} onMore={fetchMore}>
-					</InfiniteScroll> */}
-				{/* // search
-              // filters
-             //paginated all movies */}
 			</Section>
 		</PageLayout>
 	);
