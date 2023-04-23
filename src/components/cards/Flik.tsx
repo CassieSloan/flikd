@@ -9,6 +9,9 @@ const Poster = styled(Image)`
 `;
 
 type UpcomingFlikProps = Partial<Flik>;
+
+//  add onclick for more info.
+
 /**
  * Render Component component.
  */

@@ -7,14 +7,14 @@ import { PageLayout } from '@/components/common/PageLayout';
 import { Panel } from '@/components/common/Panel';
 import { Section } from '@/components/common/Section';
 import { TabbedScreens } from '@/components/grommety-things/TabbedScreens';
-import { FlikdList } from '@/components/profile/FlikList/FlikdList';
+import { FlikdList } from '@/components/profile/fliks/FlikdList';
 import { ProfileInfo } from '@/components/profile/user/public/ProfileInfo';
 import { Profile as ProfileContext } from '@/context/context';
 import { primaryTint } from '@/design/colors/colors';
 import { Heading2 } from '@/design/typography/typography';
 import { GetProfileResponse } from '@/types/auth/users';
 import { getProfile } from 'apiHelpers/auth/getProfile';
-import { setSessionItem } from 'utils/base';
+import { setSessionItem } from 'utils/sessionActions';
 
 const Container = styled(Panel)`
 	background: ${primaryTint};

@@ -10,7 +10,7 @@ export const login = async ({ handleFail, onSuccess, values }: FormSubmitApiProp
 
 	await axios(urls.login, config)
 		.then((response) => {
-			console.log('response', response);
+			console.log('login response', response);
 			const {
 				data: { accessToken },
 				status,

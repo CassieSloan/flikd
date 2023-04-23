@@ -7,7 +7,7 @@ type SectionProps = {
 } & PropsWithChildren;
 
 const Container = styled.section<{ padding?: number }>`
-	${({ padding }) => (padding ? `padding: ${padding}px 0` : 'padding: 64px 0')}
+	${({ padding }) => (padding === 0 || padding ? `padding: ${padding}px 0` : 'padding: 64px 0')}
 `;
 
 const Wrapper = styled.div`

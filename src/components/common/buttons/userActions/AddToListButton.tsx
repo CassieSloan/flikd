@@ -14,15 +14,16 @@ export const AddToListButton: FC<AddToListButton> = ({ id, type }) => {
 	const { authToken: token, profileInfo, setProfileInfo } = useContext(Profile);
 
 	const formattedId = id.toString();
-	const onSuccess = (res: { data: any }) => {
+	const onSuccess = (res: { fliks: any }) => {
 		console.log('res', res);
-		const fliksInList = res.data;
+		const fliksInList = res.fliks;
 		if (fliksInList && profileInfo) {
 			const clonedProfile = profileInfo;
 			type === 'favourites' && (clonedProfile.favourites.favourites = fliksInList);
 			type === 'watchList' && (clonedProfile.toWatch.Watchs = fliksInList);
-			type === 'seenIts' && (clonedProfile.seenIts.seenIts = fliksInList);
+			type === 'seenIts' && (clonedProfile.seenIts.SeenItFlik = fliksInList);
 			console.log('clonedProfile', clonedProfile);
+			console.log('profileInfo', profileInfo);
 			setProfileInfo(clonedProfile);
 		}
 	};
@@ -43,8 +44,8 @@ export const AddToListButton: FC<AddToListButton> = ({ id, type }) => {
 	return (
 		<UnstyledButton id={formattedId} onClick={onClick}>
 			{type === 'favourites' && <Favorite color={colors.tertiary500} />}
-			{type === 'seenIts' && <View color={colors.secondary500} />}
-			{type === 'watchList' && <Inspect color={colors.primary500} />}
+			{type === 'seenIts' && <Inspect color={colors.secondary500} />}
+			{type === 'watchList' && <View color={colors.primary500} />}
 		</UnstyledButton>
 	);
 };

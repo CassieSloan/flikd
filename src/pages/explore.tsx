@@ -1,15 +1,21 @@
-import { Carousel, Grommet, Heading } from 'grommet';
-import { ChapterNext, ChapterPrevious } from 'grommet-icons';
-import { FC, useEffect, useState } from 'react';
+import { Carousel, InfiniteScroll } from 'grommet';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
-import { getTrendingFliks } from '@/apiHelpers/fliks/trendingFliks';
+import { searchFliks } from '@/apiHelpers/fliks/searchFliks';
+import { FlikCard } from '@/components/cards/Flik';
 import { Navigation } from '@/components/common/Navigation';
 import { PageLayout } from '@/components/common/PageLayout';
 import { Section } from '@/components/common/Section';
+import { Search } from '@/components/search/FlikSearch';
 import { Flex } from '@/design/components/layout/Flex';
-import { getUpcomingFliks } from '../apiHelpers/fliks/upcomingFliks';
+import { Grid } from '@/design/components/layout/Grid';
 import { UpcomingFlikCard } from '../components/cards/UpcomingFlik';
-import { UpcomingFliks, UpcomingFliksResponse } from '../types/fliks/fliks';
+import {
+	SearchedFlik,
+	SearchedFliks,
+	SearchFliksResponse,
+	UpcomingFliks,
+} from '../types/fliks/fliks';
 
 /**
  * Render Explore page.
@@ -19,67 +25,59 @@ const Explore: FC = () => {
 	const [upcomingFliks, setUpcomingFliks] = useState<any>();
 	const [trendingFliks, setTrendingFliks] = useState<any>();
 	const [outNowFliks, setOutNowFliks] = useState<any>();
+	const [searchResults, setSearchResults] = useState<SearchedFliks | undefined>();
+	const [searchTerm, setSearchTerm] = useState<string | undefined>();
 	// const [hasAdded, setHasAdded] = useState<boolean>();
-	console.log('outNowFliks', outNowFliks);
-	console.log('trendingFliks', trendingFliks);
-	console.log('upcomingFliks', upcomingFliks);
-	const onUpcomingSuccess = (response: UpcomingFliksResponse) => {
-		const fliks = response.upcomingFliks;
-		if (fliks) {
-			setPage(page + 1);
-			const expandedList = [...fliks, ...upcomingFliks];
-			setUpcomingFliks(expandedList);
-		}
-	};
+	console.log('searchResults', searchResults);
 
-	const onTrendingSuccess = (response: any) => {
-		const fliks = response.popularFliks;
-		if (fliks) {
-			setTrendingFliks(fliks);
-		}
-	};
-
-	const outNowOnSuccess = (response: UpcomingFliksResponse) => {
-		const fliks = response.upcomingFliks;
-		if (fliks) {
-			setOutNowFliks(fliks);
-		}
-	};
-
-	useEffect(() => {
-		if (!upcomingFliks?.length) {
-			getUpcomingFliks({
-				handleFail: (res) => console.log(res),
-				onSuccess: onUpcomingSuccess,
-				values: { page: 1 },
-			});
-		}
-		if (!trendingFliks?.length) {
-			getTrendingFliks({
-				handleFail: (res) => console.log(res),
-				onSuccess: onTrendingSuccess,
-				values: { mediaType: null },
-			});
-		}
-		if (!outNowFliks?.length) {
-			getUpcomingFliks({
-				handleFail: (res) => console.log(res),
-				onSuccess: outNowOnSuccess,
-				values: { onToday: true, page: 1 },
-			});
-		}
-	}, []);
-
-	// const fetchMore = () => {
-	// 	console.log('on more firing');
-	// 	const nextPage = page + 1;
-	// 	getUpcomingFliks({
-	// 		handleFail: (res) => console.log(res),
-	// 		onSuccess: onUpcomingSuccess,
-	// 		values: { page: nextPage },
-	// 	});
+	// const onUpcomingSuccess = (response: UpcomingFliksResponse) => {
+	// 	console.log('upcoming response on explore', response);
+	// 	const fliks = response.upcomingFliks;
+	// 	console.log('fliks', fliks);
+	// 	if (fliks) {
+	// 		setPage(page + 1);
+	// 		const expandedList = [...fliks, ...upcomingFliks];
+	// 		setUpcomingFliks(expandedList);
+	// 	}
 	// };
 
+	// const onTrendingSuccess = (response: any) => {
+	// 	const fliks = response.popularFliks;
+	// 	if (fliks) {
+	// 		setTrendingFliks(fliks);
+	// 	}
+	// };
+
+	// const outNowOnSuccess = (response: UpcomingFliksResponse) => {
+	// 	const fliks = response.upcomingFliks;
+	// 	if (fliks) {
+	// 		setOutNowFliks(fliks);
+	// 	}
+	// };
+
+	// useEffect(() => {
+	// 	if (!upcomingFliks?.length) {
+	// 		getUpcomingFliks({
+	// 			handleFail: (res) => console.log(res),
+	// 			onSuccess: onUpcomingSuccess,
+	// 			values: { page: 1 },
+	// 		});
+	// 	}
+	// 	if (!trendingFliks?.length) {
+	// 		getTrendingFliks({
+	// 			handleFail: (res) => console.log(res),
+	// 			onSuccess: onTrendingSuccess,
+	// 			values: { mediaType: null },
+	// 		});
+	// 	}
+	// 	if (!outNowFliks?.length) {
+	// 		getUpcomingFliks({
+	// 			handleFail: (res) => console.log(res),
+	// 			onSuccess: outNowOnSuccess,
+	// 			values: { onToday: true, page: 1 },
+	// 		});
+	// 	}
+	// }, []);
 	const FullWidthCarousel = styled(Carousel)`
 		width: 100%;
 	`;
@@ -94,11 +92,44 @@ const Explore: FC = () => {
 		);
 	};
 
+	const onMoreSuccess = ({ searchResults: newResults }: SearchFliksResponse) => {
+		const updatedResults = searchResults ? [...searchResults, ...newResults] : newResults;
+		console.log('newResults', newResults);
+		console.log('old searchResults', searchResults);
+		console.log('updatedResults', updatedResults);
+		setSearchResults(updatedResults);
+		setPage(page + 1);
+	};
+
+	const handleSearch = (searchTerm?: string) => {
+		setSearchTerm(searchTerm);
+		searchFliks({
+			handleFail: (err) => console.log('err', err),
+			onSuccess: (res: SearchFliksResponse) => setSearchResults(res.searchResults),
+			values: { searchTerm },
+		});
+	};
+
+	const onMore = () => {
+		console.log('on more firing');
+		searchFliks({
+			handleFail: (res) => console.log(res),
+			onSuccess: onMoreSuccess,
+			values: { page: page + 1, searchTerm },
+		});
+	};
+
 	return (
 		<PageLayout>
 			<Navigation />
+			<Search handleSearch={handleSearch} />
 			<Section>
-				<Heading level={3}>Upcoming Fliks</Heading>
+				<Grid columns={5} gap={16}>
+					<InfiniteScroll items={searchResults} onMore={onMore}>
+						{(item: SearchedFlik) => <FlikCard imageUrl={item.mainImage} />}
+					</InfiniteScroll>
+				</Grid>
+				{/* <Heading level={3}>Upcoming Fliks</Heading>
 				<Grommet theme={{ carousel: { icons: { next: ChapterNext, previous: ChapterPrevious } } }}>
 					{upcomingFliks && (
 						<FullWidthCarousel controls="arrows">
@@ -117,7 +148,7 @@ const Explore: FC = () => {
 							<UpcomingView items={outNowFliks} />;
 						</FullWidthCarousel>
 					)}
-				</Grommet>
+				</Grommet> */}
 				{/* <InfiniteScroll items={items} onMore={fetchMore}>
 					</InfiniteScroll> */}
 				{/* // search

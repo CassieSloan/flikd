@@ -1,6 +1,6 @@
 import queryString from 'query-string';
 import { ProfileInfo } from '../types/auth/users';
-import { getSessionItem } from './base';
+import { getSessionItem } from './sessionActions';
 
 type UpdateProfileProps = Omit<ProfileInfo, 'id' | 'userSince' | 'username'>;
 

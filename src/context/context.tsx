@@ -1,4 +1,3 @@
-import jwt_decode from 'jwt-decode';
 import {
 	createContext,
 	Dispatch,
@@ -7,9 +6,10 @@ import {
 	useEffect,
 	useState,
 } from 'react';
-import { DecodedAuthToken, ProfileInfo, ProfileReference } from '../types/auth/users';
-import { getSessionItem } from '../utils/base';
+import { decodedAuthToken } from 'utils/decodeAuthToken';
+import { ProfileInfo, ProfileReference } from '../types/auth/users';
 import { parseSessionProfileData } from '../utils/profileHelpers';
+import { getSessionItem } from '../utils/sessionActions';
 
 type ProfileContext = {
 	authToken?: string;
@@ -39,10 +39,6 @@ const Context = ({ children }: PropsWithChildren) => {
 	useEffect(() => {
 		const sessionToken = getSessionItem('userAuth');
 		const sessionProfileInfo = getSessionItem('profileInfo');
-		if (authToken && !profileInfo) {
-			const { profile }: DecodedAuthToken = jwt_decode(authToken);
-			setProfileRef(profile);
-		}
 
 		if (!profileInfo && sessionProfileInfo) {
 			console.log('no context on mount, using session: profileinfo');
@@ -50,8 +46,10 @@ const Context = ({ children }: PropsWithChildren) => {
 		}
 
 		if (!authToken && sessionToken) {
-			console.log('no context on mount, using session: authtoken');
+			console.log('no context on mount, setting token from session');
 			setAuthToken(sessionToken);
+			console.log('no profile ref - settings from auth');
+			setProfileRef(decodedAuthToken(sessionToken));
 		}
 
 		if (sessionToken && sessionProfileInfo) {

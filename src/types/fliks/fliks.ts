@@ -1,4 +1,6 @@
 export type MediaType = 'movie' | 'tv';
+export type SearchMediaType = MediaType | 'person';
+export type FlikList = 'watchList' | 'favourites' | 'seenIts';
 
 export type Flik = {
 	flikId: number;
@@ -8,8 +10,7 @@ export type Flik = {
 	title: string;
 	userListId: string | number | null;
 };
-
-export type FlikList = 'watchList' | 'favourites' | 'seenIts';
+export type Fliks = Flik[];
 
 export type UpcomingFlik = {
 	genreIds: number[];
@@ -24,6 +25,8 @@ export type UpcomingFlik = {
 	trailer: string;
 };
 
+export type UpcomingFliks = UpcomingFlik[];
+
 export type UpcomingFliksResponse = {
 	dates: string;
 	page: number;
@@ -32,5 +35,22 @@ export type UpcomingFliksResponse = {
 	upcomingFliks: UpcomingFliks;
 };
 
-export type Fliks = Flik[];
-export type UpcomingFliks = UpcomingFlik[];
+export type SearchedFlik = {
+	adult: boolean;
+	genreIds: number[];
+	id: number;
+	mainImage: string;
+	mediaType: SearchMediaType;
+	releaseDate: string;
+	synopsis: string;
+	title: string;
+};
+
+export type SearchedFliks = SearchedFlik[];
+
+export type SearchFliksResponse = {
+	page: 1;
+	totalPages: 60;
+	totalResults: 1200;
+	searchResults: SearchedFliks;
+};
