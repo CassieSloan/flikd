@@ -25,6 +25,12 @@ export type UpcomingFlik = {
 	trailer: string;
 };
 
+export type DiscoverItems = {
+	trending: UpcomingFlik[];
+	upcoming: UpcomingFlik[];
+	nowPlaying: UpcomingFlik[];
+};
+
 export type UpcomingFliks = UpcomingFlik[];
 
 export type UpcomingFliksResponse = {

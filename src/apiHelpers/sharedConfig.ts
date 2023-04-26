@@ -11,6 +11,7 @@ const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}`;
 
 export const urls = {
 	fliksAdd: `${baseUrl}/fliks/add-flik`,
+	fliksDiscover: `${baseUrl}/fliks/discover`,
 	fliksSearch: `${baseUrl}/fliks/all-content-search`,
 	fliksTrending: `${baseUrl}/fliks/trending-fliks`,
 	fliksUpcoming: `${baseUrl}/fliks/upcoming-fliks`,

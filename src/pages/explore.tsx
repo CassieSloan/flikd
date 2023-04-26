@@ -1,6 +1,7 @@
 import { Grommet, InfiniteScroll } from 'grommet';
 import { ChapterNext, ChapterPrevious } from 'grommet-icons';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { getDiscoverFliks } from '@/apiHelpers/fliks/discoverFliks';
 import { searchFliks } from '@/apiHelpers/fliks/searchFliks';
 import { FlikCard } from '@/components/cards/Flik';
 import { Navigation } from '@/components/common/Navigation';
@@ -11,7 +12,12 @@ import { FlikFilter } from '@/components/explore/FlikCarousel/FlikFilter';
 import { Search } from '@/components/search/FlikSearch';
 import { Grid } from '@/design/components/layout/Grid';
 import { Heading3 } from '@/design/typography/typography';
-import { SearchedFlik, SearchedFliks, SearchFliksResponse } from '../types/fliks/fliks';
+import {
+	DiscoverItems,
+	SearchedFlik,
+	SearchedFliks,
+	SearchFliksResponse,
+} from '../types/fliks/fliks';
 
 /**
  * Render Explore page.
@@ -19,6 +25,7 @@ import { SearchedFlik, SearchedFliks, SearchFliksResponse } from '../types/fliks
 const Explore: FC = () => {
 	const [page, setPage] = useState(1);
 	const [searchResults, setSearchResults] = useState<SearchedFliks | undefined>();
+	const [items, setItems] = useState<DiscoverItems>();
 	const [searchTerm, setSearchTerm] = useState<string | undefined>();
 	console.log('searchResults', searchResults);
 
@@ -46,6 +53,27 @@ const Explore: FC = () => {
 		});
 	};
 
+	const onSuccess = (response: any) => {
+		if (!items) {
+			setItems({
+				nowPlaying: response.playingNow.upcomingFliks,
+				trending: response.trending.trendingFliks,
+				upcoming: response.upcomingFliks.upcomingFliks,
+			});
+		}
+	};
+
+	const handleFail = (res: any) => console.log(res);
+
+	useEffect(() => {
+		getDiscoverFliks({
+			handleFail,
+			onSuccess,
+			values: { mediaType: null },
+		});
+		console.log('re-render')
+	}, []);
+
 	return (
 		<PageLayout>
 			<Navigation />
@@ -62,15 +90,16 @@ const Explore: FC = () => {
 						theme={{ carousel: { icons: { next: ChapterNext, previous: ChapterPrevious } } }}
 					>
 						<Heading3>Upcoming Fliks</Heading3>
-						<FlikdCarousel type="upcoming" />
+						<FlikdCarousel items={items?.upcoming || []} />
 						<Heading3>Out now</Heading3>
-						<FlikdCarousel type="out-now" />
+						<FlikdCarousel items={items?.nowPlaying || []} />
 						<Heading3>Trending Fliks</Heading3>
-						<FlikdCarousel type="trending" />
+						<FlikdCarousel items={items?.trending || []} />
 					</Grommet>
 				)}
 			</Section>
 		</PageLayout>
 	);
 };
+
 export default Explore;
