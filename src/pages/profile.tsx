@@ -10,14 +10,14 @@ import { TabbedScreens } from '@/components/grommety-things/TabbedScreens';
 import { FlikdList } from '@/components/profile/fliks/FlikdList';
 import { ProfileInfo } from '@/components/profile/user/public/ProfileInfo';
 import { Profile as ProfileContext } from '@/context/context';
-import { primaryTint } from '@/design/colors/colors';
+import { grey100 } from '@/design/colors/shades';
 import { Heading2 } from '@/design/typography/typography';
 import { GetProfileResponse } from '@/types/auth/users';
 import { getProfile } from 'apiHelpers/auth/getProfile';
 import { setSessionItem } from 'utils/sessionActions';
 
 const Container = styled(Panel)`
-	background: ${primaryTint};
+	background: ${grey100};
 `;
 
 const profileTabData = [

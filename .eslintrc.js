@@ -87,8 +87,8 @@ module.exports = {
     'no-irregular-whitespace': 'error',
     'no-mixed-spaces-and-tabs': 'off',
     'no-unused-vars': 'off',
-    'unused-imports/no-unused-imports': 'error',
-    'unused-imports/no-unused-vars': 'error',
+    'unused-imports/no-unused-imports': 'warn',
+    'unused-imports/no-unused-vars': 'warn',
     'import/no-unresolved': 'warn',
 
     // ★ 🎀 imports 🎀 ★

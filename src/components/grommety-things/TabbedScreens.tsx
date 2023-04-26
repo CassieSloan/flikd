@@ -2,21 +2,30 @@ import { Tab, Tabs } from 'grommet';
 import { FC, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { primary300, primary700 } from '../../design/colors/colors';
-import { white } from '../../design/colors/shades';
 import { onSelected } from '../../design/utils';
 
+// TODO: tidy
 const StyledTab = styled(Tab)`
 	padding: 24px;
+	span {
+		color: ${primary300};
+	}
 	svg {
-		stroke: ${white};
+		stroke: ${primary300};
 	}
 	${onSelected(css`
-		stroke: ${primary300};
+		stroke: ${primary700};
 		svg {
 			stroke: ${primary700};
 		}
+		span {
+			color: ${primary700};
+			font-weight: 500;
+		}
 	`)}
+
 	* {
+		margin: 0;
 		border: none;
 	}
 `;
