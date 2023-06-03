@@ -18,6 +18,7 @@ const GlobalStyleSheet = createGlobalStyle`
 	}
 	body {
 		margin: 0;
+		background-color: ${offBlack};
 	}
 `;
 

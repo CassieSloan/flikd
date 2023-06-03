@@ -37,6 +37,7 @@ const CircleFrame = styled.div`
 	border-radius: 48px;
 	position: relative;
 	overflow: hidden;
+	flex-shrink: 0;
 `;
 /**
  * Render Component component.

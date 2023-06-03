@@ -1,8 +1,6 @@
 import { Head, Html, Main, NextScript } from 'next/document';
 import { satoshiVariableFont } from './_app';
 
-const NewMain = Main.bind({ className: satoshiVariableFont.className });
-
 /**
  * Root document export.
  */
@@ -16,7 +14,7 @@ export default function Document() {
 				<NextScript />
 			</Head>
 			<body className={satoshiVariableFont.className}>
-				<NewMain />
+				<Main />
 			</body>
 			<noscript>You need to enable JavaScript to run this app.</noscript>
 			<div id="root"></div>

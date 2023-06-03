@@ -30,7 +30,7 @@ export const whiteSolid = () => css`
  * Frosted glass effect.
  */
 export const glassBackground = () => css`
-	background: rgba(255, 255, 255, 0.15);
+	background: rgba(255, 255, 255, 0.02);
 	box-shadow: inset -2px -2px 6px -6px #ffffff, 1px 1px 9px -4px rgba(0, 0, 0, 0.3);
 	backdrop-filter: blur(3px);
 `;
