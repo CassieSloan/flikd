@@ -1,16 +1,20 @@
 import { Grommet } from 'grommet';
 import type { AppProps } from 'next/app';
+import localFont from 'next/font/local';
 import { createGlobalStyle } from 'styled-components';
+import { offBlack } from '@/design/colors/shades';
 import Context from '../context/context';
-import { FontFamily } from '../design/typography/typography';
+
+export const satoshiVariableFont = localFont({
+	src: '../design/typography/fonts/Satoshi-Variable.woff2',
+});
 
 const GlobalStyleSheet = createGlobalStyle`
 	* {
-		${FontFamily};
-		h1, h2, h3, h4, h5, h6 {
+		h1, h2, h3, h4, h5, h6, p {
 			margin: 0 0 16px 0;
+				color: ${offBlack};
 		}
-		
 	}
 	body {
 		margin: 0;
@@ -25,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
 		<Grommet full>
 			<GlobalStyleSheet />
 			<Context>
-				<Component {...pageProps} />
+				<Component {...pageProps} className={satoshiVariableFont.className} />
 			</Context>
 		</Grommet>
 	);

@@ -27,12 +27,11 @@ export const labelAltS = () => css`
 `;
 
 /**
- * Css for label styles: label/regular/s
- * + font-family: 'Satoshi Variable';
+ * Css for label styles: label/regular/s.
+ *
  * + font-size: 14x;.
  */
 export const labelMedium = () => css`
-	font-family: 'Satoshi Variable';
 	font-size: 14px;
 	font-weight: 700;
 	line-height: 17px;
@@ -40,12 +39,11 @@ export const labelMedium = () => css`
 `;
 
 /**
- * Css for label styles: label/regular/s
- * + font-family: 'Satoshi Variable';
+ * Css for label styles: label/regular/s.
+ *
  * + font-size: 12x;.
  */
 export const labelSmall = () => css`
-	font-family: 'Satoshi Variable';
 	font-size: 12px;
 	font-weight: 700;
 	line-height: 14px;
